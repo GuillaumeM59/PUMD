@@ -1,0 +1,15 @@
+<%= driver=User.find(@bid.driver_id) %>
+Bonjour <%= driver.prenom, %>
+<%= @current_user.prenom %> a annulé sa reservation du trajet:
+
+ trajet: <%= @bid.id %>
+
+
+
+Magasin: <%= Shop.find(@bid.shop_id).name %>
+Horaire: <%= @bid.go_at %>
+Conducteur: vous
+
+Sa place est donc à nouveau libre dans l'annonce
+
+Cordialement, co-shop

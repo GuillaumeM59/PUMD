@@ -1,0 +1,13 @@
+<p>
+A new contact was posted for your <%= @item.name %>:
+</p>
+
+<blockquote cite="http://">
+<em> <%= @contact.body%></em>
+</blockquote>
+
+<p>
+to reply to this contact, please visit the item page at:
+
+<%= link_to "item page", @item %>.
+</p>

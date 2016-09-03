@@ -1,0 +1,168 @@
+
+
+
+
+<div class="container-fluid toppage">
+  <div class="row">
+
+    <%= form_for @user, validate: true do |f| %>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %>
+        prohibited this user from being saved:</h2>
+
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+    <h1 class="headercontant col-md-12 text-center">
+      Modifier mon profil
+    </h1>
+
+  <div class="col-md-6 col-lg-3 edituseravatarbloc">
+    <p class="text-center">
+      <%= image_tag(@user.avatar, class:"img-responsive profilavatar") %>
+      <div class="field">
+        <%= f.label :avatar do %>
+        <%= f.file_field :avatar %>
+        <% end %>
+      </div>
+    </p>
+  </div>
+
+  <div class="col-md-6 col-lg-3 edituseridentbloc">
+    <div class="field">
+      <%= f.label :nom %><br>
+      <%= f.text_field :nom %>
+    </div>
+    <div class="field">
+      <%= f.label "Prénom" %><br>
+      <%= f.text_field :prenom %>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      <i>(Laisser vide si vous ne voulez pas le changer)</i><br/>
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+
+  </div>
+  <div class="col-md-6 col-lg-3 edituseridbloc">
+
+    <div class="field">
+      <%= f.label :email %><br/>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label "Newsletter" %><br>
+      <%= f.check_box :subscribe %>
+    </div>
+    <div class="field">
+      <%= f.label "Telephone" %><br/>
+      <%= f.text_field :phone, autofocus: true %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for:
+      <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+
+    <div class="field">
+      <%= f.label "Adresse" %><br>
+      <%= f.text_field :adress %>
+    </div>
+    <div class="field">
+      <%= f.label "Code postal" %><br>
+      <%= f.text_field :zipcode %>
+    </div>
+    <div class="field">
+      <%= f.label "Ville" %><br>
+      <%= f.text_field :city %>
+    </div>
+
+  </div>
+    <div class="col-md-6 col-lg-3 editusercarbloc">
+    <div class="field">
+      <%= f.label "Date de naissance" %><br>
+      <%= f.date_select :dob, :start_year => 1900, :end_year => Time.now.year  %>
+    </div>
+
+    <div class="field">
+    <p>Sexe:</p>
+  <%=   f.radio_button :gender, "false" %>
+<%=   f.label :gender_false, "Homme" %>
+<%=   f.radio_button :gender, "true" %>
+<%=   f.label :gender_true, "Femme" %>
+
+</div>
+    <div class="field">
+      <%= f.label "Quelques mots sur vous" %><br>
+      <%= f.text_area :comment %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label "Je suis conducteur" %>
+      <%= f.check_box :driver,  input_html: { checked: false } %>
+    </div>
+
+    <div class="field ">
+      <div class="field">
+        <%= f.label "Marque de la voiture" %><br>
+        <%= f.collection_select :cbrand_id, Carbrand.order(:name), :id, :name, include_blank: true, placeholder: "" %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Modèle" %><br>
+        <%= f.grouped_collection_select :cmodel_id, Carbrand.order(:name), :carmodels, :name, :id, :name, include_blank: true, placeholder: "" %>
+      </div>
+      <div class="field col-md-12">
+        <div class="row">
+
+          <p class="text-center">Taille de la voiture</p>
+          <div class="col-md-4 text-center">
+            <%= f.label :gender do %>
+            M ( 2 <i class="fa fa-user" aria-hidden="true"></i> ou -)
+            <%end %>
+            <%= radio_button("user", "carsize", "M") %>
+          </div>
+          <div class="col-md-4 text-center">
+            <%= f.label :gender do %>
+            L ( 3 <i class="fa fa-user" aria-hidden="true"></i>)
+            <%end %>
+            <%= radio_button("user", "carsize", "L") %>
+          </div>
+          <div class="col-md-4 text-center">
+            <%= f.label :gender do %>
+            XL ( 4 <i class="fa fa-user" aria-hidden="true"></i> ou +)
+            <%end %>
+            <%= radio_button("user", "carsize", "XL") %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="actions col-md-12 text-center">
+  </br>
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: "off" %></br>
+    <i>(Nécessaire pour confirmer vos changements)</i><br/>
+    <%= f.submit "Enregistrer les changements", class: "btn btn-lg" %>
+
+    <% end %></br>
+    <%= link_to 'Supprimer mon compte', current_user, method: :delete, data: { confirm: 'Voulez-vous vraiment supprimer ' } %>
+  </div>
+</div>
+
+</div>

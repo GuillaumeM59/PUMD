@@ -1,0 +1,53 @@
+<script src="//maps.google.com/maps/api/js?v=3.exp&key=AIzaSyBngIsRw-Abk5UB04-Nl_Qg4vACEfo2jEo"></script>
+
+<h1>Listing Trajetpumds</h1>
+
+<table class="datatable">
+  <thead>
+    <tr>
+      <th>Driver</th>
+      <th>Shop</th>
+      <th>Td date</th>
+      <th>Regulier</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trajetpumds.each do |trajetpumd| %>
+      <tr>
+        <td><%= User.find(trajetpumd.driver_id).username%> <%= trajetpumd.driver_id %></td>
+        <td><%= Shop.find(trajetpumd.shop_id).name%> <%=trajetpumd.shop_id  %></td>
+        <td><%= trajetpumd.do_at %></td>
+        <td><%= trajetpumd.regulier %></td>
+        <td><%= link_to 'Show', trajetpumd %></td>
+        <td><%= link_to 'Edit', edit_trajetpumd_path(trajetpumd) %></td>
+        <td><%= link_to 'Destroy', trajetpumd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trajetpumd', new_trajetpumd_path %>
+
+<%= @aroundpickershash %>
+
+<div style='width: 800px'>
+  <div id="map" style='width: 800px; height: 400px'></div>
+</div>
+
+
+
+
+    <script type="text/javascript">
+  $('.datatable').DataTable();
+
+    handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @aroundpickershash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+    </script>

@@ -1,0 +1,145 @@
+<p id="notice"><%= notice %></p>
+
+
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					<img src="img/avataruser/defaultavatar.png" class="img-responsive" alt="">
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						Prenom Nom
+					</div>
+					<div class="profile-usertitle-job">
+						Expert
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">Suivre</button>
+					<button type="button" class="btn btn-danger btn-sm">Message</button>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<a href="#">
+							<i class="glyphicon glyphicon-home"></i>
+							Résumé </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+              
+
+
+
+
+            </div>
+		</div>
+	</div>
+</div>
+<center>
+</center>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+  <strong>Shop:</strong>
+  <%= @bid.shop_id %>
+</p>
+
+
+<p>
+  <strong>Driver:</strong>
+  <%= @bid.driver_id %>
+</p>
+
+<p>
+  <strong>Go at:</strong>
+  <%= @bid.go_at %>
+</p>
+
+<p>
+  <strong>Come back:</strong>
+  <%= @bid.come_back %>
+</p>
+
+<p>
+  <strong>Pass1:</strong>
+  <%= @bid.pass1_id %>
+</p>
+
+<p>
+  <strong>Pass2:</strong>
+  <%= @bid.pass2_id %>
+</p>
+
+<p>
+  <strong>Pass3:</strong>
+  <%= @bid.pass3_id %>
+</p>
+
+<p>
+  <strong>Pass4:</strong>
+  <%= @bid.pass4_id %>
+</p>
+
+<p>
+  <strong>Cangodrive:</strong>
+  <%= @bid.cangodrive %>
+</p>
+
+<%= link_to 'Edit', edit_bid_path(@bid) %> |
+<%= link_to 'Back', bids_path %>

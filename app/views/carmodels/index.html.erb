@@ -1,0 +1,31 @@
+
+
+<h1>Listing Carmodels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Brand</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @carmodels.each do |carmodel| %>
+      <tr>
+        <td><%= carmodel.id %></td>
+        <td><%= carmodel.carbrand_id %></td>
+        <td><%= carmodel.name %></td>
+        <td><%= link_to 'Show', carmodel %></td>
+        <td><%= link_to 'Edit', edit_carmodel_path(carmodel) %></td>
+        <td><%= link_to 'Destroy', carmodel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Carmodel', new_carmodel_path %>

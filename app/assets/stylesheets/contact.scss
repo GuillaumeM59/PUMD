@@ -1,0 +1,133 @@
+.row {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0
+}
+#banner_contact{
+  margin-top:5%;
+  width:100%;
+}
+#info_hachemi{
+ margin-bottom: 5%;
+}
+#info_perso{
+margin-top: 5%;
+ text-align: center;
+}
+
+#info1 img, #info3 img, #info2 img{
+  margin-top: 10%;
+  margin-left: 40%;
+  max-height: 80px;
+  width: auto
+}
+
+
+button{
+  // margin-bottom: 4%;
+}
+
+.info_perso2{
+  padding-top: 8%;
+}
+
+#info_contact{
+  border-radius: 6px;
+  margin-top: 5%;
+  font-size: 1.4em;
+  color: white;
+  /*background-color:rgb(0, 165, 142);*/
+  background-color: #46B29D;
+}
+
+.fa {
+  float: left;
+  display: inline-block;
+}
+
+
+
+#hour{
+margin-top:15%;
+margin-left: 10%;
+font-size:1.3em;
+}
+
+#formul{
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.contact-area{
+  width: 90%;
+  height: 150px;
+
+}
+
+button{
+  margin-bottom:5%;
+}
+
+
+@media screen and (max-width: 768px) {
+
+#banner_contact{
+  display: none;
+  }
+
+#info_perso{
+  text-align: center;
+   margin-top: 15%;
+}
+#info1 img, #info3 img, #info2 img{
+  margin-top: 10%;
+  margin-left: 25%;
+  max-height: 80px;
+  width: auto
+}
+}
+
+
+@media screen and (max-width: 600px) {
+
+#info_perso{
+  margin-top: 20%;
+}
+#my_map{
+  margin-top: 10%;
+}
+
+
+#banner_contact{
+display: none;
+}
+}
+
+@media screen and (max-width: 320px) {
+  #info_perso{
+    margin-top: 40%;
+  }
+}
+
+
+
+
+@media screen and (max-width: 990px) {
+    hr{
+        display: none;
+    }
+    footer ul{
+        display: none;
+      }
+
+    footer h2{
+        width: 80px;
+    }
+    .paddingbot {
+        border-left: 0px;
+    }
+    div#sitemap {
+        display: inline-flex;
+    }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <%= driver=User.find(@bid.driver_id) %>
+<h1>Bonjour <%= driver.prenom %></h1>
+<h3><%= @current_user.prenom %> a annulé sa réservation</h1>
+
+
+<h5> Trajet Annulé:</h3>
+
+<p>  Magasin: <%= Shop.find(@bid.shop_id).name %> </p>
+<p> Date heure :<%= @bid.go_at %> </p>
+<p>  Conducteur: vous </p>
+
+<p> Sa place est donc a nouveau libre dans l'annonce</p>
+
+<p> Cordialement, co-shop</p>
+
+</body>
+</html>

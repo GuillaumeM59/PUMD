@@ -1,0 +1,63 @@
+<script src="//maps.google.com/maps/api/js?v=3.22&key=AIzaSyBngIsRw-Abk5UB04-Nl_Qg4vACEfo2jEo&libraries=geometry&language=fr&hl=&region="></script>
+<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Shops</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>N°</th>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Shop ID</th>
+      <th>Zipcode</th>
+      <th>Drive</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% a=1%>
+    <% @shops.each do |shop| %>
+      <tr>
+        <td><%= a %></td>
+        <td><%= Brand.find(shop.brand_id).name %></td>
+        <td><%= shop.name %></td>
+        <td><%= shop.address %></td>
+        <td><%= shop.id %></td>
+        <td><%= shop.zipcode %></td>
+        <td><%= shop.isdrive %></td>
+        <td><%= shop.latitude %></td>
+        <td><%= shop.longitude %></td>
+        <td><%= link_to 'Show', shop %></td>
+        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
+        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% a +=1 %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div style='width: 800px'>
+  <div id="map" style='width: 800px; height: 400px'></div>
+</div>
+
+<%= link_to 'New Shop', new_shop_path %>
+
+
+
+    <script type="text/javascript">
+    handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+    </script>

@@ -1,0 +1,53 @@
+<script src="//maps.google.com/maps/api/js?v=3.exp&key=AIzaSyBngIsRw-Abk5UB04-Nl_Qg4vACEfo2jEo"></script>
+
+<p id="notice"><%= notice %></p>
+<% @shops = Shop.where(brand_id:@brand.id) %>
+
+<table id="shoplist" >
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Shop Name</th>
+      <th>show</th>
+      <th>edit</th>
+      <th>delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shops.each do |shop| %>
+      <tr>
+        <td><%= shop.id %></td>
+        <td><%= shop.name%></td>
+        <td><%= link_to 'Show', shop %></td>
+        <td><%= link_to 'Edit', edit_trajetpumd_path(shop) %></td>
+        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_brand_path(@brand) %> |
+<%= link_to 'Back', brands_path %>
+
+
+
+
+<div style='width: 800px'>
+  <div id="map" style='width: 800px; height: 400px'></div>
+</div>
+
+
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#shoplist').dataTable();
+    } );
+
+    handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+    </script>

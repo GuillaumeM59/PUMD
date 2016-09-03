@@ -1,0 +1,15 @@
+<%driver= User.find(@bid.driver_id) %>
+Bonjour <%= @current_user.prenom %>,
+vous avez reservé le trajet suivant:
+
+ Objet: <%= @bid.id %>
+
+Magasin: <%= Shop.find(@bid.shop_id).name %>
+Horaire: <%= @bid.go_at %>
+Conducteur :<%= driver.prenom %>
+
+Merci pour votre confiance, vous pouvez contacter le conducteur:
+@:<%= driver.email %>
+tel:<%= driver.phone %>
+
+co-shop vous souhaite un très bon shopping...

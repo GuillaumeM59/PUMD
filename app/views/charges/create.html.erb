@@ -1,0 +1,14 @@
+<h2 class="text-center">Merci, votre cagnotte a été créditée de <strong><%= @amount/100 %> €</strong>!</h2>
+<p class="text-center">Vous allez retourner sur votre page dans quelques secondes...</p>
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+  // Handler for .ready() called.
+  window.setTimeout(function () {
+     history.go(-2);
+  }, 5000);
+});
+</script>

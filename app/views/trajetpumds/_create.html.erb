@@ -1,0 +1,81 @@
+<h2 class="text-center">
+  Poster un picking</h2>
+  <% @trajet=Trajetpumd.new %>
+  <%= form_for @trajet, method: "post",:html=>{id:'createtrajetform'}, validation:true do |f| %>
+  <% if @trajet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trajet.errors.count, "error") %> prohibited this trajetpumd from being saved:</h2>
+
+      <ul>
+      <% @trajet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.hidden_field :driver_id, value: current_user.id %>
+    </div>
+    <div class="field">
+      <%= f.label "Enseigne" %><br>
+      <%= f.collection_select :brand_id, Brand.where(category:"Drive").order(:name), :id, :name, required:true %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Magasin" %><br>
+      <%= f.grouped_collection_select :shop_id, Brand.where(category:"Drive").order(:name), :shops, :name, :id, :listname, required:true%>
+    </div>
+    <div class="field">
+      <%= f.label :maxsac, "Nombre de sac maximum que je pourrais prendre:" %>
+      <i class="fa fa-question-circle" aria-hidden="true" data-toggle: "tooltip" data-placement: "right" title="rappel taille : 1 sac = 1 pack d'eau - MAX 30 sacs"></i><br>
+      <%= f.number_field :maxsac, in:(1..30), required:true%>
+    </div>
+
+      <%= f.label :do_at, "Date et heure estimée de picking" %>  <i class="fa fa-question-circle" aria-hidden="true" data-toggle: "tooltip" data-placement: "right" title="Cliquez sur le calendrier sinon format: 'JJ/MM/AAAA HH:mm du lundi au samedi 08h00-20h59'"></i><br>
+      <div class="form-group">
+      <div class="input-group date" id="dtpickerdoat">
+      <%= f.text_field :do_at, class: "form-control" %>
+      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+    </div>
+  </div>
+    <div class="field">
+      <%= f.label :regulier, "C'est un trajet régulier" %>  <i class="fa fa-question-circle" aria-hidden="true" data-toggle: "tooltip" data-placement: "right" title="le trajet sera automatiquement recréé la semaine suivante, vous pourrez le supprimer dans votre tableau de bord"></i><br>
+      <%= f.check_box :regulier %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Créer un picking', class:"btn_lg"%>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+    $(function() {
+  $("#dtpickerdoat").datetimepicker({
+      stepping: 15,
+      daysOfWeekDisabled: [0],
+      sideBySide: true,
+      minDate: 'now',
+      maxDate: moment().add(1, 'month'),
+      enabledHours: [8,9,10,11,12,13,14,15,16,17,18,19,20]
+    }
+  );
+  });
+
+  var shops = $('#trajetpumd_shop_id').html();
+    $('#trajetpumd_brand_id').change(function () {
+    var brandselected = $('#trajetpumd_brand_id :selected').text();
+    var optgroup = "optgroup[label='" + brandselected + "']";
+    var options = $(shops).filter(optgroup).html();
+      console.log(shops);
+      console.log(optgroup);
+      console.log(options);
+
+      if (brandselected != "") {
+        $('#trajetpumd_shop_id').html(options);
+      }
+    });
+
+  </script>

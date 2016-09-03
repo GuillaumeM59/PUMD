@@ -1,0 +1,54 @@
+<%= form_for(@bid) do |f| %>
+<% if @bid.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@bid.errors.count, "erreur qui a empêché ") %>
+  la suite:</h2>
+
+  <ul>
+    <% @bid.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="field">
+    <%= f.label :shop_id %><br>
+    <%= f.number_field :shop_id %>
+  </div>
+  <div class="field">
+    <%= f.label :driver_id %><br>
+    <%= f.number_field :driver_id %>
+  </div>
+  <div class="field">
+    <%= f.label :go_at %><br>
+    <%= f.datetime_select :go_at %>
+  </div>
+  <div class="">
+    <%= f.label :come_back %><br>
+    <%= f.datetime_select :come_back %>
+  </div>
+  <div class="field">
+    <%= f.label :pass1_id %><br>
+    <%= f.number_field :pass1_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pass2_id %><br>
+    <%= f.number_field :pass2_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pass3_id %><br>
+    <%= f.number_field :pass3_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pass4_id %><br>
+    <%= f.number_field :pass4_id %>
+  </div>
+  <div class="field">
+    <%= f.label :cangodrive %><br>
+    <%= f.check_box :cangodrive %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

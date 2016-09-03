@@ -1,0 +1,258 @@
+<div class="container-fluide toppage tdbpage">
+  <header class="row">
+
+    <h1 class="headercontant col-md-12 text-center">
+      Mon Tableau de Bord:
+    </h1>
+
+  </header>
+
+  <div class="row">
+    <div class="paramnav col-xs-12 col-md-2 col-md-offset-1">
+      <ul class="list-unstyled text-center parammenu">
+        <li class="active b1" id="paramprofillink">
+          <a alt="Mon profil">Mon Profil</a>
+        </li>
+        <li class="b2" id="paramcommandeslink">
+          <a alt="Mes Demandes">Mes Demandes</a>
+        </li>
+        <% if @user.driver %>
+        <li id="paramdriverlink" , class="b3">
+          <a alt="Paiments et Validations">Paiments et Validations</a>
+        </li>
+        <li id="parampickingslink" , class="b4">
+          <a alt="Mes Pickings">Mes Picking<a>
+        </li>
+        <% end %>
+      </ul>
+
+    </div>
+    <div class=" col-md-8 content">
+      <div class="row">
+
+        <!-- MODULE PROFIL UTILISATEUR -->
+
+        <div class="profil stats col-md-12 bb1" id="profilbloc">
+
+          <h2 class="text-center">
+            Mon Profil</h2>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-1 useravatarbloc text-center">
+              <p>
+                <%= image_tag(@user.avatar, class:"img-responsive profilavatar") %>
+              </p>
+            </div>
+            <div class="col-md-4 useravatarbloc text-center">
+              <h4>
+                <%= @user.prenom %>
+                <%= @user.nom %>
+              </h4>
+              <p><%= @age %> ans, <%= if @user.gender then "Femme" else "Homme" end%>
+              </p>
+              <p>
+                <strong>Ville:
+                </strong>
+                <%= @user.city %>
+
+              </p>
+              <p>
+                <%= @user.xp %>
+              </p>
+              <% if @user.driver %>
+              <p>
+                Véhicule:
+                <%= Carbrand.find(@user.cbrand_id).name %>
+                <%= Carmodel.find(@user.cmodel_id).name %>
+                ,
+                <%= @user.carsize %>
+              </p>
+              <% end %>
+            </div>
+            <div class="col-md-5 useridbloc text-center">
+              <p>
+                <strong>Quelques mots:</strong>
+                <%= @user.comment %></p>
+
+              <p><%= @user.adress %></p>
+              <p><%= @user.zipcode %>
+                <%= @user.city %>
+              </p>
+              <p>Tel:<%= @user.phone %></p>
+              <p>@:<%= @user.email %></p>
+              <p>
+                <strong>Newsletter:</strong>
+              <%= if @user.subscribe then "oui" else "non" end %>
+              </p>
+            </div>
+            <div class="col-md-12 editlinkbloc text-center">
+              <%= link_to 'Editer mon profil', edit_user_path(@user), class:"btn btn-lg" %>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODULE DEMANDES -->
+
+      <div class="profil stats col-md-12 bb2 hidden text-center" id="commandesbloc">
+
+        <div class="row">
+
+          <h2>Mes Demandes</h2>
+
+          <div class="col-md-12 lastdemandesbloc text-center">
+            <% if @trajetsresas != [] %>
+            <ul class="list-unstyled">
+              <% @trajetsresas.each do |t| %>
+              <li class="recapdemande <%= if t[0].do_at < DateTime.now then " passed" end %>">
+                le
+                <%= l(t[0].do_at, format:"%A %d %B vers %H:%M")%>, picking de la commande
+              <%= if t[2]==1 then t[1].drive1_ref elsif t[2]==2 then t[1].drive2_ref elsif t[2]==3 then t[1].drive3_ref elsif t[2]==4 then t[1].drive4_ref elsif t[2]==5 then t[1].drive5_ref else t[1].drive6_ref end %>
+                à
+                <%= Shop.find(t[0].shop_id).name %>
+                par
+                <%= User.find(t[0].driver_id).username %>
+              </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <h4>Pas encore de demande de Picking, trouvez votre picker
+              <%= link_to('ici', trajetpumds_search_path(), alt:"trouver un picker") %></h4>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <% if @user.driver? %>
+      <!-- MODULE DEMANDES -->
+
+      <div class="profil stats col-md-12 bb3 hidden text-center" id="driverbloc">
+
+        <div class="row">
+
+          <h2>Mes Validations</h2>
+          <div class="col-md-12 waitingvalidations">
+            <% if @waitval == nil%>
+            <p >
+              Pas de validation de picking en attente</p>
+          <% else %>
+            <h6 >
+              <%= @waitval.size %>
+              validation<% if @waitval.size > 1 %>s<%end %>
+              de picking en attente</h6>
+            <% @waitval.each do |valrequest| %>
+            <% passager = User.find(valrequest.pass_id) %>
+            <p>
+              Trajet du
+              <%= valrequest.bid_date %>, avec
+              <%= passager.prenom %>, code de validation :
+              <%= form_for Validation.find(valrequest.id), :method => :PUT do |f| %>
+
+              <%= f.text_field :code_token %>
+              <%= f.submit "Valider"%>
+              <%end %>
+
+            </p>
+            <%end %>
+            <%end %>
+          </div>
+<hr>
+          <h2>Mes transactions</h2>
+
+          <div class="col-md-12 lastdemandesbloc text-center">
+            <% if @trans.count != 0 %>
+            <ul class="list-unstyled">
+              <% @trans.each do |t| %>
+              <li class="recaptrans">
+                <%= l(t.created_at, format:"%A %d %B:")%>
+                <%= t.tvalue %>
+                € pour:
+                <span class="italic"><%= t.comment %></span>
+              </li>
+              <% end %>
+            </ul>
+            <% else %>
+            <p>Pas encore de demande de Picking,<br>
+              déposes une nouvelle annonce de picking
+              <%= link_to('ici', new_trajetpumd_path(), alt:"déposer annonce picking") %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE TRAJETS -->
+
+      <div class="profil stats col-md-12 bb4 hidden text-center" id="trajetsbloc">
+
+        <h2>Mes Pickings</h2>
+
+        <div class="col-md-12 lastdemandesbloc text-center">
+          <% if @mespickingresas != [] %>
+          <ul class="list-unstyled">
+            <% @mespickingresas.each do |t| %>
+            <li class="recapdemande <%= if t[0].do_at < DateTime.now then " passed" end %>">
+              le <%= l(t[0].do_at, format:"%A %d %B vers %H:%M")%>, à <%= Shop.find(t[0].shop_id).name %>:
+              <ul class=" list-unstyled listresas">
+                  <% t[1].each do |i| %>
+                  <li class="useritem"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> de <%= User.find(i[0]).username  %>, ref: <%= i[1] %>, taille: <%= i[2] %>sacs, substitution: <%= if i[3] then "oui" else "non" end %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+            <hr>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>Pas encore de Picking demandé,
+            <br>
+            déposes une nouvelle annonce de picking
+            <%= link_to('ici', new_trajetpumd_path(), alt:"déposer annonce picking") %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <%end%>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+$('#paramprofillink').click(function () {
+  $('#commandesbloc, #trajetsbloc, #driverbloc ').hide();
+  $('#commandesbloc, #trajetsbloc, #driverbloc').addClass("hidden");
+  $('#paramcommandeslink, #parampickingslink, paramdriverlink').removeClass("active");
+  $('#profilbloc').show();
+  $('#profilbloc').removeClass('hidden');
+  $(this).addClass("active");
+});
+
+$('#paramcommandeslink').click(function () {
+  $('#profilbloc, #trajetsbloc, #driverbloc ').hide();
+  $('#profilbloc, #trajetsbloc, #driverbloc').addClass("hidden");
+  $('#paramprofillink, #parampickingslink, #paramdriverlink').removeClass("active");
+  $('#commandesbloc').show();
+  $('#commandesbloc').removeClass('hidden');
+  $(this).addClass("active");
+});
+
+$('#parampickingslink').click(function () {
+  $('#profilbloc, #commandesbloc, #driverbloc ').hide();
+  $('#profilbloc, #commandesbloc, #driverbloc ').addClass('hidden');
+  $('#paramprofillink, #paramcommandeslink, #paramdriverlink').removeClass("active");
+  $('#trajetsbloc').show();
+  $('#trajetsbloc').removeClass('hidden');
+  $(this).addClass("active");
+});
+
+$('#paramdriverlink').click(function () {
+  $('#profilbloc, #commandesbloc, #trajetsbloc ').hide();
+  $('#profilbloc, #commandesbloc, #trajetsbloc ').addClass('hidden');
+  $('#paramprofillink, #paramcommandeslink, #parampickingslink').removeClass("active");
+  $('#driverbloc').show();
+  $('#driverbloc').removeClass('hidden');
+  $(this).addClass("active");
+});
+</script>

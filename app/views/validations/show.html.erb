@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bid:</strong>
+  <%= @validation.bid_id %>
+</p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @validation.driver_id %>
+</p>
+
+<p>
+  <strong>Pass:</strong>
+  <%= @validation.pass_id %>
+</p>
+
+
+
+<p>
+  <strong>Validated:</strong>
+  <%= @validation.validated %>
+</p>
+
+<%= link_to 'Edit', edit_validation_path(@validation) %> |
+<%= link_to 'Back', validations_path %>

@@ -1,0 +1,34 @@
+<%= form_for(@trajetpumd) do |f| %>
+  <% if @trajetpumd.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trajetpumd.errors.count, "error") %> prohibited this trajetpumd from being saved:</h2>
+
+      <ul>
+      <% @trajetpumd.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :driver_id %><br>
+    <%= f.number_field :driver_id %>
+  </div>
+  <div class="field">
+    <%= f.label :shop_id %><br>
+    <%= f.number_field :shop_id %>
+  </div>
+  <div class="field">
+    <%= f.label :do_at %><br>
+    <%= f.datetime_select :do_at %>
+  </div>
+  <div class="field">
+    <%= f.label :regulier %><br>
+    <%= f.check_box :regulier %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,133 @@
+
+
+<!-- PAGE CONTENT  -->
+
+<header class="intro-header">
+  <div class="blur"></div>
+  <div class="filterblue"></div>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="intro-message">
+          <%= image_tag("banpump-01.png", class: "image-responsive headerillu", width:"70%" ) %>
+          <h1>On vous ramène vos courses</h1>
+          <h3 class="text-center">Trouver un picker</h3>
+
+          <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline" do %>
+          <div class="form-group searchgroup">
+
+            <%= text_field_tag(
+            :search,
+            params[:search],
+            placeholder: "Enseigne Drive",
+            class: "form-control searchbar"
+              ) %>
+              <%= button_tag(type:'submit', class: "btn btn-lg btn-search") do%>
+              <i class="fa fa-search">
+                Rechercher</i>
+                <% end %>
+              </div>
+              <% end %>
+          <hr class="intro-divider">
+          <% if current_user  %>
+          <%if current_user.driver %>
+          <%= link_to "Proposer un picking", "", :class => "btn btn-default btn-lg hidden-xs hidden-sm", "data-toggle" => "modal","data-target" => "#newtrajetpumd" %>
+          <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-default btn-lg hidden-md hidden-lg"%>
+          <% else %>
+          <%= link_to "Proposer un trajet", user_path(current_user), :class => "btn btn-default btn-lg", data: { confirm: 'Vous devez être conducteur pour poster une annonce. Modifiez votre profil. Vous pourrez bientot deposer une demande en tand que
+            passager.' } %>
+            <% end %>
+            <% else %>
+            <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn btn-default btn-lg" %>
+            <p class="text-center offert">
+              Inscription gratuite
+            </p>
+            <%end%>
+
+
+          <%if current_user %>
+
+          <div class="container hidden-xs hidden-sm ">
+            <div class="row">
+
+              <%if current_user.avatar == "/assets/default-3a2bb18cb5ec0e07a7b23f09ae06747a422809f9ba2f3ea9d13d8271a8a232d7.png"%>
+
+              <div class=" col-md-offset-2 col-md-8 driverblock loggedannounce">
+
+                <h4 class="text-center ">Vous n'avez pas encore de photo de profil, vous pouvez l'ajouter
+                  <%= link_to "ici", edit_user_path(current_user) %></h4>
+              </div>
+
+              <%end  %>
+              <% if @waitval != nil %>
+              <%if @waitval.size !=0 %>
+
+              <div class=" col-md-offset-2 col-md-8 loggedannounce">
+
+                <h4 class="text-center ">Vous avez
+                  <%= @waitval.size %>
+                  validation<% if @waitval.size > 1%>s<%end%>
+                  en attente, vous pouvez le<% if @waitval.size > 1%>s<%end%>
+                  valider
+                  <%= link_to "ici", user_path(current_user) %></h4>
+              </div>
+
+              <%end  %>
+              <%end  %>
+
+
+
+              <div class=" col-md-offset-2 col-md-8 loggedannounce">
+
+                <h4 class="text-center ">Bientôt: Partagez mieux en vous selectionnant avec vos centres d'interet communs</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<% else %>
+</div>
+<!-- FOOTER -->
+</div>
+<%end %>
+</div>
+</div>
+</div>
+<% if controller_name == 'static_pages' && action_name == 'home' %>
+<footer class="homefooter">
+  <ul class="list-unstyled list-inline text-center">
+    <li><a href="#">comment ça marche</a></li>
+    <li><a href="#">foire aux questions</a></li>
+    <li><a href="#">mentions légales</a></li>
+    <li><a href="#">conditions générales d'utilisation</a></li>
+    <li><a href="#">tarifs</a></li>
+    <li><a href="#">nous contacter</a></li>
+    <li>© 2016 - co-shop&#169;</li>
+  </ul>
+</footer>
+<% end %>
+</header>
+
+<!-- /.container -->
+<!-- /.intro-header -->
+
+
+<!-- modal newbid -->
+<%if current_user  %>
+<div class="modal fade" id="newtrajetpumd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-login">
+          <div class="panel-heading">
+<%= render :partial => '/trajetpumds/create' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

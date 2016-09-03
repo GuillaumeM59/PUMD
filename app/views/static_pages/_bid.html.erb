@@ -1,0 +1,328 @@
+<% placedispo = 0 %>
+<% if bid.pass1_id == 0 %>
+<% placedispo +=1%>
+<% end%>
+<% if bid.pass2_id == 0 %>
+<% placedispo +=1%>
+<% end%>
+<% if bid.pass3_id == 0 %>
+<% placedispo +=1%>
+<% end%>
+<% if bid.pass4_id == 0 %>
+<% placedispo +=1%>
+<% end%>
+<% nbrplace= bid.nbrplace %>
+<% if current_user %>
+<% numplace = 0 %>
+<% if bid.pass1_id == current_user.id %>
+<% numplace = 1%>
+<% elsif bid.pass2_id == current_user.id %>
+<% numplace = 2%>
+<% elsif bid.pass3_id == current_user.id %>
+<% numplace = 3%>
+<% elsif bid.pass4_id == current_user.id %>
+<% numplace = 4%>
+<% end%>
+<% end%>
+
+<% if bid != nil %>
+
+<%driver=User.find(bid.driver_id)%>
+<%shop=Shop.find(bid.shop_id)%>
+<%isactive = (bid.isreturn && (bid.come_back > DateTime.now)) || ((bid.isreturn==false) && (bid.go_at>DateTime.now)) %>
+<div class="col-md-6 bidblock <%= 'overdated' if isactive == false %>">
+  <div class="row">
+
+    <%if bid.isreturn %>
+    <div class="col-md-12 distome leaved">
+      <p class="text-center">Retour à
+        <% if current_user %>
+        <%= disttodriver= Geocoder::Calculations.distance_between([current_user.latitude,current_user.longitude], [driver.latitude,driver.longitude], :units => :km).round(1) %>
+        km
+      <% else %>
+        <%= disttodriver= Geocoder::Calculations.distance_between([@client.latitude,@client.longitude], [driver.latitude,driver.longitude], :units => :km).round(1) %>
+        km
+        <% end %>
+        autour de moi
+      </p>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 depart">
+
+
+      <p class="text-center"><%= link_to(image_tag((Brand.find(shop.brand_id).minipic), alt:"Logo", class:"enseignes", size: "50"),shop_path(shop))%></p>
+      <p class="text-center"><%= shop.name.capitalize %></p>
+    </div>
+    <div class="col-xs-4 col-md-4 horaire">
+
+  <time datetime="@{bid.come_back.to_date}" class="icon text-center">
+    <strong><%=l(bid.come_back,format:"%A")  %></strong>
+    <span><%=l(bid.come_back,format:"%d")  %></span>
+    <em><%=l(bid.come_back,format:"%B") %></em>
+  </time>
+
+  <p class="text-center hour"><%= bid.come_back.strftime("%H:%M") %></p>
+
+</div>
+    <div class="col-xs-4 col-md-4 conducteur">
+      <p class="text-center"><%= link_to(image_tag(driver.avatar, size: "50"),user_path(driver.id)) %></p>
+      <p class="text-center">
+        <%= driver.username %>
+        <%= driver.city %></p>
+    </div>
+    <%if isactive %>
+    <div class="blockdispo col-xs-12">
+
+      <p class="text-center ">place<% if placedispo > 1 %>s<%end  %> restante<% if placedispo > 1 %>s<%end  %>: <%= placedispo %> </p>
+
+      </div>
+      <%end %>
+    <div class="col-xs-12 col-md-10 col-md-offset-1 illutrajet leaved">
+      <p class="text-center"><%= disttodriver= Geocoder::Calculations.distance_between([shop.latitude,shop.longitude], [driver.latitude,driver.longitude], :units => :km).round(1) %>
+        km</p>
+    </div>
+
+    <%else %>
+    <div class="col-md-12 distome leaved">
+      <p class="text-center">Aller à
+        <% if current_user %>
+        (<%= disttodriver= Geocoder::Calculations.distance_between([current_user.latitude,current_user.longitude], [driver.latitude,driver.longitude], :units => :km).round(2) %>
+        km)
+      <% else %>
+        (<%= disttodriver= Geocoder::Calculations.distance_between([@client.latitude,@client.longitude], [driver.latitude,driver.longitude], :units => :km).round(2) %>
+        km)
+        <% end %>
+        autour de moi
+      </p>
+    </div>
+
+    <div class="col-xs-4 col-md-4 conducteur">
+      <p class="text-center"><%= link_to(image_tag(driver.avatar, size: "50"),user_path(driver.id)) %></p>
+      <p class="text-center">
+        <%= driver.username %>
+        <%= driver.city %></p>
+    </div>
+
+    <div class="col-xs-4 col-md-4 horaire">
+      <time datetime="@{bid.go_at.to_date}" class="icon text-center">
+        <strong><%=l(bid.go_at,format:"%A")  %></strong>
+        <span><%=l(bid.go_at,format:"%d")  %></span>
+        <em><%=l(bid.go_at,format:"%B") %></em>
+      </time>
+      <p class="text-center hour"><%= bid.go_at.strftime("%H:%M") %></p>
+    </div>
+
+    <div class="col-xs-4 col-md-4 depart">
+      <p class="text-center"><%= link_to(image_tag((Brand.find(shop.brand_id).minipic), alt:"Logo", class:"enseignes", size: "50"),shop_path(shop))%></p>
+      <p class="text-center"><%= shop.name.capitalize %></p>
+    </div>
+    <%if isactive %>
+    <div class="blockdispo col-xs-12">
+
+      <p class="text-center ">place<% if placedispo > 1 %>s<%end  %> restante<% if placedispo > 1 %>s<%end  %>:  <%= placedispo %></p>
+    </div>
+    <%end %>
+
+    <div class="col-xs-12 col-md-10 col-md-offset-1 illutrajet leaved">
+      <p class="text-center"><%= disttodriver= Geocoder::Calculations.distance_between([shop.latitude,shop.longitude], [driver.latitude,driver.longitude], :units => :km).round(1) %>
+        km</p>
+    </div>
+
+    <% end %>
+
+
+<%if isactive %>
+
+    <div class="col-md-12 placerestantes ">
+      <%pourcentbar = 10 + (nbrplace - placedispo)*(90/nbrplace) %>
+      <div class="row">
+        <div class="col-xs-6 col-md-6 text-center">
+          <p>Places restantes :
+            <%= placedispo %></p>
+        </div>
+
+        <div class="col-xs-6 col-md-6 car text-center ">
+          <% if current_user %>
+          <%if driver.driver %>
+          <p class="text-center "><span class="fa-stack fa-1x">
+  <i class="fa fa-circle-o fa-stack-2x"></i>
+  <i class="fa fa-car fa-stack-1x"></i>
+</span> Taille: <%= driver.carsize %></p>
+          <%end %>
+          <%end %>
+        </div>
+        </div>
+        </div>
+
+        <div class="col-md-12 progress ">
+          <%if pourcentbar <= 40 %>
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= pourcentbar %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= pourcentbar %>%">
+            <span class="sr-only"><%= pourcentbar %>% Complete</span>
+          </div>
+          <%elsif pourcentbar <= 89 %>
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%= pourcentbar %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= pourcentbar %>%">
+            <span class="sr-only"><%= pourcentbar %>% Complete</span>
+          </div>
+          <%else %>
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%= pourcentbar %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= pourcentbar %>%">
+            <span class="sr-only"><%= pourcentbar %>% Complete</span>
+          </div>
+          <%end %>
+        </div>
+
+
+    <%end %>
+
+
+    <ul class="col-md-12 actionbtn list-unstyled list-inline text-center leaved">
+    <%if isactive %>
+    <% if placedispo != 0 && current_user%>
+      <li>
+
+        <%= link_to "En savoir +", "/bids/#{bid.id}", :class => "btn btn-default"  %>
+      </li>
+      <li>
+        <%= link_to "Réserver", "", :class => "btn btn-default", "data-toggle" => "modal","data-target" => "#reservationmodal#{bid.id}" %>
+
+      </li>
+    <%elsif placedispo == 0 %>
+    <li class="text-center">COMPLET</li>
+    <%else%>
+    <li>
+    <%= link_to "Réserver", "", :class => "btn btn-default", "data-toggle" => "modal","data-target" => "#myModal" %>
+</li>
+    <% end %>
+    <%else %>
+    <li class="text-center">Le trajet a déjà eu lieu</li>
+<%end %>
+    <%if bid.isreturn %>
+    <%if numplace != 0 && current_user && bid.come_back.to_date > Date.today%>
+    <li>
+    <%= link_to "Annuler", annulerresa_path(bid), :class => "btn btn-default btn" %>
+  </li>
+    <% end %>
+    <%else %>
+    <%if numplace != 0 && current_user && bid.go_at.to_date > Date.today%>
+    <li>
+    <%= link_to "Annuler", annulerresa_path(bid), :class => "btn btn-default btn" %>
+  </li>
+    <% end %>
+    <% end %>
+
+  </ul>
+
+  <p class=" visible-xs visible-sm  col-xs-12 col-md-12 text-center plusicon hidden-md">
+    <i class="fa fa-plus-circle fa-2x"></i>
+  </p>
+</div>
+</div>
+
+
+
+<%if (bid.isreturn && (bid.come_back > DateTime.now)) || ((bid.withreturn==false) && (bid.go_at>DateTime.now)) %>
+<% if placedispo != 0 %>
+<!-- Modal -->
+<div class="modal fade" id="reservationmodal<%=bid.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+      <br><br>
+      <div class="alert alert-info">
+        <h3>Etes-vous sûr de vouloir réserver ce trajet ?</h3>
+        <p>Réserver une place maintenant vous fera partir de
+          <%= driver.city %>
+          pour vous rendre à
+          <%= shop.name.capitalize %>. Prenez contact avec
+          <%= driver.username%>
+          pour vous retrouver à
+          <%= driver.city %>.</p>
+
+        <div class="row">
+
+          <%= link_to "Valider", reserver_path(bid), class: "btn btn-default btn-lg text-left validationreservation"%>
+
+          <button type="button" class="btn btn-default btn-lg text-right cancelvalidation" data-dismiss="modal" aria-label="Close">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            Non
+          </button>
+
+          <p class="text-center">
+
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw validationloading text-center"></i>
+            <span class="sr-only">Loading...</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- /Modal -->
+<script type="text/javascript">
+$('.validationloading').hide();
+$('.validationreservation').click(function () {
+  $(this).remove();
+  $('.cancelvalidation').remove();
+  $('.validationloading').show();
+
+});
+
+</script>
+<%end %>
+<%end %>
+
+<%end %>
+
+<script type="text/javascript">
+
+$(".distome").css({"display":"none"});
+
+  $('.illutrajet').css({"display":"none"});
+  $('.placerestantes').css({"display":"none"});
+  $('.actionbtn').css({"display":"none"});
+  $('.progress').css({"display":"none"});
+  $('.car').css({"display":"none"});
+
+
+$( ".bidblock" ).mouseenter(function() {
+  $(this).find(".distome").css({"display":"block"});
+
+    $(this).find('.illutrajet').css({"display":"block"});
+    $(this).find('.placerestantes').css({"display":"block"});
+    $(this).find('.actionbtn').css({"display":"block"});
+    $(this).find('.progress').css({"display":"block"});
+    $(this).find('.car').css({"display":"block"});
+  $(this).find(".distome").removeClass( "leaved" ).addClass( "hovered" );
+  $(this).find(".car").removeClass( "leaved" ).addClass( "hovered" );
+
+    $(this).find('.illutrajet').removeClass( "leaved" ).addClass( "hovered" );
+    $(this).find('.placerestantes').removeClass( "leaved" ).addClass( "hovered" );
+    $(this).find('.actionbtn').removeClass( "leaved" ).addClass( "hovered" );
+    $(this).find('.progress').removeClass( "leaved" ).addClass( "hovered" );
+    $(this).find('.blockdispo').css({"display":"none"});
+    $(this).find(".plusicon").removeClass( "hovered" ).addClass( "leaved" );
+});
+$( ".bidblock" ).mouseleave(function() {
+  $(this).find(".distome").removeClass( "hovered" ).addClass( "leaved" );
+
+  $(this).find('.blockdispo').css({"display":"block"});
+    $(this).find('.illutrajet').removeClass( "hovered" ).addClass( "leaved" );
+    $(this).find('.placerestantes').removeClass( "hovered" ).addClass( "leaved" );
+    $(this).find('.actionbtn').removeClass( "hovered" ).addClass( "leaved" );
+    $(this).find('.progress').removeClass( "hovered" ).addClass( "leaved" );
+    $(this).find(".car").removeClass( "hovered" ).addClass( "leaved" );
+    $(this).find(".blockdispo").removeClass( "leaved" ).addClass( "hovered" );
+    $(this).find(".plusicon").removeClass( "leaved" ).addClass( "hovered" );
+    $(".distome").css({"display":"none"});
+
+      $('.illutrajet').css({"display":"none"});
+      $('.placerestantes').css({"display":"none"});
+      $('.actionbtn').css({"display":"none"});
+      $('.progress').css({"display":"none"});
+      $('.car').css({"display":"none"});
+    $('.bidblock').css({"min-height":realheight+"px"});
+
+});
+
+
+</script>

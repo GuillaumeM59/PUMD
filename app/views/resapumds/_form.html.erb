@@ -1,0 +1,93 @@
+<%= form_for(@resapumd) do |f| %>
+  <% if @resapumd.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@resapumd.errors.count, "error") %> prohibited this resapumd from being saved:</h2>
+
+      <ul>
+      <% @resapumd.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trajet_id %><br>
+    <%= f.text_field :trajet_id %>
+  </div>
+  <div class="field">
+    <%= f.label :drive1_ref %><br>
+    <%= f.text_field :drive1_ref %>
+  </div>
+  <div class="field">
+    <%= f.label :drive2_ref %><br>
+    <%= f.text_field :drive2_ref %>
+  </div>
+  <div class="field">
+    <%= f.label :drive3_ref %><br>
+    <%= f.text_field :drive3_ref %>
+  </div>
+  <div class="field">
+    <%= f.label :drive4_ref %><br>
+    <%= f.text_field :drive4_ref %>
+  </div>
+  <div class="field">
+    <%= f.label :drive5_ref %><br>
+    <%= f.text_field :drive5_ref %>
+  </div>
+  <div class="field">
+    <%= f.label :drive6_ref %><br>
+    <%= f.text_field :drive6_ref %>
+  </div>
+  <div class="field">
+    <%= f.label :drive1_size %><br>
+    <%= f.number_field :drive1_size %>
+  </div>
+  <div class="field">
+    <%= f.label :drive2_size %><br>
+    <%= f.number_field :drive2_size %>
+  </div>
+  <div class="field">
+    <%= f.label :drive3_size %><br>
+    <%= f.number_field :drive3_size %>
+  </div>
+  <div class="field">
+    <%= f.label :drive4_size %><br>
+    <%= f.number_field :drive4_size %>
+  </div>
+  <div class="field">
+    <%= f.label :drive5_size %><br>
+    <%= f.number_field :drive5_size %>
+  </div>
+  <div class="field">
+    <%= f.label :drive6_size %><br>
+    <%= f.number_field :drive6_size %>
+  </div>
+  <div class="field">
+    <%= f.label :drive1_userid %><br>
+    <%= f.number_field :drive1_userid %>
+  </div>
+  <div class="field">
+    <%= f.label :drive2_userid %><br>
+    <%= f.number_field :drive2_userid %>
+  </div>
+  <div class="field">
+    <%= f.label :drive3_userid %><br>
+    <%= f.number_field :drive3_userid %>
+  </div>
+  <div class="field">
+    <%= f.label :drive4_userid %><br>
+    <%= f.number_field :drive4_userid %>
+  </div>
+  <div class="field">
+    <%= f.label :drive5_userid %><br>
+    <%= f.number_field :drive5_userid %>
+  </div>
+  <div class="field">
+    <%= f.label :drive6_userid %><br>
+    <%= f.number_field :drive6_userid %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,74 @@
+<div class="container-fluide toppage">
+  <header class="row">
+
+    <h1 class="headercontant col-md-12 text-center">
+      Mon Profil:
+      <%= @user.username %>
+    </h1>
+
+
+  </header>
+
+  <div class="row">
+
+
+    <div class="profil stats col-md-12 " id="profilbloc">
+
+      <h2 class="text-center">
+        Mon Profil</h2>
+      <div class="row">
+        <div class="col-md-2 col-md-offset-1 useravatarbloc text-center">
+          <p>
+            <%= image_tag(@user.avatar, class:"img-responsive profilavatar") %>
+          </p>
+        </div>
+        <div class="col-md-4 useravatarbloc text-center">
+          <h4>
+            <%= @user.prenom %>
+            <%= @user.nom %>
+          </h4>
+          <p><%= @age %> ans, <%= if @user.gender then "Femme" else "Homme" end%>
+          </p>
+          <p>
+            <strong>Ville:
+            </strong>
+            <%= @user.city %>
+
+          </p>
+          <p>
+            <%= @user.xp %>
+          </p>
+          <% if @user.driver %>
+          <p>
+            Véhicule:
+            <%= Carbrand.find(@user.cbrand_id).name %>
+            <%= Carmodel.find(@user.cmodel_id).name %>
+            ,
+            <%= @user.carsize %>
+          </p>
+          <% end %>
+        </div>
+        <div class="col-md-5 useridbloc text-center">
+          <p>
+            <strong>Quelques mots:</strong>
+            <%= @user.comment %></p>
+
+          <p><%= @user.adress %></p>
+          <p><%= @user.zipcode %>
+            <%= @user.city %>
+          </p>
+          <p>Tel:<%= @user.phone %></p>
+          <p>@:<%= @user.email %></p>
+          <p>
+            <strong>Newsletter:</strong>
+          <%= if @user.subscribe then "oui" else "non" end %>
+          </p>
+        </div>
+        <div class="col-md-12 editlinkbloc text-center">
+          <%= link_to 'Editer mon profil', edit_user_path(@user), class:"btn btn-lg" %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>

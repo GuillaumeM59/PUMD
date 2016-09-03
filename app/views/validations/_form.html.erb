@@ -1,0 +1,34 @@
+<%= form_for(@validation) do |f| %>
+  <% if @validation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@validation.errors.count, "error") %> prohibited this validation from being saved:</h2>
+
+      <ul>
+      <% @validation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bid_id %><br>
+    <%= f.number_field :bid_id %>
+  </div>
+  <div class="field">
+    <%= f.label :driver_id %><br>
+    <%= f.number_field :driver_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pass_id %><br>
+    <%= f.number_field :pass_id %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :validated %><br>
+    <%= f.check_box :validated %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,163 @@
+<script type="text/javascript">
+  $(function () {
+    filterShopsList();
+  });
+
+  function filterShopsList() {
+    shops = $('#bid_shop_id').html();
+    $('#bid_brand_id').change(function () {
+      brandselected = $('#bid_brand_id :selected').text();
+      optgroup = "optgroup[label='" + brandselected + "']";
+      options = $(shops).filter(optgroup).html();
+      console.log(shops);
+      console.log(optgroup);
+      console.log(options);
+
+      if (brandselected != "") {
+        $('#bid_shop_id').html(options);
+      }
+    });
+  };
+</script>
+<h2 class="text-center">
+  Poster une annonce</h2>
+  <%= form_for @bid, url: {controller:"bids",action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <% if @bid.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@bid.errors.count, "erreur qui a empêché ") %>
+      la suite:</h2>
+
+      <ul>
+        <% @bid.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  <div class="post1 text-center">
+    <p class="numetape " >1</p>
+  <ul class="list-unstyled">
+    <li>
+      <button type="button" name="button" class=" btn-lg trajactif" id="trajetA">ALLER</button>
+    </li>
+    <li>
+      <button type="button" name="button" class=" btn-lg" id="trajetAR">ALLER et RETOUR</button>
+    </li>
+    <li>
+      <button type="button" name="button" class=" btn-lg " id="trajetR">
+        RETOUR</button>
+    </li>
+  </ul>
+</div>
+
+<div class="post2">
+  <p class="numetape ">2</p>
+<div class="topformular"></div>
+<div id="destA">
+
+  <div class="field col-md-5 postbiditem" id="postbiduser">
+    <%= image_tag(current_user.avatar, size:"60")%>
+    <%= current_user.username%>
+  </div>
+  <div class="col-md-2 postbiditem" id="postbidarrow">
+    <i class="fa fa-arrow-right fa-3x text-center" aria-hidden="true"></i>
+  </div>
+  <div class="field col-md-5" id="postbidshop">
+    <div class="field">
+      <%= f.label "Enseigne" %><br>
+      <%= f.collection_select :brand_id, Brand.order(:name), :id, :name, include_blank: true, placeholder: "" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Magasin" %><br>
+      <%= f.grouped_collection_select :shop_id, Brand.order(:name), :shops, :name, :id, :name, include_blank: true, placeholder: "" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="heureA" class=" col-md-12">
+
+  <div class="field">
+    <%= f.label "Date et Heure de départ:" %><br>
+    <%= f.datetime_select :go_at, min: Time.now, max: 3.month.from_now%>
+  </div>
+</div>
+
+<div id="heureR" class="col-md-12">
+  <div class="field">
+    <%= f.label "Date et Heure de retour" %><br>
+    <%= f.datetime_select :come_back %>
+  </div>
+</div>
+
+<div class="field col-md-12">
+  <%= f.label "Nombre de passager"  %><br>
+  <%= f.number_field :nbrplace, min:1, max:4 %>
+</div>
+<div class="field col-md-12 hidden">
+  <%= f.label "Je covoite aussi au retour"  %><br>
+  <%= f.check_box :withreturn, input_html: { checked: false }%>
+</div>
+<div class="field col-md-12 hidden">
+  <%= f.label "c'est le trajet retour"  %><br>
+  <%= f.check_box :isreturn, input_html: { checked: false }%>
+</div>
+</div>
+<div class="actions" id="btnpost">
+  <%= f.submit "Poster la(les) annonce(s)", :class => "btn btn-login form-control"%>
+
+</div>
+<% end %>
+<script type="text/javascript">
+$('#trajetA').click(function () {
+  $(this).addClass( "trajactif" );
+  $('#trajetAR').removeClass( "trajactif" );
+  $('#trajetR').removeClass( "trajactif" );
+    $('#heureR').hide(1000); //time for show
+    $('#heureA').show(1000); //time for show
+    $('#bid_withreturn')[0].checked = false;
+    $('#bid_isreturn')[0].checked = false;
+    $('#postbiduser').hide(1000); //time for show
+    $('#postbidshop').hide(1000); //time for show
+    $('#postbidarrow').before($('#postbiduser')); //time for show
+    $('#postbidarrow').after($('#postbidshop')); //time for show
+    $('#postbiduser').show(1000); //time for show
+    $('#postbidshop').show(1000); //time for show
+});
+$('#trajetAR').click(function () {
+  $(this).addClass( "trajactif" );
+  $('#trajetA').removeClass( "trajactif" );
+  $('#trajetR').removeClass( "trajactif" );
+    $('#heureR').show(1000); //time for show
+    $('#heureA').show(1000); //time for show
+    $('#bid_withreturn')[0].checked = true;
+    $('#bid_isreturn')[0].checked = true;
+    $('#postbiduser').hide(1000); //time for show
+    $('#postbidshop').hide(1000); //time for show
+    $('#postbidarrow').before($('#postbiduser')); //time for show
+    $('#postbidarrow').after($('#postbidshop')); //time for show
+    $('#postbiduser').show(1000); //time for show
+    $('#postbidshop').show(1000); //time for show
+});
+$('#trajetR').click(function () {
+  $(this).addClass( "trajactif" );
+  $('#trajetA').removeClass( "trajactif" );
+  $('#trajetAR').removeClass( "trajactif" );
+    $('#heureR').show(1000); //time for show
+    $('#heureA').hide(1000); //time for show
+    $('#bid_withreturn')[0].checked = false;
+    $('#bid_isreturn')[0].checked = true;
+    $('#postbiduser').hide(1000); //time for show
+    $('#postbidshop').hide(1000); //time for show
+    $('#postbidarrow').after($('#postbiduser')); //time for show
+    $('#postbidarrow').before($('#postbidshop')); //time for show
+    $('#postbiduser').show(1000); //time for show
+    $('#postbidshop').show(1000); //time for show
+
+});
+
+
+</script>

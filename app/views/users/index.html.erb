@@ -1,0 +1,68 @@
+<script src="//maps.google.com/maps/api/js?v=3.exp&key=AIzaSyBngIsRw-Abk5UB04-Nl_Qg4vACEfo2jEo"></script>
+<script src="https://maps.googleapis.com/maps-api-v3/api/js/26/0/marker.js"></script>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+<div id="header"></div>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Avatar</th>
+      <th>Username</th>
+      <th>Admin</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Comment</th>
+      <th>Subscribe</th>
+      <th>ville</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= image_tag(user.avatar, size:"50px") %></td>
+        <td><%= user.username %></td>
+        <td><%= user.admin %></td>
+        <td><%= user.nom %></td>
+        <td><%= user.prenom %></td>
+        <td><%= user.comment %></td>
+        <td><%= user.subscribe %></td>
+        <td><%= user.city %></td>
+        <td><%= user.latitude %></td>
+        <td><%= user.longitude %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div style='width: 800px'>
+  <div id="map" style='width: 800px; height: 400px'></div>
+</div>
+
+<%= link_to 'New User', new_user_registration_path %>
+
+
+
+    <script type="text/javascript">
+    console.log(markers);
+    console.log(<%= @hash %>)
+    console.log(<%= @shoplist %>)
+    handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+    </script>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+<h1>Bonjour, <%= @current_user.prenom %>,</h1>
+<h3>  vous avez annulé votre réservation</h3>
+<% driver=User.find(@bid.driver_id) %>
+
+<h3> Trajet Annulé:</h3>
+
+<p>  Magasin: <%= Shop.find(@bid.shop_id).name %> </p>
+<p> Date heure :<%= @bid.go_at %> </p>
+<p>  Conducteur: <%= driver.prenom %> </p>
+
+
+<p> Vous avez récupéré votre cocoin automatiquement</p>
+
+<p> Si votre annulation est due à un problème lors de l'utilisation du site, merci de nous signaler ce problème à projetcoshop@gmail.com</p>
+</body>
+</html>

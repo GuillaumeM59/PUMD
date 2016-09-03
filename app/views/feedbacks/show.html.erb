@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bid:</strong>
+  <%= @feedback.bid_id %>
+</p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @feedback.driver_id %>
+</p>
+
+<p>
+  <strong>Pass:</strong>
+  <%= @feedback.pass_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @feedback.score %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @feedback.comment %>
+</p>
+
+<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
+<%= link_to 'Back', feedbacks_path %>

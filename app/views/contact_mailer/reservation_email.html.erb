@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <%driver= User.find(@bid.driver_id) %>
+  <h1>Bonjour <%= driver.prenom %>,</h1>
+    <h3><%= @current_user.prenom %> a reservé(e) le trajet suivant:</h3>
+
+    <p> Objet: <%= @bid.id %><br>
+<br>
+    Magasin: <%= Shop.find(@bid.shop_id).name %><br>
+    Horaire: <%= @bid.go_at %> <br>
+    Conducteur :vous <br>
+<br>
+    Merci pour votre confiance, vous pouvez contacter le passager: <br>
+    @:<%= @current_user.email %> <br>
+    tel:<%= @current_user.phone %> <br>
+<br>
+    co-shop vous souhaite un très bon shopping...</p>
+</body>
+</html>

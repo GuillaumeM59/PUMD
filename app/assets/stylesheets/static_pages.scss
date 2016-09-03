@@ -1,0 +1,98 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.b1{
+  background-color: rgb(48, 70, 184);
+}
+.b1 a, .b2 a, .b3 a, .b4 a{
+  color: white
+}
+.b2{
+  background-color: rgb(19, 53, 228);
+}
+.b3{
+  background-color: rgb(49, 78, 228);
+}
+.b4{
+  background-color: rgb(90, 113, 231);
+}
+.tdbpage .active{
+  min-height: 100px;
+}
+.bb1{
+  border: 5px solid rgb(48, 70, 184)
+}
+.bb2{
+  border: 5px solid rgb(19, 53, 228);
+}
+.bb3{
+  border: 5px solid rgb(49, 78, 228)
+}
+.bb4{
+  border: 5px solid rgb(90, 113, 231)
+}
+
+.tdbpage .profil {
+  min-height: 70vh;
+  padding-top: 30px
+}
+#commandesbloc, #trajetsbloc {
+  display: none;
+}
+.lastdemandesbloc .recapdemande{
+  padding: 15px 0
+}
+.editlinkbloc{
+  padding-bottom: 10px
+}
+.parammenu li {
+  min-height: 50px;
+  padding-top: 15px;
+}
+
+.tdbpage .paramnav, .tdbpage .content {
+  padding-left: 0;
+  padding-right:0
+}
+.tdbpage .active a:hover{
+  text-decoration: none;
+}
+.lastdemandesbloc .useritem .fa{
+  float: none;
+}
+@media all and (max-width:991px) {
+  .paramnav{
+    float: none;
+    padding: 0;
+    margin: 0
+  }
+  .parammenu{
+    height: auto;
+    padding: 0;
+    margin: 0
+  }
+  .parammenu li{
+    display: inline-block;
+    vertical-align: bottom;
+    width: 25%;
+    padding-top: 0;
+    margin: 0 -2px;
+    min-height: 60px;
+    padding-top: 5px
+  }
+
+  .tdbpage .active{
+    min-height: 70px;
+    color: rgb(115, 115, 115);
+  }
+  .tdbpage .active a{
+    color: rgb(172, 170, 170)
+  }
+  .lastdemandesbloc hr,#driverbloc hr {
+    display: block;
+  }
+  .lastdemandesbloc .useritem {
+    padding-top: 10px
+  }
+}

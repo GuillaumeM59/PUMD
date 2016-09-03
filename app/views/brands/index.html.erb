@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Brands</h1>
+<div class="container">
+
+  <div class="row">
+    <% @brands.each do |brand| %>
+    <div class="col-md-3 brandbloc">
+        <h3 class="text-center"><%= brand.name %></h3>
+        <h6 class="text-center"><%= brand.category %></h6>
+        <p class="text-center"><%= image_tag(brand.brandpic, size: "380x80", alt: "Edit Entry") %></p>
+        <ul class=" list-unstyled list-inline text-center">
+
+          <li ><%= link_to 'Show', brand %></li>
+          <li><%= link_to 'Edit', edit_brand_path(brand) %></li>
+          <li><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+<br>
+
+<%= link_to 'New Brand', new_brand_path %>

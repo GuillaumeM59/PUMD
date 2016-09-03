@@ -1,0 +1,21 @@
+<h2 class="text-center searchtitle">Votre recherche pour "<%= @search %>"</h2>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    <div class="row">
+      <% @bids.each do |bid| %>
+
+	
+		<%=   render :partial => "/static_pages/bid",locals: {:bid => bid} %>
+
+    <%end%>
+
+
+
+  </div>
+  </div>
+
+
+</div>
+</div>

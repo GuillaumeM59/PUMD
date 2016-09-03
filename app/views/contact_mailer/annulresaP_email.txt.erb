@@ -1,0 +1,15 @@
+<%driver= User.find(@bid.driver_id) %>
+Bonjour <%= @current_user.prenom %>,
+vous avez annulé votre reservation pour le trajet suivant:
+
+ Objet: <%= @bid.id %>
+
+Magasin: <%= Shop.find(@bid.shop_id).name %>
+Horaire: <%= @bid.go_at %>
+Conducteur :<%= driver.prenom %>
+
+<%= driver.name %> en a été informé.
+
+Si votre annulation est due à un problème lors de l'utilisation du site, merci de nous signaler ce problème à projetcoshop@gmail.com
+
+A très bientot sur co-shop...

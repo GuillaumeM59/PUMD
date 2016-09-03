@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+<h1>Vous avez reçu(e) une question de la part de <%= @message.prenom %></h1>
+
+<h2> Objet: <%= @message.objet %></h2>
+
+<h3> Contenu du message:</h3>
+
+<p> <%= @message.contenu %> </p>
+
+
+<p> Merci de lui répondre à : <%= @message.email %></p>
+</body>
+</html>

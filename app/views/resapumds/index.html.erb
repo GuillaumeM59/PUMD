@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Resapumds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Trajet</th>
+      <th>Drive1 ref</th>
+      <th>Drive2 ref</th>
+      <th>Drive3 ref</th>
+      <th>Drive4 ref</th>
+      <th>Drive5 ref</th>
+      <th>Drive6 ref</th>
+      <th>Drive1 size</th>
+      <th>Drive2 size</th>
+      <th>Drive3 size</th>
+      <th>Drive4 size</th>
+      <th>Drive5 size</th>
+      <th>Drive6 size</th>
+      <th>Drive1 userid</th>
+      <th>Drive2 userid</th>
+      <th>Drive3 userid</th>
+      <th>Drive4 userid</th>
+      <th>Drive5 userid</th>
+      <th>Drive6 userid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resapumds.each do |resapumd| %>
+      <tr>
+        <td><%= resapumd.trajet_id %></td>
+        <td><%= resapumd.drive1_ref %></td>
+        <td><%= resapumd.drive2_ref %></td>
+        <td><%= resapumd.drive3_ref %></td>
+        <td><%= resapumd.drive4_ref %></td>
+        <td><%= resapumd.drive5_ref %></td>
+        <td><%= resapumd.drive6_ref %></td>
+        <td><%= resapumd.drive1_size %></td>
+        <td><%= resapumd.drive2_size %></td>
+        <td><%= resapumd.drive3_size %></td>
+        <td><%= resapumd.drive4_size %></td>
+        <td><%= resapumd.drive5_size %></td>
+        <td><%= resapumd.drive6_size %></td>
+        <td><%= resapumd.drive1_userid %></td>
+        <td><%= resapumd.drive2_userid %></td>
+        <td><%= resapumd.drive3_userid %></td>
+        <td><%= resapumd.drive4_userid %></td>
+        <td><%= resapumd.drive5_userid %></td>
+        <td><%= resapumd.drive6_userid %></td>
+        <td><%= link_to 'Show', resapumd %></td>
+        <td><%= link_to 'Edit', edit_resapumd_path(resapumd) %></td>
+        <td><%= link_to 'Destroy', resapumd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resapumd', new_resapumd_path %>

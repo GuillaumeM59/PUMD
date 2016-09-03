@@ -1,0 +1,84 @@
+<!-- Example Checkout page that *does not* support a variable amount! -->
+<h1 class="text-center">Votre cagnotte est insuffisante pour commander un picking ...</h1>
+
+<h3 class="text-center">Ajoutez quelques euros à votre cagnotte pour pouvoir faire une demande à un picker</h3>
+
+<div class="container-fluid offres text-center">
+  <div class="row">
+    <div class="offreexpress col-sm-12">
+      <h4>Offre Express</h4>
+    <p>Rechargez votre cagnotte d'un picking. <br>
+      C'est gratuit pour un montant minimum de 5€.<br>
+      Des frais sont à votre charge pour un gagnottage de moins de 5 €</p>
+    </div>
+
+      <div class="offreexpress col-sm-10 col-sm-offset-1">
+      <h5>Crediter ma cagnotte:</h5>
+
+      <%= form_tag charges_path do %>
+      <div id="error_explanation">
+        <% if flash[:error].present? %>
+        <p><%= flash[:error] %></p>
+        <% end %>
+      </div>
+      <article>
+        <%= label_tag(:amount, 'Montant (en euro):') %>
+        <%= text_field_tag(:amount) %>
+      </article>
+      <article>
+        <%= hidden_field_tag(:stripeToken) %>
+      </article>
+      <% end %>
+      <button id='donateButton'>Crediter ma cagnotte</button>
+
+    </div>
+
+  </div>
+</div>
+
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+var handler = StripeCheckout.configure({
+  key: '<%= ENV['stripe_publishable_key'] %>',
+  locale: 'fr',
+  name: 'Pick Up My Drive',
+  description: 'One-time donation',
+  token: function(token) {
+    $('input#stripeToken').val(token.id);
+    $('form').submit();
+  }
+});
+
+
+$('#donateButton').on('click', function(e) {
+  e.preventDefault();
+
+  $('#error_explanation').html('');
+
+  var amount = $('input#amount').val();
+  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+
+  amount = parseFloat(amount);
+
+  if (isNaN(amount)) {
+    $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
+  }
+  else if (amount < 10.00) {
+    $('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
+  }
+  else {
+    amount = amount * 100; // Needs to be an integer!
+    handler.open({
+      amount: Math.round(amount)
+    })
+  }
+});
+
+
+
+// Close Checkout on page navigation
+$(window).on('popstate', function() {
+  handler.close();
+});
+</script>
