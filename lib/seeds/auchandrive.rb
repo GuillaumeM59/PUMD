@@ -11,8 +11,10 @@ File.open("#{Rails.root}/lib/seeds/Auchan_Drive_Fr2.csv") do |shops|
     5.times do
       name[0]=""
     end
+    while listname2[listname2.size-1]==" "
+        listname2[listname2.size-1]=""
+    end
     puts longitude , latitude, listname2, name
     Shop.create!(:longitude => longitude, :latitude =>latitude, :brand_id => 4, :name => "Auchan Drive " + name, :listname=>listname2)
-    sleep 1
   end
 end

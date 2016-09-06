@@ -1,5 +1,6 @@
 class TrajetpumdsController < ApplicationController
   before_action :set_trajetpumd, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:confirm]
   require "stripe"
   Stripe.api_key = ENV['stripe_api_key']
   include CarrierWave::MiniMagick

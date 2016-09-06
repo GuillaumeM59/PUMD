@@ -8,27 +8,14 @@ File.open("#{Rails.root}/lib/seeds/chronodrive.csv") do |shops|
     longitude = longitude.to_f
     latitude = latitude.to_f
     name= "Chronodrive "+ listname.to_s
-    puts longitude , latitude, listname, name
-    Shop.create!(:longitude => longitude, :latitude =>latitude, :brand_id => brandid, :name => name, :listname=>listname)
-    sleep 1
-    zipcode=Geocoder.search("#{latitude},#{longitude}").first.postal_code
-    puts zipcode
-    currentshop=Shop.all.last
-    listname= currentshop.listname
-    n=0
-    if listname != nil
-    if n==0
-      i=listname.size
-      if listname[i-1]==" "
-        listname[i-1]=""
-      else
-        n+=1
-      end
-    else
+	    zipcode=Geocoder.search("#{latitude},#{longitude}").first.postal_code
+    while listname[listname.size-1]==" "
+      listname[listname.size-1]=""
     end
-    end
-    currentshop.update_attributes(:listname=> zipcode[0]+zipcode[1]+" - "+listname)
-    sleep 1
+    a= zipcode[0]+zipcode[1]+" - "+listname  
+    puts longitude , latitude, name, a
+    Shop.create!(:longitude => longitude, :latitude =>latitude, :brand_id => brandid, :name => name, :listname=>a)
+	sleep 1
   end
 
 end
