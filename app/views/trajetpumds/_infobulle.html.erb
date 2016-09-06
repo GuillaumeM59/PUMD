@@ -1,11 +1,6 @@
 <% driver=User.find(@trajet.driver_id) %>
 <% shop=Shop.find(@trajet.shop_id) %>
-<% if current_user %>
-  <% dist= Geocoder::Calculations.distance_between([current_user.latitude,current_user.longitude], [driver.latitude,driver.longitude], :units => :km).round(2) %>
-<%  else %>
-<%   @client=request.location %>
-<%   dist= Geocoder::Calculations.distance_between([@client.latitude,@client.longitude], [driver.latitude,driver.longitude], :units => :km).round(2) %>
-<% end %>
+<% dist= Geocoder::Calculations.distance_between([@lati,@longi], [driver.latitude,driver.longitude], :units => :km).round(2) %>
 
  <p class="text-center">à <%= dist %>km de vous</p>
  <div class="col-md-2 pickeravatarbulle hidden-xs hidden-sm">
@@ -29,44 +24,32 @@
       <% if @resas.count !=0 %>
       <% @resa=@resas.first%>
       <% c=0 %>
-      <% if @resa.drive6_size!=nil && @resa.drive6_size != 0 %>
-        <% c= @resa.maxsac %>
-      <% else %>
-        <% if @resa.drive1_size!=nil && c < @resa.maxsac %>
+        <% if @resa.drive1_size!=nil %>
             <% c+=@resa.drive1_size %>
-        <% elsif @resa.drive1_size? %>
-          <% c= @resa.maxsac %>
         <% end %>
         <% if @resa.drive2_size!=nil && c < @resa.maxsac %>
          <% c+=@resa.drive2_size %>
-        <% elsif @resa.drive2_size!=nil %>
-          <% c= @resa.maxsac %>
         <% end %>
         <% if @resa.drive3_size!=nil && c < @resa.maxsac %>
            <% c+=@resa.drive3_size %>
-        <% elsif @resa.drive3_size!=nil %>
-          <% c= @resa.maxsac %>
         <% end %>
         <% if @resa.drive4_size!=nil && c < @resa.maxsac %>
            <% c+=@resa.drive4_size %>
-        <% elsif @resa.drive4_size!=nil %>
-           <% c= @resa.maxsac %>
         <% end %>
         <% if @resa.drive5_size!=nil && c < @resa.maxsac %>
           <% c+=@resa.drive5_size %>
-        <% elsif @resa.drive5_size!=nil %>
-          <% c= @resa.maxsac %>
         <% end %>
-      <% end %>
-      <% @placedispo = @resa.maxsac - c %>
-          <% if @placedispo != 0 %>
-          <% @dates << [l(trajet.do_at, format:"%a %d %b vers %H:%M"), trajet.id] %>
-          <% end %>
+        <% @placedispo = @resa.maxsac - c %>
+        <% if @placedispo > 0 && @resa.drive6_size==nil %>
+        <% @dates << [l(trajet.do_at, format:"%a %d %b vers %H:%M"), trajet.id] %>
+        <% else %>
+        <% @dates << [l(trajet.do_at, format:"%a %d %b vers %H:%M"), 0 ] %>
+        <% end %>
       <% end %>
     <% end %>
    <%= form_tag trajetpumds_confirm_path, method: :post, class: "form-inline" do |f| %>
      <div class="form-group searchgroup">
-        <%= select_tag 'trajetid', options_for_select(@dates) %>
+        <%= select_tag 'trajetid', options_for_select(@dates), class:"dateselect" %>
         <%= submit_tag 'Pick up my drive', class: "btn btn-lg btn-search"%>
       </div>
     <% end %>

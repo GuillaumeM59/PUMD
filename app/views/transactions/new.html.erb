@@ -1,5 +1,24 @@
-<h1>New Transaction</h1>
 
-<%= render 'form' %>
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<div class="toppage paimentpage">
+<p class="text-center col-xs-12">
+  <%= image_tag('logopumdinline.png', class:"img-responsive col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4", alt:"logopumd") %>
+</p>
+<div class="form-container text-center">
+  <h2 class="mbs">Paiement du Picking:</h2>
+  <%= form_tag transactions_path do%>
+    <%= hidden_field_tag :brand_id, @brandid %>
+    <%= hidden_field_tag :trajet_id, @trajetid %>
+    <%= hidden_field_tag :nbrsac, @nbrsac %>
+    <%= hidden_field_tag :refdrive, @refdrive %>
+    <%= hidden_field_tag :substitution, @substitution %>
 
-<%= link_to 'Back', transactions_path %>
+    <p>Merci d'entrer vos informations de paiements: Paypal OU Carte Bancaire</p>
+    <div id="dropin" class="col-xs-12 col-lg-6 col-lg-offset-3"></div>
+    <div class="col-xs-12">
+
+    <%=submit_tag "Payer 3€", class: "btn-lg submit-paiment" %>
+  </div>
+  <%end%>
+</div>
+</div>

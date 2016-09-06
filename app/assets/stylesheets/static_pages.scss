@@ -61,7 +61,19 @@
 .lastdemandesbloc .useritem .fa{
   float: none;
 }
+.waitingvalidations{
+  margin-bottom: 50px
+}
+.useritem {
+  color: rgb(0, 52, 105)
+}
+.passed{
+  opacity: 0.5
+}
 @media all and (max-width:991px) {
+  .navbar-right{
+    padding-top: 8px
+  }
   .paramnav{
     float: none;
     padding: 0;

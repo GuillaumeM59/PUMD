@@ -44,7 +44,7 @@
         Merci de nous transmettre les informations concernant ta commande drive:
       </p>
 
-      <%= form_tag(reserver_trajet_path, method: :post) do %>
+      <%= form_tag(new_transaction_path(), method: :get) do %>
 
       <div class="field">
         <%= label_tag :refdrive, "N° de commande #{@shop.name}" %><br>

@@ -22,6 +22,7 @@
 @import 'brands';
 @import 'shops';
 @import 'contact';
+@import 'transactions';
 @import 'users';
 @import "static_pages";
 @import "trajetpumds";
@@ -468,10 +469,23 @@ textarea {
 
 .message {
   position: fixed;
-  top: 70px;
+  top: 80px;
   left: 15%;
   width: 70%;
+  background-color: transparent;
+  z-index: 9999
 }
+.close {
+  	font-size: 50px;
+  	opacity: 0.5;
+  	filter: alpha(opacity=50);
+  }
+  .alert-dismissable .close, .alert-dismissible .close {
+  	position: relative;
+  	top: -12px;
+  	right: -21px;
+  	color: inherit;
+  }
 .carblock {
   display:none
 }

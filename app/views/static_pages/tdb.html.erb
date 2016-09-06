@@ -113,6 +113,9 @@
                 <%= Shop.find(t[0].shop_id).name %>
                 par
                 <%= User.find(t[0].driver_id).username %>
+                  <% if DateTime.now < (t[0].do_at-2.hours) %>
+                 <%= link_to('Annuler', annul_trans_path(trajet_id:t[0].id, user_id:current_user.id), data: { confirm:"En annulant,vous serez remboursé de votre commande moins les frais de la plateforme (0,50€). Êtes vous sûr(e) de vouloir annuler le picking?"}) %>
+                 <% end %>
               </li>
               <% end %>
             </ul>
@@ -191,7 +194,7 @@
           <% if @mespickingresas != [] %>
           <ul class="list-unstyled">
             <% @mespickingresas.each do |t| %>
-            <li class="recapdemande <%= if t[0].do_at < DateTime.now then " passed" end %>">
+            <li class="recapdemande <%= if t[0].do_at < (DateTime.now + 1.hour) then " passed" end %>">
               le <%= l(t[0].do_at, format:"%A %d %B vers %H:%M")%>, à <%= Shop.find(t[0].shop_id).name %>:
               <ul class=" list-unstyled listresas">
                   <% t[1].each do |i| %>

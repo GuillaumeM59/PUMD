@@ -14,13 +14,13 @@
           <h1>On vous ramène vos courses</h1>
           <h3 class="text-center">Trouver un picker</h3>
 
-          <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline" do %>
+          <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-12 col-md-5" do %>
           <div class="form-group searchgroup">
 
             <%= text_field_tag(
-            :search,
-            params[:search],
-            placeholder: "Enseigne Drive",
+            :custom_address,
+            params[:custom_address],
+            placeholder: "rue, code postal et ville",
             class: "form-control searchbar"
               ) %>
               <%= button_tag(type:'submit', class: "btn btn-lg btn-search") do%>
@@ -29,7 +29,16 @@
                 <% end %>
               </div>
               <% end %>
-          <hr class="intro-divider">
+              <h4 class="col-xs-12 col-md-2">OU</h4>
+              <div class="col-xs-12 col-md-5 aroundblocbtn">
+                <%= link_to(trajetpumds_search_path(custom_address:""), class: "btn btn-lg btn-search") do %>
+                <i class="fa fa-street-view" aria-hidden="true"></i> Autour de chez moi
+                <% end %>
+              </div>
+              <div class="separator col-xs-12">
+
+                <hr class="intro-divider separator">
+              </div>
           <% if current_user  %>
           <%if current_user.driver %>
           <%= link_to "Proposer un picking", "", :class => "btn btn-default btn-lg hidden-xs hidden-sm", "data-toggle" => "modal","data-target" => "#newtrajetpumd" %>
@@ -78,10 +87,7 @@
 
 
 
-              <div class=" col-md-offset-2 col-md-8 loggedannounce">
 
-                <h4 class="text-center ">Bientôt: Partagez mieux en vous selectionnant avec vos centres d'interet communs</h4>
-              </div>
             </div>
           </div>
         </div>
@@ -97,11 +103,12 @@
 <% if controller_name == 'static_pages' && action_name == 'home' %>
 <footer class="homefooter">
   <ul class="list-unstyled list-inline text-center">
-    <li><a href="#">comment ça marche</a></li>
+    <li><a href="#">comment ça marche?</a></li>
     <li><a href="#">foire aux questions</a></li>
     <li><a href="#">mentions légales</a></li>
     <li><a href="#">conditions générales d'utilisation</a></li>
     <li><a href="#">tarifs</a></li>
+    <li><a href="#">recrutement</a></li>
     <li><a href="#">nous contacter</a></li>
     <li>© 2016 - co-shop&#169;</li>
   </ul>

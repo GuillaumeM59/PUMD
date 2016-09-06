@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>On vous livre vos courses - Pickupmydrive.fr</title>
+    <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= favicon_link_tag "favicon.png",  type: 'image/png' %>
@@ -155,7 +156,7 @@
     <div class="message">
       <%= flash_messages %></div>
 
-    <%= yield %>
+    <%= yield%>
 
     <!-- Footer -->
     <% if controller_name == 'static_pages' && action_name == 'home' %>

@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
+#ENV keys safe
+# Paiments
+gem "braintree"
+gem 'figaro',  git: 'git@github.com:laserlemon/figaro.git'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -23,10 +27,9 @@ gem 'bootstrap-sass'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 # Hook locally mail
-# Run deamon by call him in termilal like so : maicatcher
-# Then go  http://127.0.0.1:1080
 
-gem 'stripe-rails'
+# allow rails datas on js
+gem 'gon', '~> 5.1.2'
 
 #SMS API
 gem 'htmlentities', '~> 4.3', '>= 4.3.4'
@@ -50,8 +53,6 @@ gem 'gmaps4rails'
 gem 'markerclustererplus-rails'
 
 
-#ENV keys safe
-gem 'figaro'
 #Form generator
 gem 'formtastic', '~> 3.0'
 gem 'client_side_validations'

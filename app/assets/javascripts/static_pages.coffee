@@ -13,4 +13,4 @@ messageCallback = ->
 $ ->
     $(".message").bind 'click', (ev) =>
         messageCallback()
-    setTimeout messageCallback, 3000
+    setTimeout messageCallback, 10000
