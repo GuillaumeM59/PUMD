@@ -187,10 +187,10 @@ class TrajetpumdsController < ApplicationController
       @val.bid_date = @trajet.do_at.to_date
       @val.ispumdval = true
       @val.save
-      # ContactMailer.reservation_email(current_user, @bid).deliver_now
-      # ContactMailer.reservationP_email(current_user,@bid).deliver_now
-    #  sendsms("#{@driver.phone}","PUMD: nouvelle reservation de #{current_user.username} ( #{current_user.phone} ) pour un picking (N° commande #{params[:refdrive]}) le #{l(@trajet.do_at, format:"%A %d %B")} à #{l(@trajet.do_at, format:"%H:%M")} à #{@shop.name}")
-    #  sendsms("#{current_user.phone}","PUMD: Vous avez réservé pour un picking le #{l(@trajet.do_at, format:"%A %d %B")} à #{l(@trajet.do_at, format:"%H:%M")} à #{@shop.name} par #{@driver.username} (#{@driver.phone}) code validation: #{code5}")
+      ContactMailer.reservation_email(current_user, @bid).deliver_now
+      ContactMailer.reservationP_email(current_user,@bid).deliver_now
+     sendsms("#{@driver.phone}","PUMD: nouvelle reservation de #{current_user.username} ( #{current_user.phone} ) pour un picking (N° commande #{params[:refdrive]}) le #{l(@trajet.do_at, format:"%A %d %B")} à #{l(@trajet.do_at, format:"%H:%M")} à #{@shop.name}")
+     sendsms("#{current_user.phone}","PUMD: Vous avez réservé pour un picking le #{l(@trajet.do_at, format:"%A %d %B")} à #{l(@trajet.do_at, format:"%H:%M")} à #{@shop.name} par #{@driver.username} (#{@driver.phone}) code validation: #{code5}")
     end
     def redir
       if @resa.save
@@ -261,7 +261,7 @@ class TrajetpumdsController < ApplicationController
       @val.destroy
     end
     def comannul
-      # sendsms("#{@driver.phone}","PUMD: annulation du picking de #{current_user.username}  (N° commande #{@refdrive}) du #{l(@trajet.do_at, format:"%A %d %B")} à #{l(@trajet.do_at, format:"%H:%M")} à #{@shop.name}")
+       sendsms("#{@driver.phone}","PUMD: annulation du picking de #{current_user.username}  (N° commande #{@refdrive}) du #{l(@trajet.do_at, format:"%A %d %B")} à #{l(@trajet.do_at, format:"%H:%M")} à #{@shop.name}")
     end
     def redir
       respond_to do |format|
