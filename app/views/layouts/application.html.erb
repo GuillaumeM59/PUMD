@@ -8,7 +8,7 @@
     <%= favicon_link_tag "favicon.png",  type: 'image/png' %>
     <%= csrf_meta_tags %>
     <meta name="description" content="Pas le courage, pas les moyens ou tout simplement pas le temps de faire les courses? Faites-vous livrer vos achats drive">
-    <meta name="keywords" content="Drive, Courses, Livraison,auchan direct, solidaire, ecologie, economie, Pick, parking, aller, faire, aide a la personne, mobilité">
+    <meta name="keywords" content="Drive, Courses, Livraison,direct , solidaire, ecologie, economie, Pick, parking, aller, faire, aide a la personne, mobilité">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -95,7 +95,9 @@
             <i class="fa fa-bars btnmenu" aria-hidden="true"></i>
 
           </button>
-          <%= link_to(image_tag("logopumdinline.png", class:"logo_hot img-responsive", alt:"Logo coshop"), root_path, class:"navbar-brand" ) %>
+          <%= link_to(root_path, class:"navbar-brand" ) do %>
+        <span class="navbrandtextcolor1">P<span class="navbrandinnertext">ick</span > U<span class="navbrandinnertext">p</span></span ><span class="navbrandtextcolor2"> M<span class="navbrandinnertext">y</span> D<span class="navbrandinnertext">rive</span></span>
+          <% end %>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right list-inline text-center">
@@ -107,6 +109,9 @@
               <i class="fa fa-home fa-3x"></i>
               <%end %>
             </li>
+            <li class="hidden-xs hidden-sm ">
+              <%= link_to "Contact", static_pages_contact_path, alt:"contact"%>
+            </li>
             <% if user_signed_in? %>
             <li class="hidden-xs hidden-sm">
               <%= link_to "Mon tableau de bord", tdb_path , alt:"tableau de bord"%>
@@ -115,9 +120,6 @@
               <%= link_to (tdb_path), class:"navicohome", alt:"tableau de bord" do%>
               <i class="fa fa-cogs fa-3x"></i>
               <%end %>
-            </li>
-            <li class="hidden-xs hidden-sm ">
-              <%= link_to "Contact", static_pages_contact_path, alt:"contact"%>
             </li>
             <li class="hidden-md hidden-lg ">
               <%= link_to (static_pages_contact_path), class:"navicocontact", alt:"contact" do%>

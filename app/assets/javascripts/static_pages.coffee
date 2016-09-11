@@ -14,3 +14,16 @@ $ ->
     $(".message").bind 'click', (ev) =>
         messageCallback()
     setTimeout messageCallback, 10000
+
+shortBrandText = ->
+    $(".navbrandinnertext").animate
+      height: 0
+      opacity: 0
+    , 350
+    , ->
+      $(this).remove()
+
+$ ->
+    $(".navbrandinnertext").bind 'click', (ev) =>
+        shortBrandText()
+    setTimeout shortBrandText, 5000

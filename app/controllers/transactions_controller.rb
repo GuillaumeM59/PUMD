@@ -31,7 +31,6 @@ class TransactionsController < ApplicationController
 
     @result = Braintree::Transaction.sale(
     :amount => '3.00',
-:payment_method_nonce => 'fake-valid-nonce',
 :options => {
 :submit_for_settlement => true
 })
