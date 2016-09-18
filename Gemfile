@@ -32,6 +32,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 # allow rails datas on js
 gem 'gon', '~> 5.1.2'
 gem 'administrate'
+gem 'bourbon'
 
 #SMS API
 gem 'htmlentities', '~> 4.3', '>= 4.3.4'
