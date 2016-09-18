@@ -7,8 +7,9 @@ gem 'rails', '4.2.5.1'
 # Paiments
 gem "braintree"
 gem 'figaro',  git: 'git@github.com:laserlemon/figaro.git'
-# Use sqlite3 as the database for Active Record
+# Use postgresql as the database for Active Record
 gem 'pg'
+gem 'yaml_db'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,6 +31,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 # allow rails datas on js
 gem 'gon', '~> 5.1.2'
+gem 'administrate'
 
 #SMS API
 gem 'htmlentities', '~> 4.3', '>= 4.3.4'
