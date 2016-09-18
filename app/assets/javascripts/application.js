@@ -23,7 +23,6 @@
 //= require rails.validations
 //= require transactions
 //= require connexion
-//= require resultat
 //= require index
 //= require testnavbar
 //= require static_pages
