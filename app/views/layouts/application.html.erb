@@ -80,7 +80,6 @@
         </div>
       </div>
     </div>
-
     <!-- Fixed navbar -->
     <nav id="header" class="navbar navbar-fixed-top">
       <div id="header-container" class="container navbar-container">
@@ -157,7 +156,7 @@
     <!-- Footer -->
     <% if controller_name == 'static_pages' && action_name == 'home' %>
   <% else %>
-    <footer>
+    <footer class="col-xs-12">
 
       <div class="container-fluid">
 
@@ -225,7 +224,9 @@
 
       </div>
 
+      <%= render 'cookies_eu/consent_banner' %>
     </footer>
+
     <% end %>
     <script type="text/javascript">
       $('#user_driver_input #user_driver').click(function () {

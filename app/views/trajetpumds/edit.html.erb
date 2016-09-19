@@ -1,6 +1,80 @@
-<h1>Editing Trajetpumd</h1>
+<div class="text-center toppage">
 
-<%= render 'form' %>
+<h1>Editer Trajet</h1>
+<div class="col-md-8 col-md-offset-2 col-lg-6 col-md-offset-3 edit-trajet-form">
+<%= form_for(@trajetpumd) do |f| %>
+  <% if @trajetpumd.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trajetpumd.errors.count, "error") %> prohibited this trajetpumd from being saved:</h2>
 
-<%= link_to 'Show', @trajetpumd %> |
-<%= link_to 'Back', trajetpumds_path %>
+      <ul>
+      <% @trajetpumd.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Enseigne" %><br>
+    <%= f.collection_select :brand_id, Brand.where(category:"Drive").order(:name), :id, :name, required:true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Magasin" %><br>
+    <%= f.grouped_collection_select :shop_id, Brand.where(category:"Drive").order(:name), :shops, :name, :id, :listname, required:true%>
+  </div><br>
+  <div class="field">
+    <%= f.label :maxsac, "Nombre de sac maximum que je pourrais prendre:" %><br>
+    <%= f.number_field :maxsac, in:(1..30), required:true%>
+  </div><br>
+
+    <%= f.label :do_at, "Date et heure estimée de picking" %>  <br>
+    <div class="form-group">
+    <div class="input-group date" id="dtpickerdoat">
+    <%= f.text_field :do_at, class: "form-control" %>
+    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+  </div>
+</div><br>
+  <div class="field">
+    <%= f.label :regulier, "C'est un trajet régulier" %> <br>
+    <%= f.check_box :regulier %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Enregistrer les modifications', class:"btn-lg "%>
+  </div>
+<% end %>
+</div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+$("#dtpickerdoat").datetimepicker({
+    stepping: 15,
+    daysOfWeekDisabled: [0],
+    sideBySide: true,
+    minDate: 'now',
+    maxDate: moment().add(1, 'month'),
+    enabledHours: [8,9,10,11,12,13,14,15,16,17,18,19,20]
+  }
+);
+});
+
+var shops = $('#trajetpumd_shop_id').html();
+  $('#trajetpumd_brand_id').change(function () {
+  var brandselected = $('#trajetpumd_brand_id :selected').text();
+  var optgroup = "optgroup[label='" + brandselected + "']";
+  var options = $(shops).filter(optgroup).html();
+    console.log(shops);
+    console.log(optgroup);
+    console.log(options);
+
+    if (brandselected != "") {
+      $('#trajetpumd_shop_id').html(options);
+    }
+  });
+
+</script>

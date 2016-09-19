@@ -25,7 +25,7 @@
   </div>
 
   <aside class="markersbloc hidden-xs hidden-sm">
-    <ul id="markerslist" class="list-unstyled"></ul>
+    <ul id="markerslist1" class="list-unstyled"></ul>
   </aside>
 
       <div id="mapcontainer">
@@ -33,7 +33,9 @@
       </div>
 </div>
 
-
+<aside class="markersbloc hidden-md hidden-lg">
+  <ul id="markerslist2" class="list-unstyled"></ul>
+</aside>
 
 
           <script type="text/javascript">
@@ -101,10 +103,16 @@ function chgbtn() {
           function createMarkerButton(marker) {
             //Creates a sidebar button
             var li<%= i %> = document.createElement("li");
+            var l2i<%= i %> = document.createElement("li");
+            var liste1 = document.getElementById("markerslist1");
+            var liste2 = document.getElementById("markerslist2");
             li<%= i %>.setAttribute("id", "itemlist<%= i %>");
             li<%= i %>.innerHTML = "<div class='container-fluide'><div class='row'>" + contentString + "</div></div>";
-            ul.appendChild(li<%= i %>);
-            console.log( li<%= i %>)
+            l2i<%= i %>.setAttribute("id", "itemlist<%= i %>");
+            l2i<%= i %>.innerHTML = "<div class='container-fluide'><div class='row'>" + contentString + "</div></div>";
+            liste1.appendChild(li<%= i %>);
+            liste2.appendChild(l2i<%= i %>);
+            console.log( li<%= i %>);
 
             //Trigger a click event to marker when the button is clicked.
             google.maps.event.addDomListener(li<%= i %>, "click", function(){

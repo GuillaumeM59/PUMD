@@ -30,3 +30,4 @@
 //= require gmaps/google
 //= require markerclusterer
 //= require_tree .
+//= require cookies_eu

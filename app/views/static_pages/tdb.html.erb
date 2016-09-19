@@ -196,6 +196,16 @@
             <% @mespickingresas.each do |t| %>
             <li class="recapdemande <%= if t[0].do_at < (DateTime.now + 1.hour) then " passed" end %>">
               le <%= l(t[0].do_at, format:"%A %d %B vers %H:%M")%>, à <%= Shop.find(t[0].shop_id).name %>:
+              <% if t[0].do_at > (DateTime.now + 1.hour)%>
+              <ul class="list-unstyled list-inline">
+                <li><%= link_to(edit_trajetpumd_path(t[0].id), alt:"modifier annonce picking") do %>
+                  <i class="fa fa-pencil-square-o">
+                <span class=" hidden-xs hidden-sm"> Modifier</span> </i><% end%></li>
+                <li><%= link_to(trajetpumd_path(t[0].id), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer l'annonce" }, alt:"supprimer annonce picking") do %>
+                  <i class="fa fa-trash">
+                  <span class=" hidden-xs hidden-sm">  Supprimer</span> </i><% end%></li>
+              </ul>
+              <% end%>
               <ul class=" list-unstyled listresas">
                   <% t[1].each do |i| %>
                   <li class="useritem"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> de <%= User.find(i[0]).username  %>, ref: <%= i[1] %>, taille: <%= i[2] %>sacs, substitution: <%= if i[3] then "oui" else "non" end %>

@@ -100,6 +100,7 @@
 </div>
 </div>
 </div>
+</header>
 <% if controller_name == 'static_pages' && action_name == 'home' %>
 <footer class="homefooter">
   <ul class="list-unstyled list-inline text-center">
@@ -109,12 +110,13 @@
     <li><a href="#">conditions générales d'utilisation</a></li>
     <li><a href="#">tarifs</a></li>
     <li><a href="#">recrutement</a></li>
-    <li><a href="#">nous contacter</a></li>
+    <li><%= link_to "nous contacter", static_pages_contact_path %></li>
     <li>© 2016 - co-shop&#169;</li>
   </ul>
+  <%= render 'cookies_eu/consent_banner' %>
+
 </footer>
 <% end %>
-</header>
 
 <!-- /.container -->
 <!-- /.intro-header -->

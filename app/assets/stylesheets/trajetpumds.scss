@@ -23,6 +23,7 @@ padding-right: 35px
   border: 2px solid black;
   display: inline-block;
   float: left;
+  overflow-y: scroll;
 }
 #markerslist{
   height:600px
@@ -82,9 +83,9 @@ padding-right: 35px
 }
 @media all and (max-width:991px) {
   #mapcontainer {
-    height:75%;
-    width:100%;
-    margin-right: 0;
+    height:60%;
+    width:90%;
+    margin-left: 5%;
     display: inline-block;
     float: none;
   }
@@ -101,6 +102,10 @@ padding-right: 35px
   }
   .confirmationpage{
     font-size: 1em
+  }
+  .markersbloc {
+    width: 90%;
+    margin-left: 5%
   }
 
 }
