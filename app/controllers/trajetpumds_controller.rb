@@ -99,6 +99,13 @@ class TrajetpumdsController < ApplicationController
 
   # GET /trajetpumds/1/edit
   def edit
+
+  end
+
+
+
+  def destroy
+
   end
 
 
