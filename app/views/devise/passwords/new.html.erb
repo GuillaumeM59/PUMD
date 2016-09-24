@@ -1,15 +1,15 @@
-<h2>Forgot your password?</h2>
+<h2>Alors... On sait plus son Mot de passe? Pas de panique...</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "Ton email:" %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Envoyez-moi un email pour changer mon Mot de Passe " %>
   </div>
 <% end %>
 

@@ -1,5 +1,11 @@
-<p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<h1>Hello <%= @email %>!</h1>
+
+<h3>Merci pour ton inscription...</h3>
+
+<p>Tu pourras bientôt accéder à l'univers PUMD. Mais d'abord pour des raisons de sécurité, tu dois confirmer ton inscription.</p>
+
+<p>Tu peux confirmer ton adresse email en cliquant sur le lien: </p>
+
+<p><%= link_to 'Confirmer mon compte', confirmation_url(@resource, confirmation_token: @token) %></p>
