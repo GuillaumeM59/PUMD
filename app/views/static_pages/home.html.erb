@@ -3,42 +3,45 @@
 <!-- PAGE CONTENT  -->
 
 <header class="intro-header">
-  <div class="blur"></div>
-  <div class="filterblue"></div>
   <div class="container">
 
     <div class="row">
-      <div class="col-lg-12">
-        <div class="intro-message">
+      <div class="col-lg-7 intro-message">
           <%= image_tag("banpump-01.png", class: "image-responsive headerillu", width:"70%" ) %>
           <h1>On vous ramène vos courses</h1>
-          <h3 class="text-center">Trouver un picker</h3>
+      </div>
+      <div class="col-lg-5 home-search-bloc">
 
-          <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-12 col-md-5" do %>
+          <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-12" do %>
           <div class="form-group searchgroup">
+            <h2 class="text-center grey1">Trouver un picker</h2>
+<div class="searchbar-bloc">
 
             <%= text_field_tag(
             :custom_address,
             params[:custom_address],
             placeholder: "rue, code postal et ville",
             class: "form-control searchbar"
-              ) %>
+              ) %> <label for=""> <i class="fa fa-2x fa-globe searchbar-i grey1" aria-hidden="true"></i></label>
+<br>
               <%= button_tag(type:'submit', class: "btn btn-lg btn-search") do%>
               <i class="fa fa-search">
                 Rechercher</i>
                 <% end %>
               </div>
+              </div>
               <% end %>
-              <h4 class="col-xs-12 col-md-2">OU</h4>
-              <div class="col-xs-12 col-md-5 aroundblocbtn">
+              <h4 class="col-xs-12 grey1">OU</h4>
+              <div class="col-xs-12 aroundblocbtn">
                 <%= link_to(trajetpumds_search_path(custom_address:""), class: "btn btn-lg btn-search") do %>
                 <i class="fa fa-street-view" aria-hidden="true"></i> Autour de chez moi
                 <% end %>
               </div>
               <div class="separator col-xs-12">
 
-                <hr class="intro-divider separator">
+
               </div>
+              <div class="signin col-xs-12 text-left">
           <% if current_user  %>
           <%if current_user.driver %>
           <%= link_to "Proposer un picking", "", :class => "btn btn-default btn-lg hidden-xs hidden-sm", "data-toggle" => "modal","data-target" => "#newtrajetpumd" %>
@@ -48,11 +51,13 @@
             passager.' } %>
             <% end %>
             <% else %>
-            <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn btn-default btn-lg" %>
-            <p class="text-center offert">
-              Inscription gratuite
+            <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-default btn-lg btn-purple" %>
+            <p class="text-center offert grey1">
+              Inscription rapide et gratuite
             </p>
             <%end%>
+          </div>
+          </div>
 
 
           <%if current_user %>
@@ -98,22 +103,110 @@
 </div>
 <%end %>
 </div>
-</div>
-</div>
 </header>
-<% if controller_name == 'static_pages' && action_name == 'home' %>
-<footer class="homefooter">
-  <ul class="list-unstyled list-inline text-center">
-    <li><a href="#">comment ça marche?</a></li>
-    <li><a href="#">mentions légales</a></li>
-    <li><a href="#">CGU</a></li>
-    <li><a href="#">recrutement</a></li>
-    <li><%= link_to "nous contacter", static_pages_contact_path %></li>
-    <li>© 2016 - co-shop&#169;</li>
+
+<!-- bloc logos enseignes -->
+<div class="home-mag text-center container-fluid">
+  <ul class="list-unstyled list-inline  home-logo-brand">
+    <li class="home-brand-pic"><%= image_tag("auchan-drive-logo2.png", class: "image-responsive" ) %></li>
+    <li class="home-brand-pic"><%= image_tag("chronodrive.png", class: "image-responsive " ) %></li>
+    <li class="home-brand-pic"><%= image_tag("carrefour drive .png", class: "image-responsive " ) %></li>
+    <li class="home-brand-pic"><%= image_tag("eleclercdrive.png", class: "image-responsive " ) %></li>
+    <li class="home-brand-pic"><%= image_tag("matchdrive.png", class: "image-responsive " ) %></li>
+    <li class="home-brand-pic"><%= image_tag("casinodrive.png", class: "image-responsive " ) %></li>
+    <li class="home-brand-pic"><%= image_tag("interdrive.png", class: "image-responsive " ) %></li>
+    <li class="home-brand-pic"><%= image_tag("leaderdrive.png", class: "image-responsive " ) %></li>
+    <li class="home-brand-pic"><%= image_tag("udrive.png", class: "image-responsive " ) %></li>
   </ul>
 
-</footer>
-<% end %>
+</div>
+
+<!-- bloc poster une annonce  -->
+<div class="home-post-bloc container text-center grey1">
+<h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-purple "%> </h3>
+</div>
+
+
+<div class="home-benef-bloc text-center">
+  <div class="container">
+
+    <h2 class="home-bloc-title">LES BIENFAITS DE PUMP</h2>
+    <hr class="home-bloc-separator">
+    <ul class="benef-list list-unstyled list-inline ">
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-clock-o" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Temps</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-leaf" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Ecologie</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-money" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Economies</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-globe" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Associatif</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-lock" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Securité</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-3x fa-handshake-o" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Social</p>
+      </li>
+    </ul>
+    <p class="benef-parag col-xs-8 col-xs-offset-2">
+      Utiliser PUMP, c'est se simplifier la vie.<br>
+       Je gagne du temps, j'économise de l'argent, je fais un geste pour la planète et je fais du bien autour de moi sans prendre de risque.
+    </p>
+  </div>
+</div>
+
+
+          <!-- centrer verticalement les icones -->
+<script type="text/javascript">
+function centerize() {
+ var divH = $('.benef-icon i').first().innerHeight()/2;
+ var pageH = $('.benef-icon').first().innerHeight()/2;
+ $('.benef-icon').css({paddingTop: (pageH-divH)});
+ $('.benef-icon').last().css({paddingTop: (pageH-divH+6)});
+}
+
+centerize();
+
+$(window).on('resize',function(){
+centerize();
+});
+</script>
+
+<!-- --------------------------------------------------------------------
+WORKING PROGRESS
+-------------------------------------------------------------------- -->
+
+
+
+
+
+
+<div class="blocbidon">
+
+</div>
+
 
 <!-- /.container -->
 <!-- /.intro-header -->

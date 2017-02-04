@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>On vous livre vos courses - Pickupmydrive.fr</title>
+    <title>PUMPethop.fr - On vous livre vos courses</title>
     <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= favicon_link_tag "favicon.png",  type: 'image/png' %>
     <%= csrf_meta_tags %>
     <meta name="description" content="Pas le courage, pas les moyens ou tout simplement pas le temps de faire les courses? Faites-vous livrer vos achats drive">
-    <meta name="keywords" content="Drive, Courses, Livraison,direct , solidaire, ecologie, economie, Pick, parking, aller, faire, aide a la personne, mobilité">
+    <meta name="keywords" content="Drive, Courses, Livraison, direct , solidaire, ecologie, economie, Pick, parking, aller, faire, aide a la personne, mobilité, collaborative, pump">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -89,9 +89,8 @@
             <i class="fa fa-bars btnmenu" aria-hidden="true"></i>
 
           </button>
-          <%= link_to(root_path, class:"navbar-brand" ) do %>
-        <span class="navbrandtextcolor1">P<span class="navbrandinnertext">ick</span > U<span class="navbrandinnertext">p</span></span ><span class="navbrandtextcolor2"> M<span class="navbrandinnertext">y</span> D<span class="navbrandinnertext">rive</span></span>
-          <% end %>
+          <%= link_to image_tag("logopump.png", height:"60"), root_path, class:"navbar-brand" %>
+
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right list-inline text-center">
@@ -133,14 +132,17 @@
             </li>
           <% else %>
             <li class="hidden-xs hidden-sm">
-              <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal" alt="connexion">
+              <button type="button" class="btn btn-lg btn-o-purple" data-toggle="modal" data-target="#myModal" alt="connexion">
                 Connexion</button>
             </li>
-            <li class="hidden-md hidden-lg ">
+            <li class="hidden-md hidden-lg btn-o-purple">
               <%= link_to "Connexion", new_user_session_path, class: "btn btn-lg", alt:"connexion" %>
             </li>
             <% end %>
           </ul>
+
+
+
 
         </div>
         <!-- /.nav-collapse -->
@@ -155,8 +157,7 @@
     <%= yield%>
 
     <!-- Footer -->
-    <% if controller_name == 'static_pages' && action_name == 'home' %>
-  <% else %>
+
     <footer class="col-xs-12">
 
       <div class="container-fluid">
@@ -217,7 +218,7 @@
 
           <div class="col-md-2 col-md-offset-1">
             <ul>
-              <li><%= image_tag("logopumd.png", alt:"Logo co-shop", class: "img-responsive") %></li>
+              <li><%= image_tag("logopump.png", alt:"Logo pump", class: "img-responsive") %></li>
             </ul>
           </div>
         </div>
@@ -227,7 +228,6 @@
 
     </footer>
 
-    <% end %>
     <script type="text/javascript">
       $('#user_driver_input #user_driver').click(function () {
         this.checked
