@@ -133,8 +133,9 @@ padding-bottom: 0;
   margin: 0 auto;
 }
 // -----------------------------------------NAVBAR
-.navbar-brand {
-  font-size: 24px;
+#navbarimg {
+  height: 58px;
+
 }
 .navbar-container {
   padding: 10px 0;
@@ -143,14 +144,15 @@ padding-bottom: 0;
 .navbar.navbar-fixed-top.fixed-theme {
   background-color: #FFF;
 }
-.navbar-brand.fixed-theme {
-  font-size: 18px;
+#navbarimg.fixed-theme {
+  height: 50px;
+  padding-top: 5px
 }
 .navbar-container.fixed-theme {
   padding: 0;
 }
-.navbar-brand,
-.navbar-brand.fixed-theme,
+.navbar-brand img,
+.navbar-brand.fixed-theme img,
 .navbar-container,
 .navbar-container.fixed-theme,
 .navbar.navbar-fixed-top.fixed-theme {
@@ -318,6 +320,42 @@ hr.home-bloc-separator{
 }
 
 
+// BLOC POUR QUI
+.home-pourqui-bloc {
+  background-color: #8e3dfb;
+  color: white;
+  padding: 80px 0
+}
+div.row.pourqui {
+  margin-top: 60px
+}
+.futurevideo, .play {
+  height: 300px
+}
+.futurevideo {
+  position: relative;
+  background-color: rgb(59, 68, 91);
+  margin-bottom: 20px
+}
+.play {
+  height: 300px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+.play i{
+float: none;
+position: absolute;
+top: 35%;
+left: 45%
+}
+.pourqui-video>p{
+  bottom: 0
+}
+.pourqui-text {
+  padding: 17px 0 !important
+}
 
 
 @media all and (max-width:991px) {
@@ -335,11 +373,6 @@ hr.home-bloc-separator{
   }
 }
 
-.blocbidon {
-  height: 1000px;
-  width: 100%;
-  background-color: rgb(154, 154, 154)
-}
 .home-logo-brand img{
   width: 100%;
   height: auto;
