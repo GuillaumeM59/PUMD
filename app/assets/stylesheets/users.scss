@@ -12,3 +12,70 @@
 .signinbloc .fa, .editusercarbloc .fa {
   float: none;
 }
+.signuppurple .data_input, .signuppurple .password_input{
+  padding: 40px 10px;
+  min-height: 100%;
+  color: white
+}
+.signuppurple .data_input{
+  background-color: #00bbf0;
+}
+.signuppurple{
+  background-color: #8e3dfb;
+  margin-top: 50px !important;
+  margin-bottom: 30px !important;
+}
+
+.signuppurple .data_input label, .signuppurple .password_input label ,.field_with_errors {
+  color: white;
+  font-size: 1.2em
+}
+.signuppurple .data_input input, .signuppurple .password_input input{
+  width: 70%;
+  margin-left: auto;
+  color: rgb(91,91,91);
+  text-align: center;
+}
+.signuppurple input[type='checkbox'] {
+  width: auto;
+}
+.signuppurple li {
+  padding-left: auto
+}
+.signuppurple .btn-o-purple {
+  background-color: white;
+  font-weight: 600
+}
+.btn-connexion{
+  color: #8e3dfb !important;
+
+}
+.btn-connexion:hover{
+  color: white !important;
+
+}
+#user-inscription-submit{
+  margin-bottom: 50px
+}
+#user_password {
+  float: none;
+}
+.signuppurple #user_password em{
+  text-align: center;
+  color: white;
+  width: 100%;
+  margin-bottom: 10px
+}
+#user_subscribe{
+  width: auto !important;
+  vertical-align: middle;
+}
+.signinbloc h2 {
+  float: none;
+}
+.sign_up form {
+  display: inline-block;
+}
+.lostpassword a {
+  color: white
+}

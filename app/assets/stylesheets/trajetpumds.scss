@@ -2,37 +2,101 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .searchpage {
-  height: 100vh;
   width: 100%;
-  padding-top: 90px
+  padding-top: 80px
 }
-.searchtitle{
-  min-height: 5%;
-  width: 100%;
-  padding-top: 0
+
+.searchpage .searchbloc,.searchpage .filterbloc{
+background-color: #00bbf0
 }
-.searchpage .searchform{
-padding-top: 1.5%;
-text-align: right;
-padding-right: 35px
+.searchpage .row,.left-search-part{
+padding: 0;
 }
-.markersbloc {
-  height: 80%;
-  width: 30%;
-  margin-left: 3%;
-  border: 2px solid black;
+.searchpage .searchbloc hr {
+  margin: 5px 0;
+  padding: 0
+}
+.searchbloc ol, .filterbloc ol{
+  padding-top: 20px
+}
+.searchbloc .search-item label,.searchbloc .search-item input,
+ .filterbloc .search-item label,.filterbloc .search-item input{
+  padding: 10px;
+}
+.searchbloc .search-item label,.filterbloc .search-item label{
+  font-size: 1.5em;
+  font-weight: 100
+}
+.searchbloc, .filterbloc{
+  position: fixed;
+  width: 50%;
+  z-index: 96;
+  left:-50%
+}
+.params-btn{
+
+  position: fixed;
+  top:90px;
+  left:10px;
+  padding: 0;
+  margin: 0;
+  z-index: 99;
+}
+button.filters-btn, button.new-search-btn {
+  color: #8e3dfb;
+  background-color: white;
   display: inline-block;
-  float: left;
+  width: auto;
+  font-size: 1.3em;
+  padding: 10px 15px;
+  vertical-align: middle;
+  border-radius: 25px;
+  border: 2px solid #8e3dfb;
+  margin-bottom: 40px
+}
+button.filters-btn i,button.new-search-btn i {
+  float: none;
+}
+
+// animations filters-btn
+
+.searchbloc.open-menu,.filterbloc.open-menu {
+  left: 0;
+}
+.searchbloc,
+.searchbloc.open-menu,.filterbloc,
+.filterbloc.open-menu{
+  transition: 1s;
+  transition-timing-function: cubic-bezier(.86,.02,.14,1);
+  -webkit-transition: 1s;
+}
+
+
+.rememberbloc{
+  color: white;
+  background-color: #8e3dfb;
+  padding: 40px 0 !important
+}
+
+
+
+.markersbloc {
+  height: auto;
+  border: 2px solid black;
   overflow-y: scroll;
 }
-#markerslist{
-  height:600px
+#markerslist1{
+height:70vh
+}
+.map-search-part{
+  height: 90vh;
+  padding: 0;
+
 }
 #mapcontainer {
-  height:80%;
-  width:60%;
-  margin-right: 3%;
-  display: inline-block;
+  height:100%;
+  width:100%;
+
   float: right;
 }
 #map {

@@ -82,7 +82,17 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+
+  # AJAX CHECK USERNAME ALREADY EXIST
+  def checkname
+     if User.where('username = ?', params[:username]).count == 0
+       render :nothing => true, :status => 200
+     else
+       render :nothing => true, :status => 409
+     end
+     return
+   end
+
   # DELETE /users/1.json
   def destroy
     @user.destroy

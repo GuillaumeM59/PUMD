@@ -8,7 +8,7 @@ class Trajetpumd < ActiveRecord::Base
   start_date = DateTime.now+2.hours
   end_date = DateTime.now+1.week
   scope :trajetsactifs, -> { where(:do_at => start_date..end_date) }
-  attr_accessor :brand_id, :custom_address
+  attr_accessor :brand_id, :custom_address, :username, :do_around
 
   reverse_geocoded_by :driver_lat, :driver_lon
   after_validation :geocode          # auto-fetch coordinates

@@ -4,7 +4,9 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body,
+body {
+  width: 100%
+}
 html {
     width: 100%;
     height: 100%;
@@ -165,6 +167,7 @@ header {
 .btn-o-purple:focus {
 	color: #fff;
 	background-color: #8e3dfb;
+  border: 2px solid white;
 }
 
 
@@ -193,9 +196,8 @@ header {
 
 /*-------------FOOTER BLOCK---------------*/
 footer {
-	background-color: #455F6F;
+	background-color: rgb(41, 41, 41);
 	color: #F0EDDF;
-	margin-top: 50px;
 	font-weight: bold;
 }
 

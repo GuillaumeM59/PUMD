@@ -158,7 +158,7 @@
 
     <!-- Footer -->
 
-    <footer class="col-xs-12">
+    <footer >
 
       <div class="container-fluid">
 
@@ -229,31 +229,16 @@
     </footer>
 
     <script type="text/javascript">
-      $('#user_driver_input #user_driver').click(function () {
-        this.checked
-          ? $('.carblock').show(1000)
-          : $('.carblock').hide(1000); //time for show
-      });
+    function footeronbottom() {
+     var footerH = $('footer').first().innerHeight();
+     $('body').css({paddingBottom: footerH});
+    }
 
-      $(function () {
-        filterCarsList();
-      });
+    footeronbottom();
 
-      function filterCarsList() {
-        brands = $('#user_cmodel_id_input #user_cmodel_id').html();
-        $('#user_cbrand_id_input #user_cbrand_id').change(function () {
-          var brandselected1 = $('#user_cbrand_id_input #user_cbrand_id :selected').text();
-          var optgroup1 = "optgroup[label='" + brandselected1 + "']";
-          var options1 = $(brands).filter(optgroup1).html();
-          console.log(brands);
-          console.log(brandselected1);
-          console.log(optgroup1);
-          console.log(options1);
-          if (brandselected1 != "") {
-            $('#user_cmodel_id_input #user_cmodel_id').html(options1);
-          };
-        });
-      };
+    $(window).on('resize',function(){
+    footeronbottom();
+    });
     </script>
   </body>
 </html>
