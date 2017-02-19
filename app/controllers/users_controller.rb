@@ -45,7 +45,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    def resource
 
+    @resource ||= @user
+
+    end
   end
 
   # POST /users

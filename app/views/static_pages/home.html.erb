@@ -105,180 +105,38 @@
 </div>
 </header>
 
+<% if user_signed_in? && current_user.driver %>
+<% else %>
 <!-- bloc logos enseignes -->
-<div class="home-mag text-center container-fluid">
-  <ul class="list-unstyled list-inline  home-logo-brand">
-    <li class="home-brand-pic"><%= image_tag("auchan-drive-logo2.png", class: "image-responsive" ) %></li>
-    <li class="home-brand-pic"><%= image_tag("chronodrive.png", class: "image-responsive " ) %></li>
-    <li class="home-brand-pic"><%= image_tag("carrefour drive .png", class: "image-responsive " ) %></li>
-    <li class="home-brand-pic"><%= image_tag("eleclercdrive.png", class: "image-responsive " ) %></li>
-    <li class="home-brand-pic"><%= image_tag("matchdrive.png", class: "image-responsive " ) %></li>
-    <li class="home-brand-pic"><%= image_tag("casinodrive.png", class: "image-responsive " ) %></li>
-    <li class="home-brand-pic"><%= image_tag("interdrive.png", class: "image-responsive " ) %></li>
-    <li class="home-brand-pic"><%= image_tag("leaderdrive.png", class: "image-responsive " ) %></li>
-    <li class="home-brand-pic"><%= image_tag("udrive.png", class: "image-responsive " ) %></li>
-  </ul>
-
-</div>
-
+<%= render "static_pages/home_templates/blocs_magasins" %>
 <!-- bloc poster une annonce  -->
 <div class="home-post-bloc container text-center grey1">
-<h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-purple "%> </h3>
+  <h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-purple "%> </h3>
 </div>
+<% end %>
 
 
-<div class="home-benef-bloc text-center">
-  <div class="container">
-
-    <h2 class="home-bloc-title">LES BIENFAITS DE PUMP</h2>
-    <hr class="home-bloc-separator">
-    <ul class="benef-list list-unstyled list-inline ">
-      <li class="benef-item">
-        <div class="benef-icon">
-          <i class="fa fa-4x fa-clock-o" aria-hidden="true"></i>
-        </div>
-        <p class="benef-text">Temps</p>
-      </li>
-      <li class="benef-item">
-        <div class="benef-icon">
-          <i class="fa fa-4x fa-leaf" aria-hidden="true"></i>
-        </div>
-        <p class="benef-text">Ecologie</p>
-      </li>
-      <li class="benef-item">
-        <div class="benef-icon">
-          <i class="fa fa-4x fa-money" aria-hidden="true"></i>
-        </div>
-        <p class="benef-text">Economies</p>
-      </li>
-      <li class="benef-item">
-        <div class="benef-icon">
-          <i class="fa fa-4x fa-globe" aria-hidden="true"></i>
-        </div>
-        <p class="benef-text">Associatif</p>
-      </li>
-      <li class="benef-item">
-        <div class="benef-icon">
-          <i class="fa fa-4x fa-lock" aria-hidden="true"></i>
-        </div>
-        <p class="benef-text">Securité</p>
-      </li>
-      <li class="benef-item">
-        <div class="benef-icon">
-          <i class="fa fa-3x fa-handshake-o" aria-hidden="true"></i>
-        </div>
-        <p class="benef-text">Social</p>
-      </li>
-    </ul>
-    <p class="benef-parag col-xs-8 col-xs-offset-2">
-      Utiliser PUMP, c'est se simplifier la vie.<br>
-       Je gagne du temps, j'économise de l'argent, je fais un geste pour la planète et je fais du bien autour de moi sans prendre de risque.
-    </p>
-  </div>
-</div>
+<% if !user_signed_in? %>
+<!-- bloc bienfaits -->
+<%= render "static_pages/home_templates/bienfaits" %>
+<% end %>
 
 
-          <!-- centrer verticalement les icones -->
-<script type="text/javascript">
-function centerizebeneficons() {
- var divH = $('.benef-icon i').first().innerHeight()/2;
- var pageH = $('.benef-icon').first().innerHeight()/2;
- $('.benef-icon').css({paddingTop: (pageH-divH)});
- $('.benef-icon').last().css({paddingTop: (pageH-divH+6)});
-}
-
-centerizebeneficons();
-
-$(window).on('resize',function(){
-centerizebeneficons();
-});
-</script>
 
 <!-- --------------------------------------------------------------------
 WORKING PROGRESS
 -------------------------------------------------------------------- -->
 
 
-<!-- Bloc  -->
-<div class="home-pourqui-bloc text-center">
-  <div class="container">
+<% if !user_signed_in? %>
+<!-- Bloc pourqui -->
+<%= render "static_pages/home_templates/pourqui" %>
+<% end %>
 
-    <h2 class="home-bloc-title">TOUT LE MONDE Y GAGNE</h2>
-    <hr class="home-bloc-separator">
-
-    <div class="row pourqui">
-      <div class="col-xs-12 col-md-6 pourqui-video">
-        <div class="futurevideo col-xs-10 col-xs-offset-1">
-
-          <div class="play text-center">
-            <i class="fa  fa-5x fa-play-circle-o" aria-hidden="true"></i>
-          </div>
-        </div>
-        <p class="subvideo">
-          Découvrez ce que PUMP peut vous apporter...
-        </p>
-      </div>
-
-      <ul class="col-xs-12 col-md-6 pourqui-list list-unstyled">
-        <li class="row pourqui-item">
-          <div class="col-xs-4 pourqui-icon">
-          </div>
-          <div class="col-xs-8 pourqui-text text-left">
-            <h5>Acheteurs (Callers)</h5>
-            <p class="pourqui-parag">
-              En vous faisant livrer vos courses, vous gagnez du temps
-            </p>
-          </div>
-        </li>
-        <li class="row pourqui-item">
-          <div class="col-xs-4 pourqui-icon text-left">
-          </div>
-          <div class="col-xs-8 pourqui-text text-left">
-            <h5>Livreurs (Pickers)</h5>
-            <p class="pourqui-parag">
-              Profitez de vos trajets pour rentabiliser votre mobilité
-            </p>
-          </div>
-        </li>
-        <li class="row pourqui-item">
-          <div class="col-xs-4 pourqui-icon text-left">
-          </div>
-          <div class="col-xs-8 pourqui-text text-left">
-            <h5>C'est safe!</h5>
-            <p class="pourqui-parag">
-              Prélevé à la commande, payé à la confirmation, pas de frais cachés
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="home-lieux-bloc text-center">
-  <div class="container">
-    <div class="col-md-6 region">
-      <div class="col-xs-4 col-xs-offset-4">
-
-        <%= image_tag("hdf.png", class: "image-responsive logohdf " ) %>
-    </div>
-<h4 class="col-xs-12">Dans les Hauts de France... Et Bientôt partout</h4>
-    </div>
-    <div class="col-md-6 presse">
-      <h3 class="text-center col-xs-12">
-        On parle de nous dans la presse
-      </h3>
-      <ul class="list-unstyled list-inline presse-list col-xs-12 text-center">
-        <li class="presse-item">  <%= link_to image_tag("vdn.jpg", class:"logo-presse"), "http://www.lavoixdunord.fr/57566/article/2016-10-11/ils-creent-une-plateforme-de-livraisons-de-courses-entre-voisins", class:"presse-link ", alt:"article voix du nord" %></li>
-        <li class="presse-item">  <%= link_to image_tag("circonflexmag.jpg", class:"logo-presse"), "http://www.circonflexmag.fr/pick-up-my-drive-faites-les-courses-de-vos-voisins/", class:"presse-link ", alt:"article circonflexe mag" %></li>
-        <li class="presse-item">  <%= link_to image_tag("rbxxl.png", class:"logo-presse"), "http://www.roubaixxl.fr/start-up-weekend-roubaix-quatre-projets-sur-les-rails/", class:"presse-link ", alt:"article roubaixxl" %></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-
+<% if !user_signed_in? %>
+<!-- Bloc lieux -->
+<%= render "static_pages/home_templates/lieux" %>
+<% end %>
 
 
 <!-- modal newbid -->

@@ -28,6 +28,7 @@ gem 'bootstrap_form'
 gem 'bootstrap-sass'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+gem 'bootstrap-toggle-rails'
 # Hook locally mail
 
 # allow rails datas on js
@@ -64,9 +65,8 @@ gem 'client_side_validations'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'bootstrap-will_paginate'
 
-#time filters
-gem 'by_star', git: "git://github.com/radar/by_star"
-
+# rating stars and comment
+gem 'ratyrate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

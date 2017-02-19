@@ -1,0 +1,22 @@
+<div class="certifications_form moving_form">
+<%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
+    <%= devise_error_messages_for(@user) %>
+
+    <h3 class="grey1">Envoyez vos informations pour obtenir des badges <%= image_tag('shield-ok-icon.png', size:"50") %></h3>
+
+<ol class="list-unstyled">
+
+  <h5>Téléphone</h5>
+  <li><%= image_tag('shield-warning-icon.png', size:"40") %> Téléphone non vérifié</li>
+  <% if @user.driver %>
+  <hr>
+  <h5>Permis</h5>
+  <li><%= image_tag('shield-warning-icon.png', size:"40") %> Permis non vérifié</li>
+  <hr>
+  <h5>Assurance</h5>
+  <li><%= image_tag('shield-warning-icon.png', size:"40") %> Assurance non vérifiée</li>
+<% end %>
+</ol>
+    <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
+<% end %>
+</div>

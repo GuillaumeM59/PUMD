@@ -1,0 +1,33 @@
+<div class="money_form moving_form">
+  <h4 class="grey1">Le porte-monnaie vous permet de cagnotter vos gains et d'automatiser un virement dès que vous avez atteint un palier.</h5>
+    <%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
+    <%= devise_error_messages_for(@user) %>
+  <p class="col-xs-10 beforeonofftext">Activer mon Porte-monnaie</p>
+  <div class="col-xs-2">
+    <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+  </div>
+<div class="cagnotte row">
+  <div class="col-xs-4 col-xs-offset-1">
+    <h5 class="grey1">Vous avez dans votre porte-monnaie:</h5>
+    <p class="cagnottevalue text-center">0.00 €</p>
+
+  </div>
+  <div class="col-xs-4 col-xs-offset-2">
+    <h5 class="grey1">Somme accumulée depuis le début:</h5>
+    <p class="cagnottevalue text-center">0.00 €</p>
+  </div>
+  <p class="col-xs-10 beforeonofftext">Virement automatique</p>
+  <div class="col-xs-2">
+    <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+  </div>
+
+</div>
+
+
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: "off" %></br>
+    <i class="grey2">(Nécessaire pour confirmer vos changements)</i><br/>
+  </br>
+    <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
+<% end %>
+</div>

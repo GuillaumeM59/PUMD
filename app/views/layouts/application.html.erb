@@ -5,7 +5,7 @@
     <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= favicon_link_tag "favicon.png",  type: 'image/png' %>
+    <%= favicon_link_tag "favicon0.png",  type: 'image/png' %>
     <%= csrf_meta_tags %>
     <meta name="description" content="Pas le courage, pas les moyens ou tout simplement pas le temps de faire les courses? Faites-vous livrer vos achats drive">
     <meta name="keywords" content="Drive, Courses, Livraison, direct , solidaire, ecologie, economie, Pick, parking, aller, faire, aide a la personne, mobilité, collaborative, pump">
@@ -24,6 +24,28 @@
     </script>
   </head>
   <body>
+    <div id="preloader" class="active">
+      <div class="cssload-body">
+        <span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <div class="cssload-base">
+          <span></span>
+          <div class="cssload-face"></div>
+        </div>
+      </div>
+      <div class="cssload-longfazers">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+
 
     <!-- modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -38,7 +60,7 @@
                     <a href="#" class="active" id="login-form-link" alt="onglet se connecter">Se connecter</a>
                   </div>
                   <div class="col-xs-6 text-center">
-                    <%= link_to "S'inscrire", new_user_registration_path, alt:"onglet s'inscrire" %>
+                    <a href="#" class="active" id="register-form-link" alt="onglet s'inscrire">S'inscrire</a>
                   </div>
                 </div>
                 <hr>
@@ -49,31 +71,120 @@
                   <div class="row">
                     <div class="col-lg-12">
                       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                      <div class="field">
-                        <label for="username">Nom d'utilisateur</label>
-                        <%= f.text_field :username, autofocus: true, :class => 'form-control', :id => "username"  %>
+
+                      <div class="signuppurple row">
+
+                      <div class="data_input col-md-12 text-center">
+                      <ol class="list-unstyled">
+
+                        <li class=" col-md-12 field">
+                          <%= f.label "Nom d'utilisateur" %><br />
+                          <%= f.text_field :username, autofocus: true %>
+                        </li>
+
+                        <li class="col-md-12 field ">
+                          <%= f.label :password %><br />
+                          <%= f.password_field :password, autocomplete: "off" %>
+                          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                          <div class=" col-xs-12 col-lg-12 lostpassword">
+                            <%= link_to "Mot de passe oublié?", new_password_path(resource_name) %><br />
+                          </div>
+                          <% end -%>
+                        </li>
+
+                        <% if devise_mapping.rememberable? -%>
+                          <li class="col-md-12 field">
+                            <%= f.check_box :remember_me %>
+                            <%= f.label :remember_me %>
+                          </li>
+                        <% end -%>
+
+                        <li class=" actions">
+                          <%= f.submit "Connexion", :class => "btn btn-o-purple form-control btn-connexion" %>
+                        </li>
+                      <% end %>
+                      </ol>
                       </div>
 
-                      <div class="field">
-                        <label for="password">Password</label>
-                        <%= f.password_field :password, autocomplete: "off", :class => 'form-control', :id => "password"  %>
+
+
+                      <div class="password_input col-md-12 text-center">
+                      <div class="pasinscrit">
+
+                        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                        <div class=" col-xs-12 col-lg-12">
+                          <h3 class="text-center">Pas encore inscrit?</h3>
+                          <a href="#register-form" id="register-form-link-loggin" class="btn btn-o-purple" alt="inscription">S'inscrire</a>
+                        </div>
+                        <% end -%>
                       </div>
 
-                      <% if devise_mapping.rememberable? -%>
-                      <div class="field text-center">
-                        <%= f.check_box :remember_me, :id => "checkboxrememberme" %>
-                        <label for="checkboxrememberme">Se souvenir de moi</label>
                       </div>
-                      <% end -%>
-
-                      <%= f.submit "Connexion", :class => "btn btn-login form-control" %>
-                    </div>
-                    <% end %>
-                  </div>
-                  <hr>
-                  <h3 class="text-center">Pas encore inscrit?</h3>
-                  <a href="#register-form" id="register-form-link-loggin" class="btn btn-login form-control" alt="inscription">S'inscrire</a>
+                      </div>
                 </div>
+                </div>
+                </div>
+                </div>
+              <div id="register-form">
+
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <%=form_for resource, as: resource_name, url: registration_path(resource_name),class:" user",id:"form-sign-up", validate: true do |f| %>
+                      <%= devise_error_messages_for(resource) %>
+                      <div class="signuppurple text-center row">
+
+                    <div class="data_input col-md-12">
+                      <ol class="list-unstyled">
+
+                              <li class="string input required stringish col-md-6" id="user_username_input">
+                                <%= f.label :username, "Pseudonyme",class:"label col-xs-12",id:"username_test", :'data-validate' => '/users/checkname' %>
+                                <%= f.text_field :username, required:true, uniqueness:true %>
+
+                              </li>
+                              <li class="string input required stringish col-md-6" id="dtob">
+                                <%= f.label :dob, "Date de naissance",class:"label col-xs-12" %>
+                                <%= f.text_field :dob, required:true, id:"dtpickerdobhome"%><span>
+                                  <i class="fa fa-hand-pointer-o"></i></span>
+                                </li>
+                              <li class="email input required stringish col-md-12" id="user_email_input">
+                                <%= f.label :email, "Email",class:"label col-xs-12" %>
+                                <%= f.email_field :email, required:true %>
+                                <p class="text-center ">
+                     <%= f.check_box :subscribe, class:"checkb" %> recevoir les news de PUMP
+                                </p>
+                              </li>
+                            </ol>
+
+                            </div>
+                            <div class="password_input col-md-12">
+                              <ol class="list-unstyled">
+
+                                <li class="col-xs-12" id="user_password">
+                                    <%= f.label :password,class:"label col-xs-12" %>
+                                    <%= f.password_field :password, autocomplete: "off", :data => {validation:"required"} %><br/>
+                                    <% if @minimum_password_length %>
+                                    <em class="text-center">(<%= @minimum_password_length %>
+                                      charactères minimum)</em>
+                                    <% end %>
+
+
+                                    <%= f.label :password_confirmation,class:"label col-xs-12" %>
+                                    <%= f.password_field :password_confirmation, autocomplete: "off", :data => {validation:"required"} %>
+                                  </li>
+
+
+                                </ol>
+                                </div>
+                            </div>
+                                <div class="col-md-12 text-center" id="user-inscription-submit">
+                                  <%= f.submit "Je m'inscris",  :class => "btn btn-o-purple" %>
+                                  <% end %>
+                                </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
               </div>
             </div>
           </div>
@@ -81,83 +192,89 @@
       </div>
     </div>
     <!-- Fixed navbar -->
-    <nav id="header" class="navbar navbar-fixed-top">
-      <%= render 'cookies_eu/consent_banner' %>
-      <div id="header-container" class="container navbar-container">
+<nav id="header" class="navbar navbar-fixed-top">
+    <%= render 'cookies_eu/consent_banner' %>
+    <div id="header-container" class="container navbar-container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" alt="menu">
-            <i class="fa fa-bars btnmenu" aria-hidden="true"></i>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" alt="menu">
+                <i class="fa fa-bars btnmenu" aria-hidden="true"></i>
 
-          </button>
-          <%= link_to image_tag("logopump.png", id:"navbarimg"), root_path, class:"navbar-brand" %>
+            </button>
+            <%= link_to image_tag("logopump.png", id:"navbarimg"), root_path, class:"navbar-brand" %>
 
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right list-inline text-center">
-            <li class="hidden-xs hidden-sm">
-              <%= link_to "Accueil", root_path , alt:"Accueil"%>
-            </li>
-            <li class="hidden-md hidden-lg">
-              <%= link_to (root_path), class:"navicohome", alt:"Accueil" do%>
-              <i class="fa fa-home fa-3x"></i>
-              <%end %>
-            </li>
-            <li class="hidden-xs hidden-sm ">
-              <%= link_to "Contact", static_pages_contact_path, alt:"contact"%>
-            </li>
-            <% if user_signed_in? %>
-            <li class="hidden-xs hidden-sm">
-              <%= link_to "Mon tableau de bord", tdb_path , alt:"tableau de bord"%>
-            </li>
-            <li class="hidden-md hidden-lg">
-              <%= link_to (tdb_path), class:"navicohome", alt:"tableau de bord" do%>
-              <i class="fa fa-cogs fa-3x"></i>
-              <%end %>
-            </li>
-            <li class="hidden-md hidden-lg ">
-              <%= link_to (static_pages_contact_path), class:"navicocontact", alt:"contact" do%>
-              <i class="fa fa-envelope-o fa-3x"></i>
-              <% end %>
-            </li>
+            <ul class="nav navbar-nav navbar-right list-inline text-center">
 
-            <li>
-              <%= link_to image_tag(current_user.avatar, size:"30"), user_path(current_user), class:"navicouser ", alt:"mon profil" %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, :class => "navicoout hidden-md hidden-lg", alt:"déconnexion", :method => :delete do%>
-              <i class="fa fa-sign-out fa-3x"></i>
-              <%end %>
-              <%= link_to "Déconnexion", destroy_user_session_path, :class => "btn btn-lg logoutbtn hidden-xs hidden-sm", alt:"déconnexion", :method => :delete %>
+        <% if user_signed_in? %>
 
-            </li>
-          <% else %>
-            <li class="hidden-xs hidden-sm">
-              <button type="button" class="btn btn-lg btn-o-purple" data-toggle="modal" data-target="#myModal" alt="connexion">
-                Connexion</button>
-            </li>
-            <li class="hidden-md hidden-lg btn-o-purple">
-              <%= link_to "Connexion", new_user_session_path, class: "btn btn-lg", alt:"connexion" %>
-            </li>
-            <% end %>
-          </ul>
+                <li class="hidden-xs hidden-sm">
+                    <%= link_to( tdb_path , alt:"tableau de bord", class:'navbar-bell') do%>
+                    <i class="fa fa-bell-o fa-2x"></i>
+                    <% end %>
 
+                </li>
+                <li class="hidden-md hidden-lg">
+                    <%= link_to (tdb_path), class:"navicohome", alt:"tableau de bord" do%>
+                    <i class="fa fa-cogs fa-3x"></i>
+                    <%end %>
+                </li>
+                <li class="hidden-md hidden-lg ">
+                    <%= link_to (static_pages_contact_path), class:"navicocontact", alt:"contact" do%>
+                    <i class="fa fa-envelope-o fa-3x"></i>
+                    <% end %>
+                </li>
 
-
+                <li>
+                    <%= link_to("", { :class => 'navicouser', 'data-toggle' => 'dropdown', :alt => 'menu' }) do %>
+                    <%= image_tag(current_user.avatar, size:"50", class:"img-circle dropdown-toggle") %>
+                    <span><%=current_user.username%></span>
+                      <%end%>
+                    <ul class="dropdown-menu">
+                        <li>
+                          <%= link_to(user_path(current_user), { :alt => 'profil' }) do %>
+                          <i class="fa fa-user-o"></i> Mon Profil
+                          <%end%>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cogs"></i> Paramètres</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-envelope-o"></i> Nous contacter</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                          <%= link_to destroy_user_session_path, :class => "navicoout", alt:"déconnexion", :method => :delete do%>
+                          <i class="fa fa-sign-out"></i> Déconnexion
+                          <%end %>
+                        </li>
+                    </ul>
+                </li>
+                <li></li>
+            <% else %>
+                <li class="hidden-xs hidden-sm">
+                    <button type="button" class="btn btn-lg btn-o-purple" data-toggle="modal" data-target="#myModal" alt="connexion">
+                        Connexion</button>
+                </li>
+                <li class="hidden-md hidden-lg btn-o-purple">
+                    <%= link_to "Connexion", new_user_session_path, class: "btn btn-lg", alt:"connexion" %>
+                </li>
+                <% end %>
+            </ul>
 
         </div>
         <!-- /.nav-collapse -->
-      </div>
-      <!-- /.container -->
-    </nav>
-    <!-- /.navbar -->
-
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- /.navbar -->
     <div class="message">
       <%= flash_messages %></div>
 
     <%= yield%>
 
     <!-- Footer -->
-
+</div>
     <footer >
 
       <div class="container-fluid">
@@ -239,6 +356,30 @@
     $(window).on('resize',function(){
     footeronbottom();
     });
+
+    $(function () {
+      $("#dtpickerdobhome").datetimepicker({
+        viewMode: "years",
+        format: "DD-MM-YYYY",
+        minDate: moment().subtract(100, 'years'),
+        maxDate: moment().subtract(18, 'years')
+      });
+    });
+
+    // Preloader
+    //<![CDATA[
+    $(document).ready(function() {
+  $(window).load(function() {
+
+       $('#preloader .cssload-body').addClass('left');
+       setTimeout(function() {
+    $('#preloader').removeClass('active');
+}, 1100);
+  });
+
+
+});
+    //]]>
     </script>
   </body>
 </html>

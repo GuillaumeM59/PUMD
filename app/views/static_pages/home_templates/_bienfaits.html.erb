@@ -1,0 +1,64 @@
+<div class="home-benef-bloc text-center">
+  <div class="container">
+
+    <h2 class="home-bloc-title">LES BIENFAITS DE PUMP</h2>
+    <hr class="home-bloc-separator">
+    <ul class="benef-list list-unstyled list-inline ">
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-clock-o" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Temps</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-leaf" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Ecologie</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-money" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Economies</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-globe" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Associatif</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-4x fa-lock" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Securité</p>
+      </li>
+      <li class="benef-item">
+        <div class="benef-icon">
+          <i class="fa fa-3x fa-handshake-o" aria-hidden="true"></i>
+        </div>
+        <p class="benef-text">Social</p>
+      </li>
+    </ul>
+    <p class="benef-parag col-xs-8 col-xs-offset-2">
+      Utiliser PUMP, c'est se simplifier la vie.<br>
+       Je gagne du temps, j'économise de l'argent, je fais un geste pour la planète et je fais du bien autour de moi sans prendre de risque.
+    </p>
+  </div>
+</div>
+<!-- centrer verticalement les icones -->
+<script type="text/javascript">
+function centerizebeneficons() {
+var divH = $('.benef-icon i').first().innerHeight()/2;
+var pageH = $('.benef-icon').first().innerHeight()/2;
+$('.benef-icon').css({paddingTop: (pageH-divH)});
+$('.benef-icon').last().css({paddingTop: (pageH-divH+6)});
+}
+
+centerizebeneficons();
+
+$(window).on('resize',function(){
+centerizebeneficons();
+});
+</script>

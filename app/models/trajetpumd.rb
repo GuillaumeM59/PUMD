@@ -10,6 +10,8 @@ class Trajetpumd < ActiveRecord::Base
   scope :trajetsactifs, -> { where(:do_at => start_date..end_date) }
   attr_accessor :brand_id, :custom_address, :username, :do_around
 
+  ratyrate_rateable "Quality"
+
   reverse_geocoded_by :driver_lat, :driver_lon
   after_validation :geocode          # auto-fetch coordinates
 end

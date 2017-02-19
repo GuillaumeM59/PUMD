@@ -25,6 +25,18 @@ h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
+
+.nopaddinghor{
+  padding-left: 0;
+  padding-right: 0
+}
+.nopaddingver{
+  padding-top: 0;
+  padding-bottom: 0
+}
+.fwidth{
+  width:100%
+}
 .gm-style img{
   max-width: 100%
 }
@@ -39,7 +51,10 @@ h6 {
   height: 60px;
   padding-left: 25px
 }
-
+.navbar-bell {
+  padding-top: 10px !important;
+  padding-bottom: 0 !important
+}
 /* connexion modal style */
 
 #register-form {
@@ -211,4 +226,7 @@ footer a:hover {
 .linksfooter a:hover {
   // color: #1cf453;
   text-decoration: none;
+}
+.navicouser{
+  padding: 0 15px!important
 }

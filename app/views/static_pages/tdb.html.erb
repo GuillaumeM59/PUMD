@@ -1,97 +1,101 @@
-<div class="container-fluide toppage tdbpage">
-  <header class="row">
+  <script type="text/javascript">
+    $('body').css({backgroundColor:"rgb(240, 240, 240)"})
+  </script>
 
-    <h1 class="headercontant col-md-12 text-center">
-      Mon Tableau de Bord:
+
+    <div class="container toppage tdbpage">
+    <div class="row">
+
+  <div class="edit-menu col-md-3">
+    <ol class="picking-list list-unstyled">
+      <h4>Pickings</h4>
+      <li><a  class="personal-link active" alt="informations personnelles">Mes annonces</a></li>
+      <li><a  class="preferences-link" alt="préférences">Renouvellements auto.</a></li>
+      <li><a  class="avatar-link" alt="avatar">Drives favoris</a></li>
+    </ol>
+    <ol class="demandes-list list-unstyled">
+      <h4>Demandes</h4>
+      <li><a  class="personal-link active" alt="informations personnelles">Mes demandes</a></li>
+      <li><a  class="avatar-link" alt="avatar">Demandes en attente</a></li>
+      <li><a  class="preferences-link" alt="préférences">Demandes acceptées</a></li>
+      <li><a  class="certifications-link" alt="certifications">Demandes refusées</a></li>
+    </ol>
+    <ol class="validations-list list-unstyled">
+      <h4>Paiements et validations</h4>
+      <li><a  class="money-link" alt="Porte monnaie">Validations</a></li>
+      <li><a  class="paiements-link" alt="moyens de paiement">validations en attente</a></li>
+      <li><a  class="donations-link" alt="donations">Paiements en attente</a></li>
+      <li><a  class="notifications-link" alt="notifications">Paiements reçus</a></li>
+    </ol>
+    <ol class="community-list list-unstyled">
+      <h4>Communauté</h4>
+      <li><a  class="donations-link" alt="donations">Avis reçus</a></li>
+      <li><a  class="notifications-link" alt="notifications">Avis donnés</a></li>
+      <li><a  class="money-link" alt="Porte monnaie">Mes amis</a></li>
+      <li><a  class="paiements-link" alt="moyens de paiement">Liste noire</a></li>
+    </ol>
+  </div>
+
+  <div class="edit-content col-md-9">
+
+    <h1 class="editformtitle col-md-12 text-left grey1">
+      Mes Pickings
     </h1>
 
-  </header>
+  <!-- Profil partials -->
+  <%= render "static_pages/tdb_templates/pickings/pickings_form" %>
+  <%= render "users/edit_templates/profil/avatar_form" %>
+  <%= render "users/edit_templates/profil/preferences_form" %>
+  <%= render "users/edit_templates/profil/certifications_form" %>
+  <%= render "users/edit_templates/profil/adresse_form" %>
+  <%= render "users/edit_templates/profil/communications_form" %>
+  <!-- Account partials -->
+  <%= render "users/edit_templates/account/money_form" %>
+  <%= render "users/edit_templates/account/paiements_form" %>
+  <%= render "users/edit_templates/account/donations_form" %>
+  <%= render "users/edit_templates/account/notifications_form" %>
+  <%= render "users/edit_templates/account/password_form" %>
+  <%= render "users/edit_templates/account/delete_form" %>
 
-  <div class="row">
-    <div class="paramnav col-xs-12 col-md-2 col-md-offset-1">
-      <ul class="list-unstyled text-center parammenu">
-        <li class="active b1" id="paramprofillink">
-          <a alt="Mon profil">Mon Profil</a>
-        </li>
-        <li class="b2" id="paramcommandeslink">
-          <a alt="Mes Demandes">Mes Demandes</a>
-        </li>
-        <% if @user.driver %>
-        <li id="paramdriverlink" , class="b3">
-          <a alt="Paiments et Validations">Paiments et Validations</a>
-        </li>
-        <li id="parampickingslink" , class="b4">
-          <a alt="Mes Pickings">Mes Picking<a>
-        </li>
-        <% end %>
-      </ul>
 
-    </div>
+
+
+
+  </div>
+  </div>
+
+  </div>
+  <script type="text/javascript">
+
+  function removeactiveclasses() {
+    $('.edit-menu ol li a').each(function () {
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active')
+        }
+    });
+    $('.moving_form').each(function () {
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active')
+        }
+    });
+  };
+  function addactive(selector){
+    $(selector).addClass('active')
+  }
+
+  // PROFIL ACTIONS
+  $('.pickings-link').click(function(){
+      removeactiveclasses();
+      $('.editformtitle').html("Mes annonces en ligne");
+      addactive('.pickings-link');
+      addactive('.pickings_form')
+  })
+
+  </script>
+
+
     <div class=" col-md-8 content">
       <div class="row">
-
-        <!-- MODULE PROFIL UTILISATEUR -->
-
-        <div class="profil stats col-md-12 bb1" id="profilbloc">
-
-          <h2 class="text-center">
-            Mon Profil</h2>
-          <div class="row">
-            <div class="col-md-2 col-md-offset-1 useravatarbloc text-center">
-              <p>
-                <%= image_tag(@user.avatar, class:"img-responsive profilavatar") %>
-              </p>
-            </div>
-            <div class="col-md-4 useravatarbloc text-center">
-              <h4>
-                <%= @user.prenom %>
-                <%= @user.nom %>
-              </h4>
-              <p><%= @age %> ans, <%= if @user.gender then "Femme" else "Homme" end%>
-              </p>
-              <p>
-                <strong>Ville:
-                </strong>
-                <%= @user.city %>
-
-              </p>
-              <p>
-                <%= @user.xp %>
-              </p>
-              <% if @user.driver %>
-              <p>
-                Véhicule:
-                <%= Carbrand.find(@user.cbrand_id).name %>
-                <%= Carmodel.find(@user.cmodel_id).name %>
-                ,
-                <%= @user.carsize %>
-              </p>
-              <% end %>
-            </div>
-            <div class="col-md-5 useridbloc text-center">
-              <p>
-                <strong>Quelques mots:</strong>
-                <%= @user.comment %></p>
-
-              <p><%= @user.adress %></p>
-              <p><%= @user.zipcode %>
-                <%= @user.city %>
-              </p>
-              <p>Tel:<%= @user.phone %></p>
-              <p>@:<%= @user.email %></p>
-              <p>
-                <strong>Newsletter:</strong>
-              <%= if @user.subscribe then "oui" else "non" end %>
-              </p>
-            </div>
-            <div class="col-md-12 editlinkbloc text-center">
-              <%= link_to 'Editer mon profil', edit_user_path(@user), class:"btn btn-lg" %>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
 
       <!-- MODULE DEMANDES -->
 
@@ -230,42 +234,3 @@
   </div>
 
 </div>
-
-<script type="text/javascript">
-
-$('#paramprofillink').click(function () {
-  $('#commandesbloc, #trajetsbloc, #driverbloc ').hide();
-  $('#commandesbloc, #trajetsbloc, #driverbloc').addClass("hidden");
-  $('#paramcommandeslink, #parampickingslink, paramdriverlink').removeClass("active");
-  $('#profilbloc').show();
-  $('#profilbloc').removeClass('hidden');
-  $(this).addClass("active");
-});
-
-$('#paramcommandeslink').click(function () {
-  $('#profilbloc, #trajetsbloc, #driverbloc ').hide();
-  $('#profilbloc, #trajetsbloc, #driverbloc').addClass("hidden");
-  $('#paramprofillink, #parampickingslink, #paramdriverlink').removeClass("active");
-  $('#commandesbloc').show();
-  $('#commandesbloc').removeClass('hidden');
-  $(this).addClass("active");
-});
-
-$('#parampickingslink').click(function () {
-  $('#profilbloc, #commandesbloc, #driverbloc ').hide();
-  $('#profilbloc, #commandesbloc, #driverbloc ').addClass('hidden');
-  $('#paramprofillink, #paramcommandeslink, #paramdriverlink').removeClass("active");
-  $('#trajetsbloc').show();
-  $('#trajetsbloc').removeClass('hidden');
-  $(this).addClass("active");
-});
-
-$('#paramdriverlink').click(function () {
-  $('#profilbloc, #commandesbloc, #trajetsbloc ').hide();
-  $('#profilbloc, #commandesbloc, #trajetsbloc ').addClass('hidden');
-  $('#paramprofillink, #paramcommandeslink, #parampickingslink').removeClass("active");
-  $('#driverbloc').show();
-  $('#driverbloc').removeClass('hidden');
-  $(this).addClass("active");
-});
-</script>

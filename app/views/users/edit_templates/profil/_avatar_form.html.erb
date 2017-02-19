@@ -1,0 +1,19 @@
+<div class="avatar_form moving_form">
+<%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch, class:" user active",id:"form-sign-up"}, validate: true do |f| %>
+    <%= devise_error_messages_for(@user) %>
+    <%= image_tag(@user.avatar, class:"img-responsive profilavatar img-circle col-xs-3 col-xs-offset-1") %>
+    <div class="field"><br>
+      <%= f.label :avatar do %>
+      <p class="text-center"><br>
+      <%= f.file_field :avatar %>
+      <% end %>
+    </div>
+  </p>
+  </br>
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: "off" %></br>
+    <i class="grey2">(Nécessaire pour confirmer vos changements)</i><br/>
+  </br>
+    <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
+<% end %>
+</div>

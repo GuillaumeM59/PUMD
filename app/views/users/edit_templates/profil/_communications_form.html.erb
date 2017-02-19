@@ -1,0 +1,30 @@
+<div class="communications_form moving_form ">
+<%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
+    <%= devise_error_messages_for(@user) %>
+    <div class="field">
+       <%= f.label :email %><br />
+       <%= f.email_field :email, autofocus: true, class:"fwidth" %>
+     </div>
+
+     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+     <% end %>
+
+     <div class="field">
+       <%= f.label "Newsletter" %>
+       <%= f.check_box :subscribe,  input_html: { checked: @user.subscribe },  :data => { :toggle => 'toggle' }  %>
+     </div>
+
+   <div class="field">
+     <%= f.label "Téléphone" %><br />
+     <%= f.text_field :phone %>
+   </div>
+
+  </br>
+    <%= f.label :current_password %><br>
+    <%= f.password_field :current_password, autocomplete: "off" %></br>
+    <i class="grey2">(Nécessaire pour confirmer vos changements)</i><br/>
+  </br>
+    <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
+<% end %>
+</div>
