@@ -1,0 +1,38 @@
+<ol class="list-unstyled">
+  <% if trajets==nil %>
+    <li  class="isemptytext">
+      Pas de pickings à venir
+    </li>
+    <li>
+      <% if current_user.driver %>
+      <%= link_to "Proposer un picking", new_trajetpumd_path(current_user)%>
+      <% end %>
+    </li>
+    <% else %>
+        <% trajets.each do |trajet| %>
+    <li class="pickingitem row">
+
+      <div class="col-xs-9 text-left">
+        <p class="bold delay"><%=trajet.do_at.strftime("%F %T")%></p>
+        <p class="city"><%=trajet.shop.listname%></p>
+
+
+      </div>
+      <div class="col-xs-3">
+          <%= image_tag(trajet.shop.brand.minipic, class:"img-responsive profilavatar") %>
+      </div>
+      <hr class="col-xs-8 col-xs-offset-2">
+
+
+    </li>
+    <% end %>
+    <% end %>
+</ol>
+
+
+<!-- changer le format date en "demain..." -->
+<script type="text/javascript">
+$('.delay').each(function() {
+this.textContent = moment(this.textContent).calendar();
+});
+</script>

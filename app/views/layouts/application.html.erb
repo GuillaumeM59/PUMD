@@ -5,13 +5,14 @@
     <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= favicon_link_tag "favicon0.png",  type: 'image/png' %>
+    <%= favicon_link_tag "favicon.png",  type: 'image/png' %>
     <%= csrf_meta_tags %>
     <meta name="description" content="Pas le courage, pas les moyens ou tout simplement pas le temps de faire les courses? Faites-vous livrer vos achats drive">
     <meta name="keywords" content="Drive, Courses, Livraison, direct , solidaire, ecologie, economie, Pick, parking, aller, faire, aide a la personne, mobilité, collaborative, pump">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -194,14 +195,17 @@
     <!-- Fixed navbar -->
 <nav id="header" class="navbar navbar-fixed-top">
     <%= render 'cookies_eu/consent_banner' %>
-    <div id="header-container" class="container navbar-container">
+      <div id="header-container" class="container navbar-container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" alt="menu">
                 <i class="fa fa-bars btnmenu" aria-hidden="true"></i>
 
             </button>
+            <% if current_user %>
+            <%= link_to image_tag("logopump.png", id:"navbarimg"), user_path(current_user), class:"navbar-brand" %>
+            <% else %>
             <%= link_to image_tag("logopump.png", id:"navbarimg"), root_path, class:"navbar-brand" %>
-
+            <% end %>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right list-inline text-center">
@@ -209,7 +213,11 @@
         <% if user_signed_in? %>
 
                 <li class="hidden-xs hidden-sm">
-                    <%= link_to( tdb_path , alt:"tableau de bord", class:'navbar-bell') do%>
+                    <%= link_to image_tag("icons/courier.png", id:"navtdbicon"), tdb_path , alt:"tableau de bord", class:'navbar-bell' %>
+
+                </li>
+                <li class="hidden-xs hidden-sm">
+                    <%= link_to( tdb_path , alt:"notifications", class:'navbar-bell') do%>
                     <i class="fa fa-bell-o fa-2x"></i>
                     <% end %>
 

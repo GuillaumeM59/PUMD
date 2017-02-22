@@ -4,6 +4,86 @@
 .profiluser{
   margin-top: 120px
 }
+.usermainpanel{
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 15px 0 !important;
+  margin-bottom: 20px !important
+}
+.userdetails{
+  border: 1px solid #ddd;
+  background-color: white;
+  margin-bottom: 20px !important
+}
+.userdetails h4{
+  margin-bottom: 10px !important
+}
+.useravatarbloc {
+  padding-right: 0 !important;
+  padding-left: 25px !important
+}
+.useravatarbloc img{
+  border: 8px solid #8e3dfb;
+}
+
+.usermainpanel .pseudo{
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+}
+.usermainpanel .age{
+  font-size: 0.7em;
+  font-weight: 500;
+  opacity: 0.7;
+  font-style: italic;
+  padding-bottom: 0;
+}
+.rankpic{
+  max-height: 60px;
+  margin-left: 20%;
+}
+.userpagenextbids , .usersfriends, .usertrophy , .useratings, .usersdrivesfav {
+  margin-bottom: 25px !important
+}
+.userpagenextbids h4, .usersfriends h4, .usertrophy h4,
+  .userdetails h4, .useratings h4, .usersdrivesfav h4 {
+	margin-top: 0;
+	background-color: #ddd;
+	border: 1px solid #ddd;
+	margin-bottom: 0;
+	padding: 5px 0;
+	font-size: 1.2em;
+}
+.userpagenextbids ol, .usersfriends ol, .usertrophy ol, .useratings ol, .usersdrivesfav ol {
+	margin-top: 0;
+	border: 1px solid #ddd;
+	margin-bottom: 0;
+  padding: 15px 0;
+  background-color: white;
+}
+.userpagenextbids ol .isemptytext, .usersfriends ol .isemptytext,
+.usertrophy ol .isemptytext, .useratings ol .isemptytext,
+.usersdrivesfav ol .isemptytext
+ {
+	margin-top: 20px;
+	margin-bottom: 20px;
+  font-style: italic;
+  opacity: 0.5
+}
+.userpagenextbids ol .delay {
+  margin: 0;
+  padding: 0
+}
+.userpagenextbids ol .city {
+  font-style: italic;
+  opacity: 0.6;
+  font-weight: 400;
+  margin: 0;
+  padding: 0
+}
+.userpagenextbids>ol>li:last-child>hr {
+	display: none
+}
 .nextbidsblock{
   margin-top: 5%
 }
@@ -92,7 +172,7 @@
      flex-direction: column;
      justify-content: space-between
 }
-.useridbloc p {
+.useridbloc>p  {
   -webkit-box-flex: 1;
      -webkit-flex: 1;
      -moz-box-flex: 1;
@@ -122,7 +202,9 @@
 .actions .editsubmit{
   margin: 20px 0
 }
-
+.stats p{
+  display: inline-block;
+ }
 
 .edit-menu ol h4{
   margin: 20px 0;

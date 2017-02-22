@@ -19,7 +19,7 @@
  </div>
  <div class="col-xs-12 text-center">
    <% @dates=[] %>
-   <% Trajetpumd.trajetsactifs.where(driver_id:driver.id).where(shop_id:shop.id).each do |trajet| %>
+   <% Trajetpumd.isactive.where(driver_id:driver.id).where(shop_id:shop.id).each do |trajet| %>
       <% @resas=Resapumd.where(trajet_id: trajet.id)%>
       <% if @resas.count !=0 %>
       <% @resa=@resas.first%>

@@ -468,6 +468,8 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
+
+
 .red{
   color: red
 }
@@ -537,6 +539,11 @@ body::-webkit-scrollbar-thumb {
 
 .navbar-right .fa {
   float: none
+}
+#navtdbicon {
+	height: 30px;
+  width: auto;
+	opacity: 0.7;
 }
 .logoutbtn {
   margin-top: 3px
