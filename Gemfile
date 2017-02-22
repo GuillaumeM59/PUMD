@@ -7,7 +7,7 @@ gem 'cookies_eu'
 #ENV keys safe
 # Paiments
 gem "braintree"
-gem 'figaro',  git: 'git@github.com:laserlemon/figaro.git'
+gem 'figaro'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'yaml_db'
