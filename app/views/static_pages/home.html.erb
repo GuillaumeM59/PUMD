@@ -3,14 +3,15 @@
 <!-- PAGE CONTENT  -->
 
 <header class="intro-header">
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="row">
-      <div class="col-lg-7 intro-message">
-          <%= image_tag("banpump-01.png", class: "image-responsive headerillu", width:"70%" ) %>
-          <h1>On vous ramène vos courses</h1>
+      <div class="col-lg-3 col-lg-offset-1 intro-message">
+          <h1>
+            Bienvenue sur la plateforme collaborative de livraison d'achats en enseigne drive.
+          </h1>
       </div>
-      <div class="col-lg-5 home-search-bloc">
+      <div class="col-lg-3 col-lg-offset-4 home-search-bloc">
 
           <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-12" do %>
           <div class="form-group searchgroup">
