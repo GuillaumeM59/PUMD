@@ -1,6 +1,18 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newuser .data_input, .oublimdp .data_input{
+  border-left: 1px solid #dedede;
+  border-right: 1px solid #dedede
+}
+.oublimdp .actions{
+  margin: 20px 0
+}
+.oublimdp .user_email_input {
+  width: 100%;
+  padding: 0 20%
+}
 .profiluser{
   margin-top: 120px
 }

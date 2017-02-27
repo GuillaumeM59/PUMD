@@ -1,16 +1,31 @@
-<h2>Alors... On sait plus son Mot de passe? Pas de panique...</h2>
+<div class="container toppage oublimdp">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages_for(resource) %>
+  <div class="row">
+    <h3 class="modaltitle">MOT DE PASSE OUBLIE</h3>
 
-  <div class="field">
-    <%= f.label :email, "Ton email:" %><br />
-    <%= f.email_field :email, autofocus: true %>
+      <div class="data_input col-md-12 text-center">
+          <h4 class="grey1"> Alors... On sait plus son mot de passe? <br> Pas de panique... </h4>
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= devise_error_messages_for(resource) %>
+          <p class="grey2">Entre ton adresse email et tu recevras un petit mail magique pour modifier ton mot de passe</p>
+          <div class="field user_email_input text-center" >
+            <%= f.email_field :email, autofocus: true, placeholder:"Ton email" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Envoyer", :class => "btn btn-o-purple" %>
+          </div>
+          <% end %>
+      </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Envoyez-moi un email pour changer mon Mot de Passe " %>
+  <div class=" row grey1 modallinks">
+      <div class="col-xs-12 text-right"><em class="grey2">Pas encore membre?</em>
+          <a href="#" class="active" id="register-form-link" alt="onglet s'inscrire">S'inscrire</a>
+      </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+</div>
+</div>
+</div>
