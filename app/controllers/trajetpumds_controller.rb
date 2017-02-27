@@ -1,6 +1,6 @@
 class TrajetpumdsController < ApplicationController
   before_action :set_trajetpumd, only: [:show, :edit, :update, :destroy],except:[:annulerresa, :confirm, :reserver]
-  before_filter :authenticate_user!, only: [:confirm]
+  before_filter :authenticate_user!, only: [:confirm, :new, :create]
   before_filter :isnotfull, only: [:confirm]
   before_filter :isreservable, only: [:confirm]
 
