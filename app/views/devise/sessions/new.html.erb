@@ -1,61 +1,46 @@
-<div class="container toppage bcgblue">
+<div class="container toppage newuser">
   <div class="row">
-<div class=" clearfix col-xs-12 col-md-10 col-md-offset-1 text-center signinbloc">
-      <div class="row">
-<h2 class=" col-md-12 text-center grey1"><i class="fa fa-sign-in fa-3x"></i> Connexion</h2>
+    <div class="col-md-10 col-md-offset-1">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row">
+    <h3 class="modaltitle">CONNEXION</h3>
 
-<div class="signuppurple row">
+      <div class="data_input col-md-12 text-center">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <ol class="list-unstyled">
 
-<div class="data_input col-md-8">
-<ol class="list-unstyled">
+              <li class=" col-md-12 field">
+                  <%= f.text_field :username, autofocus: true, placeholder:"Pseudonyme" %>
+              </li>
 
-  <li class=" col-md-12 field">
-    <%= f.label "Nom d'utilisateur" %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </li>
+              <li class="col-md-12 field ">
+                  <%= f.password_field :password, autocomplete: "off", placeholder:"Mot de passe" %>
+              </li>
 
-  <li class="col-md-12 field ">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <div class=" col-xs-12 col-lg-12 lostpassword">
-      <%= link_to "Mot de passe oublié?", new_password_path(resource_name) %><br />
-    </div>
-    <% end -%>
-  </li>
+              <% if devise_mapping.rememberable? -%>
+              <li class="col-md-12 field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+              </li>
+              <% end -%>
 
-  <% if devise_mapping.rememberable? -%>
-    <li class="col-md-12 field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </li>
-  <% end -%>
-
-  <li class=" actions">
-    <%= f.submit "Connexion", :class => "btn btn-o-purple form-control btn-connexion" %>
-  </li>
-<% end %>
-</ol>
-</div>
-
-
-
-<div class="password_input col-md-4">
-<div class="pasinscrit">
-
-  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <h4 class="text-center col-xs-12 col-lg-12">Pas encore inscrit?</h4>
-  <div class=" col-xs-12 col-lg-12">
-    <%= link_to "S'inscrire", new_registration_path(resource_name), class: "btn btn-o-purple" %><br />
+              <li class=" actions">
+                  <%= f.submit "Connexion", :class => "btn btn-o-purple" %>
+              </li>
+          </ol>
+          <% end %>
+      </div>
   </div>
-  <% end -%>
-</div>
-
-</div>
-</div>
-
+  <div class=" row grey1 modallinks">
+      <div class="col-xs-6 text-left">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Mot de passe oublié?", new_password_path(resource_name) %>
+          <% end -%>
+      </div>
+      <div class="col-xs-6 text-right"><em class="grey2">Pas encore membre?</em>
+          <a href="#" class="active" id="register-form-link" alt="onglet s'inscrire">S'inscrire</a>
+      </div>
+  </div>
 </div>
 </div>
 </div>

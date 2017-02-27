@@ -1,6 +1,33 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newuser .data_input, .oublimdp .data_input, .sign_up .data_input{
+  border-left: 1px solid #dedede;
+  border-right: 1px solid #dedede
+}
+.oublimdp .actions{
+  margin: 20px 0
+}
+.new_user{
+  width: 100%;
+  padding-bottom: 20px
+}
+.new_user li{
+  width: 100%;
+  padding: 0 35%
+}
+.new_user ol li input{
+  width: 100%;
+}
+.sign_up .bootstrap-datetimepicker-widget{
+  width: 70%;
+  padding: 0
+}
+.oublimdp .user_email_input, .sign_up .user_email_input {
+  width: 100%;
+  padding: 0 20%
+}
 .profiluser{
   margin-top: 120px
 }
@@ -290,6 +317,15 @@ margin-top: 20px
   font-size: 2.5em
 }
 @media all and (max-width:700px) {
+  .new_user li{
+    padding: 0
+  }
+  .oublimdp .user_email_input, .sign_up .user_email_input {
+    padding: 0
+  }
+  .sign_up .bootstrap-datetimepicker-widget{
+    width: 90%;
+  }
   .edit-menu ol li{
     display: inline-block;
     width: auto;

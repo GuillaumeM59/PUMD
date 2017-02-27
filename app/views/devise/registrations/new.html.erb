@@ -1,88 +1,78 @@
 <div class="container toppage sign_up">
-  <div class="row">
-    <div class=" clearfix col-xs-12 signinbloc">
-      <div class="clearfix row">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
 
+            <div class="row">
+                <h3 class="modaltitle">CREATION DE COMPTE
+                </h3>
 
-      <h2 class="clearfix col-md-12 text-center grey1"><i class="fa fa-user-plus fa-3x"></i> Rejoindre PUMP</h2>
+                    <div class="data_input col-md-12 text-center">
+                      <%=form_for resource, as: resource_name, url: registration_path(resource_name),class:" user",id:"form-sign-up", validate: true do |f| %>
+                      <%= devise_error_messages_for(resource) %>
+                        <ol class="list-unstyled">
 
-    </div>
-    </div>
-  <%=form_for resource, as: resource_name, url: registration_path(resource_name),class:" user",id:"form-sign-up", validate: true do |f| %>
-  <%= devise_error_messages_for(resource) %>
-  <div class="signuppurple text-center row">
+                            <li class="string input required stringish " id="user_username_input">
+                                <%= f.text_field :username, required:true, uniqueness:true, placeholder:"Pseudonyme"%>
+                            </li>
+                            <li class="string input required stringish input-group " id="dtob">
+                                <%= f.text_field :dob, required:true,autocomplete: "off", id:"dtpickerdobsignin", placeholder:"Date de naissance" %>
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </li>
+                            <li class="email input required stringish user_email_input">
+                                <%= f.email_field :email, required:true, placeholder:"Email" %>
+                                <p class="text-center ">
+                                    <%= f.check_box :subscribe, class:"checkb" %>
+                                    recevoir les news de PUMP
+                                </p>
+                            </li>
+                        </ol>
 
-<div class="data_input col-md-8">
-  <ol class="list-unstyled">
+                        <ol class="list-unstyled">
 
-          <li class="string input required stringish col-md-6" id="user_username_input">
-            <%= f.label :username, "Pseudonyme",class:"label col-xs-12",id:"username_test", :'data-validate' => '/users/checkname' %>
-            <%= f.text_field :username, required:true, uniqueness:true %>
+                            <li class="col-xs-12" id="user_password">
+                                <%= f.password_field :password, autocomplete: "off", :data => {validation:"required"}, placeholder:"Mot de passe"%><br/>
+                                <% if @minimum_password_length %>
+                                <em class="text-center">(<%= @minimum_password_length %>
+                                    charactères minimum)</em>
+                                <% end %>
+                                <br>
+                                <%= f.password_field :password_confirmation, autocomplete: "off", :data => {validation:"required"}, placeholder:"Confirmation Mot de passe"%>
+                            </li>
 
-          </li>
-          <li class="string input required stringish col-md-6" id="dtob">
-            <%= f.label :dob, "Date de naissance",class:"label col-xs-12" %>
-            <%= f.text_field :dob, required:true, id:"dtpickerdob"%><span>
-              <i class="fa fa-hand-pointer-o"></i></span>
-            </li>
-          <li class="email input required stringish col-md-12" id="user_email_input">
-            <%= f.label :email, "Email",class:"label col-xs-12" %>
-            <%= f.email_field :email, required:true %>
-            <p class="text-center ">
- <%= f.check_box :subscribe, class:"checkb" %> recevoir les news de PUMP
-            </p>
-          </li>
-        </ol>
-
-        </div>
-        <div class="password_input col-md-4">
-          <ol class="list-unstyled">
-
-            <li class="col-xs-12" id="user_password">
-                <%= f.label :password,class:"label col-xs-12" %>
-                <%= f.password_field :password, autocomplete: "off", :data => {validation:"required"} %><br/>
-                <% if @minimum_password_length %>
-                <em class="text-center">(<%= @minimum_password_length %>
-                  charactères minimum)</em>
+                        </ol>
+                    <%= f.submit "Je m'inscris",  :class => "btn btn-o-purple" %>
                 <% end %>
-
-
-                <%= f.label :password_confirmation,class:"label col-xs-12" %>
-                <%= f.password_field :password_confirmation, autocomplete: "off", :data => {validation:"required"} %>
-              </li>
-
-
-            </ol>
-            </div>
-        </div>
-            <div class="col-md-12 text-center" id="user-inscription-submit">
-              <%= f.submit "Je m'inscris",  :class => "btn btn-o-purple" %>
-              <% end %>
-            </div>
               </div>
             </div>
-          </div>
-          <script type="text/javascript">
-            $(function () {
-              $("#dtpickerdob").datetimepicker({
-                viewMode: "years",
-                format: "DD-MM-YYYY",
-                minDate: moment().subtract(100, 'years'),
-                maxDate: moment().subtract(18, 'years')
-              });
-            });
+            <div class="modallinks row grey1">
+                <div class="col-md-6 text-right"><em class="grey2">Déjà inscrit?</em>
+                  <a href="#" class="active" id="login-form-link" alt="onglet se connecter">Se connecter</a>
+                </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function () {
+  $("#dtpickerdobsignin").datetimepicker({
+    viewMode: "years",
+    format: "DD-MM-YYYY",
+    minDate: moment().subtract(100, 'years'),
+    maxDate: moment().subtract(18, 'years'),
+    defaultDate: false,
+    useCurrent:false
+  });
+});
 
-
-            $(function() {
-                $('#username').blur(function() {
-                    $this = $(this);
-                    $.get($this.data('validate'), {
-                        username: $this.val()
-                    }).success(function() {
-                        $this.removeClass('field_with_errors');
-                    }).error(function() {
-                        $this.addClass('field_with_errors');
-                    });
-                });
+    $(function () {
+        $('#username').blur(function () {
+            $this = $(this);
+            $.get($this.data('validate'), {username: $this.val()}).success(function () {
+                $this.removeClass('field_with_errors');
+            }).error(function () {
+                $this.addClass('field_with_errors');
             });
-          </script>
+        });
+    });
+</script>
