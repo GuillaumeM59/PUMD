@@ -1,0 +1,54 @@
+<div class="notifications_form moving_form">
+
+<%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
+    <%= devise_error_messages_for(@user) %>
+    <ol class="list-unstyled col-xs-12">
+      <li class="col-xs-12">
+        <h4 class="grey1">SMS</h4>
+        <ol class="list-unstyled smsnotiflist">
+          <li><p class="col-xs-10 beforeonofftext">
+          Recevoir un sms quand je reçois une nouvelle demande
+        </p>
+        <div class="col-xs-2">
+          <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+        </div></li>
+          <li><p class="col-xs-10 beforeonofftext">
+          Accepter une demande en répondant "oui" au sms 
+        </p>
+        <div class="col-xs-2">
+          <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+        </div></li>
+      </ol></li>
+      <li class="col-xs-12">
+        <h4 class="grey1">Email</h4>
+        <ol class="list-unstyled smsnotiflist">
+          <li><p class="col-xs-10 beforeonofftext">
+          Recevoir un email quand je reçois une nouvelle demande
+        </p>
+        <div class="col-xs-2">
+          <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+        </div>
+          <li><p class="col-xs-10 beforeonofftext">
+          Recevoir un rappel par email 2h avant le picking
+        </p>
+        <div class="col-xs-2">
+          <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+        </div>
+          <li><p class="col-xs-10 beforeonofftext">
+          Recevoir un email quand post une envie
+        </p>
+        <div class="col-xs-2">
+          <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+        </div>
+          <li><p class="col-xs-10 beforeonofftext">
+          Recevoir un email quand un nouvel utilisateur s'inscrit pres de chez moi
+        </p>
+        <div class="col-xs-2">
+          <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+        </div>
+        </ol>
+      </li>
+    </ol>
+    <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
+<% end %>
+</div>

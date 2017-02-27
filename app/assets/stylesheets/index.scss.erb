@@ -1,29 +1,21 @@
-// --------------------------------- user profile on show -----
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
-@font-face {
-   font-family: PUMD;
-   src: url("/PUMD.TTF");
-}
+// colors:
+// blue:  #00bbf0
+// purple:  #8e3dfb
+// gray:  rgb(91,91,91)
+
 
 
 body {
   background: #ffffff;
 }
+nav{
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none
+}
 .navbar-brand {
-  font-family: PUMD;
-  font-size: 45px !important;
-  padding-top: 20px !important;
+  padding: 0
 }
-.navbrandtextcolor1{
-color: #ff6d00
-}
-.navbrandtextcolor2{
-color: #00bf9a;
-}
+
 // --------------------------------------------------------
 .propocontainer {
   padding-top: 80px;
@@ -31,44 +23,46 @@ color: #00bf9a;
 .toppage {
   margin-top: 90px;
 }
+.grey1{
+  color: rgb(91, 91, 91)
+}
 .intro-header {
   position: relative;
-
+background: asset-url('imgtest/bg1.jpg') no-repeat 0 -200px ;
+background-size: cover;
   text-align: center;
   width: 100%;
-  min-height: 100vh;
   color: #ffffff;
 overflow: hidden;
+padding-top: 140px;
+padding-bottom: 100px
 }
-.blur{
-  /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-  background: asset-url('parking.jpg') no-repeat center center;
-  background-size: cover;
-  -webkit-filter: blur(3px) grayscale(90%);
--moz-filter: blur(3px);
--o-filter: blur(3px);
--ms-filter: blur(3px);
-filter: blur(3px) grayscale(100%);
-position:absolute;
-top: -2%;
-left: -2%;
-width:104%;
-height:104%;
+.offert{
+	display: inline;
+	vertical-align: bottom;
+	padding-left: 10px;
+
 }
-.filterblue{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background-color:  rgba(0, 0, 0, 0.88)
+#login-form .signuppurple, #register-form .signuppurple {
+  margin-top: 0 !important;
+  margin-bottom: 20px !important;
 }
+
+#register-form .signuppurple .data_input, #register-form .signuppurple .password_input, #login-form .signuppurple .data_input, #login-form .signuppurple .password_input {
+  padding: 15px 0;
+}
+
 .intro-message {
   position: relative;
-  padding-top: 15%;
-  padding-bottom: 8%;
+  padding: 5% 0
 }
-.aroundblocbtn{
-  margin-bottom: 20px
+
+.home-search-bloc{
+  background-color: rgba(255, 255, 255, 0.84);
+  padding: 50px 20px;
+  padding-top: 20px
 }
+
 .aroundblocbtn .fa{
   float: none;
 }
@@ -76,6 +70,10 @@ height:104%;
 padding-top: 20px;
 padding-bottom: 0;
 }
+.separator{
+  height: 45px
+}
+
 .intro-message > h1 {
   margin: 10px;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
@@ -83,17 +81,30 @@ padding-bottom: 0;
   // font-size: 5em;
 }
 .intro-message > h3 {
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
   margin-bottom: 20px
   // font-size: 5em;
 }
-
+.searchbar-bloc{
+  position: relative
+}
 .searchgroup {
   width: 100%;
 }
 .searchbar {
-  min-width: 50% !important;
+  min-width: 100% !important;
+  margin-bottom: 20px;
+  height: 2.3em;
+  font-size: 1.3em
 }
+.searchbar-i {
+  font-size: 1.3em;
+  width: 10% ;
+	position: absolute;
+	top: 7px;
+	right: 7px;
 
+}
 
 .loggedannounce {
   border: 2px solid rgb(163, 163, 163);
@@ -105,12 +116,9 @@ padding-bottom: 0;
 
 
 .intro-divider {
-  width: 400px;
+  width: 80%;
   border-top: 1px solid #f8f8f8;
   border-bottom: 1px solid rgba(0,0,0,0.2);
-}
-.intro-message > h3 {
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 .reservation {
   font-size: 130%;
@@ -127,25 +135,26 @@ padding-bottom: 0;
   margin: 0 auto;
 }
 // -----------------------------------------NAVBAR
-.navbar-brand {
-  font-size: 24px;
+#navbarimg {
+  height: 58px;
+
 }
 .navbar-container {
-  padding: 20px 0;
+  padding: 10px 0;
 }
+
 .navbar.navbar-fixed-top.fixed-theme {
   background-color: #FFF;
-  border-color: #080808;
-  box-shadow: 0 0 5px rgba(0,0,0,.8);
 }
-.navbar-brand.fixed-theme {
-  font-size: 18px;
+#navbarimg.fixed-theme {
+  height: 50px;
+  padding-top: 5px
 }
 .navbar-container.fixed-theme {
   padding: 0;
 }
-.navbar-brand,
-.navbar-brand.fixed-theme,
+.navbar-brand img,
+.navbar-brand.fixed-theme img,
 .navbar-container,
 .navbar-container.fixed-theme,
 .navbar.navbar-fixed-top.fixed-theme {
@@ -179,14 +188,22 @@ body.modal-open #wrap {
   font-size: 50px;
   display: block;
 }
-.container,
-.container-fluid {
-  padding-top: 1%;
-  padding-bottom: 1%;
-}
+
 
 .btn-search {
   padding: 8px 10px;
+  width: 100%;
+  text-align: center;
+}
+.btn-search > i {
+  float: none;
+  line-height: 1.2em
+}
+.navbar-right {
+	padding: 5px;
+	padding-left: 160px;
+	border-radius: 10px;
+	margin-right: 15px;
 }
 .textholderempty {
   font-size: 1.3em;
@@ -241,12 +258,137 @@ div.vertical-line {
   text-decoration: none;
 }
 
+.home-mag{
+  padding-top: 20px ;
+  background-color: white;
+}
+.home-post-bloc{
+  padding: 0;
+  background-color: white;
+}
+.home-post-bloc h3{
+  margin: 10px 0;
+  margin-bottom: 20px;
+}
 
+hr.home-bloc-separator{
+  width: 25%;
+  height: 3px;
+  border-top: 3px solid white;
+  border-radius: 25px
+}
+
+// BLOC BENEFICES
+.home-benef-bloc {
+  background-color: #00bbf0;
+  color: white;
+  padding: 80px 0
+}
+.benef-list {
+  padding: 40px 0
+}
+.benef-item:nth-child(1)>.benef-icon {
+  background-color: rgb(190, 114, 0);
+}
+.benef-item:nth-child(2)>.benef-icon {
+  background-color: rgb(53, 142, 75);
+}
+.benef-item:nth-child(3)>.benef-icon {
+  background-color: rgb(30, 55, 145);
+}
+.benef-item:nth-child(4)>.benef-icon {
+  background-color: rgb(139, 62, 162);
+}
+.benef-item:nth-child(5)>.benef-icon {
+  background-color: rgb(217, 191, 55);
+}
+.benef-item:nth-child(6)>.benef-icon {
+  background-color: rgb(190, 16, 16);
+}
+.benef-item{
+  margin: 0 2%
+}
+.benef-icon{
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  margin-bottom: 10px
+}
+.benef-icon i {
+  float: none;
+}
+.benef-parag {
+  font-size: 1.3em
+}
+
+
+// BLOC POUR QUI
+.home-pourqui-bloc {
+  background-color: #8e3dfb;
+  color: white;
+  padding: 80px 0
+}
+div.row.pourqui {
+  margin-top: 60px
+}
+.futurevideo, .play {
+  height: 300px
+}
+.futurevideo {
+  position: relative;
+  background-color: rgb(59, 68, 91);
+  margin-bottom: 20px
+}
+.play {
+  height: 300px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+.play i{
+float: none;
+position: absolute;
+top: 35%;
+left: 45%
+}
+.pourqui-video>p{
+  bottom: 0
+}
+.pourqui-text {
+  padding: 17px 0 !important
+}
+
+// BLOC BENEFICES
+.home-lieux-bloc{
+  background-color: rgb(107, 52, 2);
+  color: white;
+  padding: 80px 0
+}
+// BLOC REGION
+.region div {
+  padding: 40px 0
+}
+.logohdf {
+  background-color: white;
+  border-radius: 25px;
+  width: 80%;
+  height: auto;
+}
+.presse {
+  padding-top: 20px
+}
+.presse-item{
+  padding: 40px;
+  margin: 0 2%
+
+}
+.presse-link img {
+  max-height: 100px;
+  background-color: white
+}
 @media all and (max-width:991px) {
-  .separator hr{
-    display:block;
-    width: 100%
-  }
+
   .homefooter{
     position: relative;
     text-align: center;
@@ -258,4 +400,11 @@ div.vertical-line {
   .homefooter ul {
     display: inline;;
   }
+}
+
+.home-logo-brand img{
+  width: 100%;
+  height: auto;
+  max-width: 180px;
+  max-height: 50px;
 }

@@ -1,0 +1,2 @@
+module FavshopsHelper
+end

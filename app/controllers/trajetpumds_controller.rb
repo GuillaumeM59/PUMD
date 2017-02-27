@@ -1,6 +1,6 @@
 class TrajetpumdsController < ApplicationController
   before_action :set_trajetpumd, only: [:show, :edit, :update, :destroy],except:[:annulerresa, :confirm, :reserver]
-  before_filter :authenticate_user!, only: [:confirm]
+  before_filter :authenticate_user!, only: [:confirm, :new, :create]
   before_filter :isnotfull, only: [:confirm]
   before_filter :isreservable, only: [:confirm]
 
@@ -68,13 +68,13 @@ class TrajetpumdsController < ApplicationController
     # search each shop by driver
     @aroundpickers.each do |picker|
       @shop=[]
-      Trajetpumd.trajetsactifs.where(driver_id:picker[0].id).each do |trajet|
+      Trajetpumd.isactive.where(driver_id:picker[0].id).each do |trajet|
         @shop << trajet.shop_id
       end
       @shop.uniq!
       # create marker each shop of driver
       @shop.each do |shop|
-        i=Trajetpumd.trajetsactifs.where(shop_id:shop).where(driver_id:picker[0].id).order(:do_at).reverse.first
+        i=Trajetpumd.isactive.where(shop_id:shop).where(driver_id:picker[0].id).order(:do_at).reverse.first
             @listtrajetpicker= render_to_string(partial: "infobulle", :locals=> {:@trajet=> i, :@lati => @lati, :@longi=> @longi}).gsub(/\n/, '')
             @trajetsdata << @listtrajetpicker
             @pickers << picker[0].id

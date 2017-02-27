@@ -1,0 +1,4 @@
+<div class="delete_form moving_form">
+<h5>Nous sommes désolés que vous souhaitiez nous quitter... Cette action est irreversible</h5>
+  <%= link_to 'Supprimer mon compte', current_user, method: :delete, data: { confirm: 'Voulez-vous vraiment supprimer ? action irréversible ' } %>
+</div>

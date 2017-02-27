@@ -1,0 +1,44 @@
+<div class="preferences_form moving_form ">
+<%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
+    <%= devise_error_messages_for(@user) %>
+    <ol class="list-unstyled">
+      <li><p class="col-xs-10 beforeonofftext">
+      Je suis Pickeur (Livreur)
+    </p>
+    <div class="col-xs-2">
+      <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+
+    </div>
+      </li>
+      <li><p class="col-xs-10 beforeonofftext">
+      Je peux monter les courses
+    </p>
+    <div class="col-xs-2">
+      <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+    </div>
+      </li>
+      <li><p class="col-xs-10 beforeonofftext">
+      Je reverse mes gains à une association
+    </p>
+    <div class="col-xs-2">
+      <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+    </div>
+      </li>
+      <li><p class="col-xs-10 beforeonofftext">
+        Accepter automatiquement les demandes
+    </p>
+    <div class="col-xs-2">
+      <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+    </div>
+      </li>
+
+</ol>
+
+
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: "off" %></br>
+    <i class="grey2">(Nécessaire pour confirmer vos changements)</i><br/>
+  </br>
+    <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
+<% end %>
+</div>

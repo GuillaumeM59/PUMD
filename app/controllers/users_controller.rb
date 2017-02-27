@@ -15,11 +15,18 @@ class UsersController < ApplicationController
       end
 
   end
+  def indexonlogin
+    if current_user
+      redirect_to action: "show", id: current_user.id
+    else
+      redirect_to root_path
+    end
+  end
 
   # GET /users/1
   # GET /users/1.json
   def show
-
+    @nextpickings=Trajetpumd.isactive.where(:driver_id => @user.id).order(:do_at).limit(5)
     if current_user
     if current_user.id == @user.id
       if current_user.driver
@@ -45,7 +52,15 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    dob = @user.dob
+    now = Time.now.utc.to_date
+    @age =now.year - @user.dob.year - (@user.dob.change(:year => now.year) > now ? 1 : 0)
 
+    def resource
+
+    @resource ||= @user
+
+    end
   end
 
   # POST /users
@@ -82,7 +97,17 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+
+  # AJAX CHECK USERNAME ALREADY EXIST
+  def checkname
+     if User.where('username = ?', params[:username]).count == 0
+       render :nothing => true, :status => 200
+     else
+       render :nothing => true, :status => 409
+     end
+     return
+   end
+
   # DELETE /users/1.json
   def destroy
     @user.destroy

@@ -1,147 +1,64 @@
-<div class="container toppage bcgblue">
+<div class="container toppage sign_up">
   <div class="row">
-    <div class=" clearfix col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 signinbloc">
-      <i class="fa fa-user-plus fa-3x"></i>
-      <h2 class=" col-md-12 text-center">Inscription</h2>
+    <div class=" clearfix col-xs-12 signinbloc">
+      <div class="clearfix row">
 
-      <%=form_for resource, as: resource_name, url: registration_path(resource_name),class:" user", validate: true do |f| %>
-      <%= devise_error_messages! %>
 
-        <legend>
-          <span>Vous</span>
-        </legend>
-        <ol class="list-unstyled">
-          <li class="string input required stringish" id="user_username_input">
-            <%= f.label :username, "Pseudo",class:"label" %><abbr title="important">*</abbr>
-            <%= f.text_field :username, required:true, minlength:4 %>
+      <h2 class="clearfix col-md-12 text-center grey1"><i class="fa fa-user-plus fa-3x"></i> Rejoindre PUMP</h2>
 
-          </li>
-          <li class="string input required stringish" id="user_nom_input">
-            <%= f.label :nom, "Nom",class:"label" %><abbr title="important">*</abbr>
-            <%= f.text_field :nom, required:true, minlength:2 %>
+    </div>
+    </div>
+  <%=form_for resource, as: resource_name, url: registration_path(resource_name),class:" user",id:"form-sign-up", validate: true do |f| %>
+  <%= devise_error_messages_for(resource) %>
+  <div class="signuppurple text-center row">
 
-          </li>
-          <li class="string input required stringish" id="user_prenom_input">
-            <%= f.label :prenom, "Prénom",class:"label" %><abbr title="important">*</abbr>
-            <%= f.text_field :prenom, required:true, minlength:2 %>
+<div class="data_input col-md-8">
+  <ol class="list-unstyled">
+
+          <li class="string input required stringish col-md-6" id="user_username_input">
+            <%= f.label :username, "Pseudonyme",class:"label col-xs-12",id:"username_test", :'data-validate' => '/users/checkname' %>
+            <%= f.text_field :username, required:true, uniqueness:true %>
 
           </li>
-          <li class="radio input required" id="user_gender_input">
-                <%= f.label :gender, "Sexe",class:"label" %><abbr title="important">*</abbr>
-              <ol class="choices-group list-unstyled">
-                <li class="choice">
-                  <%= f.radio_button :gender, false%> Homme
-                </li>
-                <li class="choice">
-                  <%= f.radio_button :gender, true %> Femme
-                </li>
-              </ol>
-
-          </li>
-          <li class="string input required stringish" id="dtob">
-            <%= f.label :dob, "Date de naissance",class:"label" %><abbr title="important">*</abbr>
+          <li class="string input required stringish col-md-6" id="dtob">
+            <%= f.label :dob, "Date de naissance",class:"label col-xs-12" %>
             <%= f.text_field :dob, required:true, id:"dtpickerdob"%><span>
-  <i class="fa fa-hand-pointer-o"></i></span>
-
-          </li>
-          <li class="phone input optional stringish" id="user_phone_input">
-            <%= f.label :phone, "Téléphone",class:"label" %><abbr title="important">*</abbr>
-            <%= f.telephone_field :phone, required:true, minlength:10 %>
-
-          </li>
-          <li class="email input required stringish" id="user_email_input">
-            <%= f.label :email, "Email",class:"label" %><abbr title="important">*</abbr>
+              <i class="fa fa-hand-pointer-o"></i></span>
+            </li>
+          <li class="email input required stringish col-md-12" id="user_email_input">
+            <%= f.label :email, "Email",class:"label col-xs-12" %>
             <%= f.email_field :email, required:true %>
-
-          </li>
-          <li class="string input required stringish" id="user_adress_input">
-            <%= f.label :adress, "Adresse (pour la géoloc)",class:"label" %><abbr title="important">*</abbr>
-            <%= f.text_field :adress, required:true %>
-
-          </li>
-          <li class="phone input optional stringish" id="user_phone2_input">
-            <%= f.label :phone2, "Complément (batiment, étage, ...)",class:"label" %>
-            <%= f.text_field :phone2%>
-
-          </li>
-          <li class="string input required stringish" id="user_zipcode_input">
-            <%= f.label :zipcode, "Code postal (pour la géoloc)",class:"label" %><abbr title="important">*</abbr>
-            <%= f.number_field :zipcode, required:true %>
-
-          </li>
-          <li class="string input required stringish" id="user_city_input">
-            <%= f.label :city, "Ville (pour la géoloc)",class:"label" %><abbr title="important">*</abbr>
-            <%= f.text_field :city, required:true %>
-
-          </li>
-        </ol>
-        <legend>
-          <span>Détails</span>
-        </legend>
-        <ol class="list-unstyled">
-          <li class="file input optional" id="user_avatar_input">
-            <%= f.label :avatar, "Photo de profil",class:"label" %>
-            <%= f.file_field :avatar%>
-
-          </li>
-          <li class="text input optional" id="user_comment_input">
-            <%= f.label :comment, "Description",class:"label" %>
-            <%= f.text_area :comment, :input_html => { :rows => 8 }%>
-
-          </li>
-          <li class="boolean input optional" id="booldriver">
-            <%= f.label :driver, "Je suis conducteur",class:"label" %>
-            <%= f.check_box :driver%>
+            <p class="text-center ">
+ <%= f.check_box :subscribe, class:"checkb" %> recevoir les news de PUMP
+            </p>
           </li>
         </ol>
 
-        <div class="carblock">
-            <legend>
-              <span>Véhicule</span>
-            </legend>
-            <ol class="list-unstyled">
-                <li class="select input optional" id="user_cbrand_id_input">
-                  <%= f.label "Marque de la voiture",class:"label" %>
-                  <%= f.collection_select :cbrand_id, Carbrand.order(:name), :id, :name, include_blank: true, placeholder: "" %>
+        </div>
+        <div class="password_input col-md-4">
+          <ol class="list-unstyled">
 
-              </li>
-                  <li class="select input optional" id="user_cmodel_id_input">
-                  <%= f.label "Modèle",class:"label" %>
-                  <%= f.grouped_collection_select :cmodel_id, Carbrand.order(:name), :carmodels, :name, :id, :name, include_blank: true, placeholder: "" %>
-
-              </li>
-                        <li class="select input optional" id="user_carsize_input">
-                          <%= f.label "Marque de la voiture",class:"label" %>
-                          <%= f.select :carsize, options_for_select([["S","S"],["M","M"],["L","L"],["XL","XL"]]), include_blank: true, placeholder: "" %>
-
-              </li>
-              </ol>
-              <p>Vous devrez activer le module de paiement conducteur dans votre tableau de bord -> transactions</p>
-            </div>
-
-              <legend>
-                <span>Sécurité</span>
-              </legend>
-              <ol class="list-unstyled">
-                        <li>
-
-                <%= f.label :password,class:"label" %>
+            <li class="col-xs-12" id="user_password">
+                <%= f.label :password,class:"label col-xs-12" %>
                 <%= f.password_field :password, autocomplete: "off", :data => {validation:"required"} %><br/>
                 <% if @minimum_password_length %>
                 <em class="text-center">(<%= @minimum_password_length %>
                   charactères minimum)</em>
                 <% end %>
+
+
+                <%= f.label :password_confirmation,class:"label col-xs-12" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", :data => {validation:"required"} %>
               </li>
 
-                <li>
 
-                <%= f.label :password_confirmation,class:"label" %>
-                <%= f.password_field :password_confirmation, autocomplete: "off", :data => {validation:"required"} %>
-              </li></ol>
-
-                <%= f.submit "Je m'inscris",  :class => "btn btn-login" %>
-                <% end %>
-
+            </ol>
+            </div>
+        </div>
+            <div class="col-md-12 text-center" id="user-inscription-submit">
+              <%= f.submit "Je m'inscris",  :class => "btn btn-o-purple" %>
+              <% end %>
+            </div>
               </div>
             </div>
           </div>
@@ -154,29 +71,18 @@
                 maxDate: moment().subtract(18, 'years')
               });
             });
-            $('#user_driver, #booldriver label').click(function () {
-              this.checked
-                ? $('.carblock').show(1000)
-                : $('.carblock').hide(1000); //time for show
-            });
-            $(function () {
-              filterCarsList();
-            });
 
-            function filterCarsList() {
-              brands = $('#user_cmodel_id').html();
-              $('#user_cbrand_id').change(function () {
-                var brandselected1 = $('#user_cbrand_id :selected').text();
-                var optgroup1 = "optgroup[label='" + brandselected1 + "']";
-                var options1 = $(brands).filter(optgroup1).html();
-                console.log(brands);
-                console.log(optgroup1);
-                console.log(options1);
-                if (brandselected1 != "") {
-                  $('#user_cmodel_id').html(options1);
-                };
-              });
-            };
 
+            $(function() {
+                $('#username').blur(function() {
+                    $this = $(this);
+                    $.get($this.data('validate'), {
+                        username: $this.val()
+                    }).success(function() {
+                        $this.removeClass('field_with_errors');
+                    }).error(function() {
+                        $this.addClass('field_with_errors');
+                    });
+                });
+            });
           </script>
-      

@@ -4,7 +4,9 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body,
+body {
+  width: 100%
+}
 html {
     width: 100%;
     height: 100%;
@@ -19,10 +21,32 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+h6, p, li {
+    font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
+
+.nopaddinghor{
+  padding-left: 0;
+  padding-right: 0
+}
+.nopaddingver{
+  padding-top: 0;
+  padding-bottom: 0
+}
+.fwidth{
+  width:100%
+}
+.grey2{
+  color:#a2a2a2
+}
+
+
+
+
+
+
+
 .gm-style img{
   max-width: 100%
 }
@@ -37,51 +61,36 @@ h6 {
   height: 60px;
   padding-left: 25px
 }
+.navbar-bell {
+  padding-top: 10px !important;
+  padding-bottom: 0 !important
+}
+
+
+
+
+
 
 /* connexion modal style */
 
+#myModal{
+  background-color: rgba(0, 0, 0, 0.6) !important
+}
 #register-form {
 	display: none;
 }
+.panel{
+  border-radius: 15px;
+  border: none
+}
+.panel-body{
+  padding: 0;
+  border: none
+}
 
-.panel-login {
-	border-color: #ccc;
-	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-}
-.panel-login>.panel-heading {
-	color: #00415d;
-	background-color: #fff;
-	border-color: #fff;
-	text-align:center;
-}
-.panel-login>.panel-heading a{
-	text-decoration: none;
-	color: #324D5C;
-	font-weight: bold;
-	font-size: 15px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
-}
-.panel-login>.panel-heading a.active{
-	color: #46B29D;
-	font-size: 18px;
-}
-.panel-login>.panel-heading hr{
-	margin-top: 10px;
-	margin-bottom: 0px;
-	clear: both;
-	border: 0;
-	height: 1px;
-	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
-	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-}
+
 .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
-	height: 45px;
+	height: 60px;
 	border: 1px solid #ddd;
 	font-size: 16px;
 	-webkit-transition: all 0.1s linear;
@@ -96,14 +105,59 @@ h6 {
 	box-shadow: none;
 	border-color: #ccc;
 }
+.modaltitle {
+  background-color: #00bbf0;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 15px 15px 0 0
+}
+.modaltitle h3{
+position: relative;
+}
+.modaltitle .fa{
+  float: none !important;
+  position: absolute;
+  right: 30px
+}
+.modaltitle .fa:hover{
+  cursor: pointer;
+}
+
+#myModal li {
+  width: 100%;
+  padding: 0 30%
+}
+#myModal #user_email_input {
+  width: 100%;
+  padding: 0 20%
+}
+#myModal #dtob .bootstrap-datetimepicker-widget{
+  width: 70%;
+  padding: 0
+}
+#myModal #user_email {
+  width: 100%
+}
+
+.modallinks {
+  padding: 10px 0 !important;
+  background-color: #dedede;
+  border-radius: 0 0 15px 15px;
+}
+// end modal connexion
+
+
+
 header {
   height: auto
 }
 .btn-login {
   background-image: none;
-  background-color: #00ACED;
-  border-color: #0063AF;
-  border-radius: 0px !important;
+  background-color: #00bbf0;
+  border-radius: 5px !important;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -114,15 +168,9 @@ header {
 }
 .btn-login:hover{
   color: #fff;
-  background-color: #FA965C !important;
-  border-color: #DE6454!important;
+  background-color: #008ab1 !important;
 }
 
-.btn-login:focus {
-	color: #fff;
-  background-color: #FA965C!important;
-  border-color: #DE6454!important;
-}
 .forgot-password {
 	text-decoration: underline;
 	color: #888;
@@ -135,23 +183,16 @@ header {
 
 .btn-lg {
   background-image: none;
-  background-color: #00ACED;
-  border-color: #0063AF;
-  border-radius: none !important;
+  background-color: #00bbf0;
   color: white;
 }
 .btn{
   border-radius: 0 !important
 }
 
-.btn-lg:hover,
-.btn-lg:focus {
-  background-color: #FA965C;
-  border-color: #DE6454;
-  color: white;
-}
-.btn-register {
-	background-color: #1CB94E;
+
+.btn-purple {
+	background-color: #8e3dfb;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -159,14 +200,30 @@ header {
 	font-weight: normal;
 	padding: 14px 0;
 	text-transform: uppercase;
-	border-color: #1CB94A;
+	border-radius: 20px !important;
+  padding: 15px 10px
 }
-.btn-register:hover,
-.btn-register:focus {
+.btn-o-purple {
+	background-color: transparent;
+	outline: none;
+	color: #8e3dfb;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+  border: 2px solid #8e3dfb;
+	border-radius: 20px !important;
+  padding: 10px 5px
+}
+.btn-o-purple:hover,
+.btn-o-purple:focus {
 	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+	background-color: #8e3dfb;
+  border: 2px solid white;
 }
+
+
 
 
 .modal-dialog{
@@ -192,9 +249,8 @@ header {
 
 /*-------------FOOTER BLOCK---------------*/
 footer {
-	background-color: #455F6F;
+	background-color: rgb(41, 41, 41);
 	color: #F0EDDF;
-	margin-top: 50px;
 	font-weight: bold;
 }
 
@@ -208,4 +264,7 @@ footer a:hover {
 .linksfooter a:hover {
   // color: #1cf453;
   text-decoration: none;
+}
+.navicouser{
+  padding: 0 15px!important
 }

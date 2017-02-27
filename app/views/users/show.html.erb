@@ -1,74 +1,119 @@
-<div class="container-fluide toppage">
+<script type="text/javascript">
+  $('body').css({backgroundColor:"#f4f4f4"})
+</script>
+<div class="container toppage profiluser">
   <header class="row">
 
-    <h1 class="headercontant col-md-12 text-center">
-      Mon Profil:
-      <%= @user.username %>
-    </h1>
+<div class="left-panel col-md-8">
+<%= render "users/usermainbloc"  %>
+
+<% if @user=current_user %>
+  <div class=" row text-center userdetails">
+    <h4 class="grey1">Mes coordonnées</h4>
+    <h5 class="text-center grey2 col-xs-11">Vous seul voyez ces détails...</h5>
+    <%= link_to(edit_user_path(@user), :class =>"col-xs-1") do%>
+    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+    <% end %>
+
+      <div class="col-md-3">
+        <p><%= @user.prenom %></p>
+          <p><%= @user.nom %></p>
+          <p><%= if @user.gender then "Femme" else "Homme" end%>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p><%= @user.adress %></p>
+        <p><%= @user.zipcode %>
+          <%= @user.city %>
+        </p>
+      </div>
+      <div class="col-md-5">
+
+          <p>Tel:<%= @user.phone %></p>
+          <p>@:<%= @user.email %></p>
+          <p>Newsletter: <%= if @user.subscribe then "oui" else "non" end %>
+        </p>
+
+      </div>
+  </div>
+<% end %>
+
+
+
+  <div class="row text-center usertrophy">
+    <h4 class="grey1">Salle des trophés</h4>
+    <%= render partial:"trajetpumds/partials/listtrophys", object: @nextpickings, as: :amis  %>
+
+  </div>
+
+  <div class="row text-center useratings">
+    <h4 class="grey1">Avis reçus</h4>
+    <%= render partial:"trajetpumds/partials/listfeedbacks", object: @nextpickings, as: :amis  %>
+
+  </div>
+</div>
+
+
+
+  <!-- Right part -->
+
+<div class="col-md-4 text-center ">
+  <div class="userpagenextbids">
+    <h4 class="grey1">Prochains pickings de <%= @user.username %></h4>
+    <%= render partial:"trajetpumds/partials/listitem", object: @nextpickings, as: :trajets  %>
+  </div>
+  <div class="usersdrivesfav">
+    <h4 class="grey1">Drives favoris de <%= @user.username %></h4>
+    <%= render partial:"trajetpumds/partials/listdrivesfav", object: @nextpickings, as: :amis  %>
+  </div>
+  <div class="usersfriends">
+    <h4 class="grey1">Amis de <%= @user.username %></h4>
+    <%= render partial:"trajetpumds/partials/listfriends", object: @nextpickings, as: :amis  %>
+  </div>
+
+</div>
+
+
+
+
 
 
   </header>
+</div>
 
-  <div class="row">
 
 
-    <div class="profil stats col-md-12 " id="profilbloc">
 
-      <h2 class="text-center">
-        Mon Profil</h2>
-      <div class="row">
-        <div class="col-md-2 col-md-offset-1 useravatarbloc text-center">
-          <p>
-            <%= image_tag(@user.avatar, class:"img-responsive profilavatar") %>
-          </p>
-        </div>
-        <div class="col-md-4 useravatarbloc text-center">
-          <h4>
-            <%= @user.prenom %>
-            <%= @user.nom %>
-          </h4>
-          <p><%= @age %> ans, <%= if @user.gender then "Femme" else "Homme" end%>
-          </p>
-          <p>
-            <strong>Ville:
-            </strong>
-            <%= @user.city %>
 
-          </p>
-          <p>
-            <%= @user.xp %>
-          </p>
-          <% if @user.driver %>
-          <p>
-            Véhicule:
-            <%= Carbrand.find(@user.cbrand_id).name %>
-            <%= Carmodel.find(@user.cmodel_id).name %>
-            ,
-            <%= @user.carsize %>
-          </p>
-          <% end %>
-        </div>
-        <div class="col-md-5 useridbloc text-center">
-          <p>
-            <strong>Quelques mots:</strong>
-            <%= @user.comment %></p>
 
-          <p><%= @user.adress %></p>
-          <p><%= @user.zipcode %>
-            <%= @user.city %>
-          </p>
-          <p>Tel:<%= @user.phone %></p>
-          <p>@:<%= @user.email %></p>
-          <p>
-            <strong>Newsletter:</strong>
-          <%= if @user.subscribe then "oui" else "non" end %>
-          </p>
-        </div>
-        <div class="col-md-12 editlinkbloc text-center">
-          <%= link_to 'Editer mon profil', edit_user_path(@user), class:"btn btn-lg" %>
-        </div>
 
-      </div>
 
-    </div>
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function useridblocheight() {
+ var avatarH = $('.useravatarbloc').first().innerHeight();
+ $('.useridbloc').css({height: avatarH});
+}
+
+useridblocheight();
+
+$(window).on('resize',function(){
+useridblocheight();
+});
+</script>

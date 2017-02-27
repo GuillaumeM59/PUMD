@@ -41,7 +41,8 @@ var myNavBar = {
  */
 myNavBar.init(  [
     "header",
-    "header-container"
+    "header-container",
+    "navbarimg"
 ]);
 
 /**

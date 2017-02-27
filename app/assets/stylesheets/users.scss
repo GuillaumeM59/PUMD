@@ -1,14 +1,310 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.profilavatar {
-  width:60%;
-  height: auto;
+.profiluser{
+  margin-top: 120px
+}
+.usermainpanel{
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 15px 0 !important;
+  margin-bottom: 20px !important
+}
+.userdetails{
+  border: 1px solid #ddd;
+  background-color: white;
+  margin-bottom: 20px !important
+}
+.userdetails h4{
+  margin-bottom: 10px !important
+}
+.useravatarbloc {
+  padding-right: 0 !important;
+  padding-left: 25px !important
+}
+.useravatarbloc img{
+  border: 8px solid #8e3dfb;
+}
+
+.usermainpanel .pseudo{
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+}
+.usermainpanel .age{
+  font-size: 0.7em;
+  font-weight: 500;
+  opacity: 0.7;
+  font-style: italic;
+  padding-bottom: 0;
+}
+.rankpic{
+  max-height: 60px;
   margin-left: 20%;
+}
+.userpagenextbids , .usersfriends, .usertrophy , .useratings, .usersdrivesfav {
+  margin-bottom: 25px !important
+}
+.userpagenextbids h4, .usersfriends h4, .usertrophy h4,
+  .userdetails h4, .useratings h4, .usersdrivesfav h4 {
+	margin-top: 0;
+	background-color: #ddd;
+	border: 1px solid #ddd;
+	margin-bottom: 0;
+	padding: 5px 0;
+	font-size: 1.2em;
+}
+.userpagenextbids ol, .usersfriends ol, .usertrophy ol, .useratings ol, .usersdrivesfav ol {
+	margin-top: 0;
+	border: 1px solid #ddd;
+	margin-bottom: 0;
+  padding: 15px 0;
+  background-color: white;
+}
+.userpagenextbids ol .isemptytext, .usersfriends ol .isemptytext,
+.usertrophy ol .isemptytext, .useratings ol .isemptytext,
+.usersdrivesfav ol .isemptytext
+ {
+	margin-top: 20px;
+	margin-bottom: 20px;
+  font-style: italic;
+  opacity: 0.5
+}
+.userpagenextbids ol .delay {
+  margin: 0;
+  padding: 0
+}
+.userpagenextbids ol .city {
+  font-style: italic;
+  opacity: 0.6;
+  font-weight: 400;
+  margin: 0;
+  padding: 0
+}
+.userpagenextbids>ol>li:last-child>hr {
+	display: none
 }
 .nextbidsblock{
   margin-top: 5%
 }
 .signinbloc .fa, .editusercarbloc .fa {
   float: none;
+}
+.signuppurple .data_input, .signuppurple .password_input{
+  padding: 40px 10px;
+  min-height: 100%;
+  color: white
+}
+.signuppurple .data_input{
+  background-color: #00bbf0;
+}
+.signuppurple{
+  background-color: #8e3dfb;
+  margin-top: 50px !important;
+  margin-bottom: 30px !important;
+}
+
+.signuppurple .data_input label, .signuppurple .password_input label ,.field_with_errors {
+  color: white;
+  font-size: 1.2em
+}
+.signuppurple .data_input input, .signuppurple .password_input input{
+  width: 70%;
+  margin-left: auto;
+  color: rgb(91,91,91);
+  text-align: center;
+}
+.signuppurple input[type='checkbox'] {
+  width: auto;
+}
+.signuppurple li {
+  padding-left: auto
+}
+.signuppurple .btn-o-purple {
+  background-color: white;
+  font-weight: 600
+}
+.btn-connexion{
+  color: #8e3dfb !important;
+
+}
+.btn-connexion:hover{
+  color: white !important;
+
+}
+#user-inscription-submit{
+  margin-bottom: 50px
+}
+#user_password {
+  float: none;
+}
+.signuppurple #user_password em{
+  text-align: center;
+  color: white;
+  width: 100%;
+  margin-bottom: 10px
+}
+#user_subscribe{
+  width: auto !important;
+  vertical-align: middle;
+}
+.signinbloc h2 {
+  float: none;
+}
+.sign_up form {
+  display: inline-block;
+}
+.lostpassword a {
+  color: white
+}
+.useridbloc{
+  display: -webkit-box;
+     display: -webkit-flex;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+     -webkit-flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+     -ms-flex-direction: column;
+     flex-direction: column;
+     justify-content: space-between
+}
+.useridbloc>p  {
+  -webkit-box-flex: 1;
+     -webkit-flex: 1;
+     -moz-box-flex: 1;
+     -ms-flex: 1;
+     flex: 1;
+     display: -webkit-box;
+     display: -webkit-flex;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-pack: center;
+     -webkit-justify-content: center;
+     -moz-box-pack: center;
+     -ms-flex-pack: center;
+     justify-content: center;
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+     -webkit-flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+     -ms-flex-direction: column;
+     flex-direction: column;
+}
+.actions{
+  margin-top: 40px
+}
+.actions .editsubmit{
+  margin: 20px 0
+}
+.stats p{
+  display: inline-block;
+ }
+
+.edit-menu ol h4{
+  margin: 20px 0;
+  border-bottom: 2px solid #8e3dfb
+}
+.edit-menu ol li{
+  display: inline-block;
+  width: 100%
+}
+.edit-menu ol li a {
+  display: block;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom:  10px;
+  width: 100%
+}
+.edit-menu ol li a.active {
+background-color: white;
+border: 1px solid rgb(179, 179, 179);
+border-left: 5px solid #00bbf0;
+color: #00bbf0
+}
+
+
+
+.edit-content{
+  position: relative;
+  overflow-x: hidden;
+  min-height: 80vh;
+  width: 75%
+}
+
+.adresse_form,.avatar_form,.preferences_form,
+.communications_form,.personal_form, .certifications_form,
+.money_form,.paiements_form,.donations_form,
+.password_form,.notifications_form, .delete_form {
+  position: absolute;
+  top:80px;
+  left:-100%;
+  background-color: white;
+  border: 1px solid rgb(214, 214, 214);
+  width: 95%;
+  padding: 50px;
+  z-index: 19
+}
+
+.edit-menu ol li a,
+.adresse_form,.avatar_form,.preferences_form,
+.communications_form,.personal_form, .certifications_form,
+.money_form,.paiements_form,.donations_form,
+.password_form,.notifications_form, .delete_form {
+  transition: 1.5s;
+  transition-timing-function: cubic-bezier(.86,.02,.14,1);
+  -webkit-transition: 1.5s;
+}
+
+.adresse_form.active,.avatar_form.active,.preferences_form.active,
+.communications_form.active,.personal_form.active, .certifications_form.active,
+.money_form.active,.paiements_form.active,.donations_form.active,
+.password_form.active,.notifications_form.active, .delete_form.active {
+z-index: 20;
+  left:25px;
+}
+
+
+.adresse_form ol li p {
+  padding: 20px 0;
+  font-size: 1.3em;
+  font-weight: 300
+}
+.adresse_form>ol>li>h3 {
+border-left: 5px solid #00bbf0;
+padding-left: 10px
+}
+.adresse_form>ol>li:nth-child(3) {
+margin-top: 20px
+}
+.adresse_form #mapadress {
+  width: 300px;
+  height: 150px
+}
+.cagnottevalue{
+  font-size: 2.5em
+}
+@media all and (max-width:700px) {
+  .edit-menu ol li{
+    display: inline-block;
+    width: auto;
+  }
+  .edit-menu ol li a {
+    padding: 5px 10px;
+  }
+  .adresse_form.active,.avatar_form.active,.preferences_form.active,
+  .communications_form.active,.personal_form.active, .certifications_form.active,
+  .money_form.active,.paiements_form.active,.donations_form.active,
+  .password_form.active,.notifications_form.active, .delete_form.active {
+  z-index: 20;
+    left:0;
+  }
+}
+.beforeonofftext{
+  padding: 7px 0
 }
