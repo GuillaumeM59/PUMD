@@ -1,6 +1,26 @@
 // Place all the styles related to the Trajetpumds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newtrajet li{
+  width: 100%;
+  padding: 15px 25%;
+  margin: 0
+}
+.newtrajet ol li input,.newtrajet ol li>div{
+  width: 50%;
+  display: inline-block;
+}
+#createtrajetform .fa {
+  float: none;
+}
+.newtrajet .data_input{
+  border-left: 1px solid #dedede;
+  border-right: 1px solid #dedede
+}
+
+
+
 .searchpage {
   width: 100%;
   padding-top: 80px
@@ -172,4 +192,21 @@ height:70vh
     margin-left: 5%
   }
 
+}
+@media all and (max-width:700px) {
+  .newtrajet{
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 20px
+  }
+  .newtrajet li{
+    padding: 15px 0;
+  }
+  .newtrajet ol li input,.newtrajet ol li>div{
+    width: 100%;
+  }
+  .data_input {
+    padding-left: 2px;
+    padding-right: 2px
+  }
 }

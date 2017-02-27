@@ -1,5 +1,7 @@
-<h2 class="text-center">
-  Poster un picking</h2>
+<div class="row">
+  <h3 class="modaltitle">POSTER UN PICKING</h3>
+
+    <div class="data_input col-md-12 text-center">
   <% @trajet=Trajetpumd.new %>
   <%= form_for @trajet, method: "post",:html=>{id:'createtrajetform'}, validation:true do |f| %>
   <% if @trajet.errors.any? %>
@@ -16,41 +18,47 @@
 
 
       <%= f.hidden_field :driver_id, value: current_user.id %>
+      <ol class="list-unstyled">
 
-    <div class="field">
-      <%= f.label "Enseigne" %><br>
-      <%= f.collection_select :brand_id, Brand.where(category:"Drive").order(:name), :id, :name, required:true %>
-    </div>
+        <li class=" col-md-12 field">
+      <%= f.collection_select :brand_id, Brand.where(category:"Drive").order(:name), :id, :name, required:true, :prompt => "ENSEIGNE" %>
+    </li>
 
-    <div class="field">
-      <%= f.label "Magasin" %><br>
-      <%= f.grouped_collection_select :shop_id, Brand.where(category:"Drive").order(:name), :shops, :name, :id, :listname, required:true%>
-    </div>
-    <div class="field">
+    <li class=" col-md-12 field">
+      <%= f.grouped_collection_select :shop_id, Brand.where(category:"Drive").order(:name), :shops, :name, :id, :listname, required:true, :prompt => "MAGASIN"%>
+    </li>
+    <li class=" col-md-12 field">
       <%= f.label :maxsac, "Nombre de sac maximum que je pourrais prendre:" %>
       <i class="fa fa-question-circle" aria-hidden="true" data-toggle: "tooltip" data-placement: "right" title="rappel taille : 1 sac = 1 pack d'eau - MAX 30 sacs"></i><br>
       <%= f.number_field :maxsac, in:(1..30), required:true%>
-    </div>
+    </li>
 
       <%= f.label :do_at, "Date et heure estimée de picking" %>  <i class="fa fa-question-circle" aria-hidden="true" data-toggle: "tooltip" data-placement: "right" title="Cliquez sur le calendrier sinon format: 'JJ/MM/AAAA HH:mm du lundi au samedi 08h00-20h59'"></i><br>
-      <div class="form-group">
+      <li class="form-group">
       <div class="input-group date" id="dtpickerdoat">
       <%= f.text_field :do_at, class: "form-control" %>
       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-    </div>
-  </div>
-    <div class="field">
+                  </div>
+    </li>
+  <li class=" col-md-12 field">
       <%= f.label :regulier, "C'est un trajet régulier" %>  <i class="fa fa-question-circle" aria-hidden="true" data-toggle: "tooltip" data-placement: "right" title="le trajet sera automatiquement recréé la semaine suivante, vous pourrez le supprimer dans votre tableau de bord"></i><br>
       <%= f.check_box :regulier %>
-    </div>
+    </li>
 
-    <div class="actions">
-      <%= f.submit 'Créer un picking', class:"btn_lg"%>
-    </div>
+    <li class="actions">
+      <%= f.submit 'Créer un picking', class:"btn btn-o-purple"%>
+    </li>
+</ol>
   <% end %>
-
+</div>
+<div class=" col-xs-12 grey1 modallinks">
+    <div class="col-xs-12 text-right"><em class="grey2">perdu?</em>
+      <%= link_to "retourner sur ma page", user_path(current_user) %>
+    </div>
+</div>
+</div>
   <script type="text/javascript">
     $(function() {
   $("#dtpickerdoat").datetimepicker({
