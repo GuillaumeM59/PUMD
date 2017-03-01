@@ -86,10 +86,12 @@
 
                   <%= image_tag("homeavatars/avatarh2.jpg", class:"img-responsive img-circle testimage col-sx-4") %>
 
+                </div>
               <h5 class="text-center username col-sx-8">Youssef</h5>
               <p class="text-center stats col-sx-8">Tourcoing, 27 ans</p>
             </div>
-            <div class="temoignage col-xs-6 col-xs-offset-1">
+            <div class="row">
+            <div class="temoignage col-xs-10 col-xs-offset-1">
 
               <p><span class="opencitation">"</span>
                 Aujourd'hui grace à pump je gagne 3€ dès que je ramène les courses de mes voisins. Je profite de mes trajets habituels pour économiser sur mes frais.
@@ -102,10 +104,12 @@
                 <div class="col-xs-3 col-xs-offset-1">
                     <%= image_tag("homeavatars/avatarf1.jpg", class:"img-responsive img-circle testimage col-sx-4") %>
 
+                  </div>
               <h5 class="text-center username col-sx-8">Sylvie</h5>
               <p class="text-center stats col-sx-8">Mouvaux, 46 ans</p>
             </div>
-            <div class="temoignage col-xs-6 col-xs-offset-1">
+            <div class="row">
+            <div class="temoignage col-xs-10 col-xs-offset-1">
                 <p><span class="opencitation">"</span>
                   Je ne bouge plus pour faire mes courses. Avec pump, je me les fait livrer à l'heure convenue. C'est beaucoup plus simple et j'ai du temps pour moi et mes petits enfants."
                 </p>
@@ -117,10 +121,12 @@
                 <div class="col-xs-3 col-xs-offset-1">
                     <%= image_tag("homeavatars/avatarf2.jpg", class:"img-responsive img-circle testimage col-sx-2 ") %>
 
+                  </div>
               <h5 class="text-center username col-sx-8">Farah</h5>
               <p class="text-center stats col-sx-8">Lille, 34 ans</p>
             </div>
-            <div class="temoignage col-xs-6 col-xs-offset-1">
+            <div class="row">
+            <div class="temoignage col-xs-10 col-xs-offset-1">
                 <p><span class="opencitation">"</span>
                   Le soir je rentre directement chez moi et je me relaxe car je sais que mes courses arrivent. Fini la galère des courses après le boulot et j' économise une heure de nounou à chaque fois.
                 </p>
@@ -132,10 +138,12 @@
                 <div class="col-xs-3 col-xs-offset-1">
                     <%= image_tag("homeavatars/avatarh1.jpg", class:"img-responsive img-circle testimage col-sx-4 ") %>
 
+                  </div>
               <h5 class="text-center username col-sx-8">Damien</h5>
               <p class="text-center stats col-sx-8">Villeneuve d'Ascq, 19 ans</p>
             </div>
-            <div class="temoignage col-xs-6 col-xs-offset-1">
+            <div class="row">
+            <div class="temoignage col-xs-10 col-xs-offset-1">
                 <p><span class="opencitation">"</span>
                   Je suis étudiant et une voiture ça coûte cher. Avec pump j'économise sur mes frais et en plus je fais connaissance avec mes voisins de résidence universitaire.
                 </p>
@@ -160,3 +168,25 @@
   </div>
     </div>
   </div>
+  <!-- fixer hauteur caroussel -->
+  <script type="text/javascript">
+  function hauteurcaroussel() {
+    var maxH = 0;
+  $('.carousel .item').each(function(){
+
+  var slideH = $(this).innerHeight();
+  if (slideH > maxH) {
+    maxH=slideH
+  }
+  console.log(slideH);
+});
+console.log(maxH);
+  $('.carousel').css({height: maxH+20+"px"});
+};
+
+  hauteurcaroussel();
+
+  $(window).on('resize',function(){
+  hauteurcaroussel();
+  });
+  </script>
