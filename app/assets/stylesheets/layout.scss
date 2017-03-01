@@ -73,8 +73,18 @@ input, select{
   padding-top: 10px !important;
   padding-bottom: 0 !important
 }
-
-
+.nav > li > a{
+  color: rgb(91,91,91);
+}
+.nav > li > a:hover{
+  color: #fff;
+  background-color: #8e3dfb;
+  border: 2px solid white;
+  border-radius: 15px
+}
+.navbar-toggle {
+  color: rgb(91,91,91)!important
+}
 
 
 
