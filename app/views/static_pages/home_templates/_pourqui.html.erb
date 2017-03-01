@@ -19,7 +19,9 @@
 
       <ul class="col-xs-12 col-md-6 pourqui-list list-unstyled">
         <li class="row pourqui-item">
-          <div class="col-xs-4 pourqui-icon">
+          <div class="col-xs-3 col-xs-offset-1 pourqui-icon">
+            <%= image_tag("acteur1.png") %>
+
           </div>
           <div class="col-xs-8 pourqui-text text-left">
             <h5>Acheteurs (Callers)</h5>
@@ -29,7 +31,9 @@
           </div>
         </li>
         <li class="row pourqui-item">
-          <div class="col-xs-4 pourqui-icon text-left">
+          <div class="col-xs-3 col-xs-offset-1 pourqui-icon">
+            <%= image_tag("acteur2.png") %>
+
           </div>
           <div class="col-xs-8 pourqui-text text-left">
             <h5>Livreurs (Pickers)</h5>
@@ -39,7 +43,9 @@
           </div>
         </li>
         <li class="row pourqui-item">
-          <div class="col-xs-4 pourqui-icon text-left">
+          <div class="col-xs-3 col-xs-offset-1 pourqui-icon">
+            <%= image_tag("acteur3.png") %>
+
           </div>
           <div class="col-xs-8 pourqui-text text-left">
             <h5>C'est safe!</h5>
@@ -52,3 +58,22 @@
     </div>
   </div>
 </div>
+<!-- centrer verticalement les icones -->
+<script type="text/javascript">
+function centerizeactorsicon() {
+$('.pourqui-item').each(function(){
+
+var imgH = $(this).find('img').first().innerHeight()/2;
+var blocH = $(this).innerHeight()/2;
+console.log(imgH);
+console.log(blocH);
+$(this).find('img').css({paddingTop: (blocH-imgH)});
+})
+}
+
+centerizeactorsicon();
+
+$(window).on('resize',function(){
+centerizeactorsicon();
+});
+</script>
