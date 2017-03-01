@@ -149,7 +149,7 @@ class TrajetpumdsController < ApplicationController
   def update
     respond_to do |format|
       if @trajetpumd.update(trajetpumd_params)
-        format.html { redirect_to @trajetpumd, notice: 'Trajetpumd was successfully updated.' }
+        format.html { redirect_to trajetpumd_path(@trajetpumd), notice: 'Trajetpumd was successfully updated.' }
         format.json { render :show, status: :ok, location: @trajetpumd }
       else
         format.html { render :edit }

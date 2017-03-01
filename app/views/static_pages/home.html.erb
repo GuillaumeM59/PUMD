@@ -11,9 +11,10 @@
             Bienvenue sur la plateforme de livraison entre particuliers d'achats drives.
           </h1>
       </div>
-      <div class="col-lg-3 col-lg-offset-4 home-search-bloc">
+      <div class="col-lg-3 col-lg-offset-4 home-search-bloc visible-lg">
+        <div class="row">
 
-          <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-12" do %>
+          <%= form_tag trajetpumds_search_path, method: :post, class: "col-xs-12" do %>
           <div class="form-group searchgroup">
             <h2 class="text-center grey1">Trouver un picker</h2>
 <div class="searchbar-bloc">
@@ -43,84 +44,81 @@
 
               </div>
               <div class="signin col-xs-12 text-left">
-          <% if current_user  %>
-          <%if current_user.driver %>
-          <%= link_to "Proposer un picking", "", :class => "btn btn-default btn-lg hidden-xs hidden-sm", "data-toggle" => "modal","data-target" => "#newtrajetpumd" %>
-          <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-default btn-lg hidden-md hidden-lg"%>
-          <% else %>
-          <%= link_to "Proposer un trajet", user_path(current_user), :class => "btn btn-default btn-lg", data: { confirm: 'Vous devez être conducteur pour poster une annonce. Modifiez votre profil. Vous pourrez bientot deposer une demande en tand que
-            passager.' } %>
-            <% end %>
-            <% else %>
-            <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-default btn-lg btn-purple" %>
-            <p class="text-center offert grey1">
+            <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-default btn-lg btn-purple" %> <br>
+            <p class="text-center offert grey1 col-xs-12">
               Inscription rapide et gratuite
             </p>
-            <%end%>
           </div>
           </div>
 
-
-          <%if current_user %>
-
-          <div class="container hidden-xs hidden-sm ">
-            <div class="row">
-
-              <%if current_user.avatar == "/assets/default-3a2bb18cb5ec0e07a7b23f09ae06747a422809f9ba2f3ea9d13d8271a8a232d7.png"%>
-
-              <div class=" col-md-offset-2 col-md-8 driverblock loggedannounce">
-
-                <h4 class="text-center ">Vous n'avez pas encore de photo de profil, vous pouvez l'ajouter
-                  <%= link_to "ici", edit_user_path(current_user) %></h4>
-              </div>
-
-              <%end  %>
-              <% if @waitval != nil %>
-              <%if @waitval.size !=0 %>
-
-              <div class=" col-md-offset-2 col-md-8 loggedannounce">
-
-                <h4 class="text-center ">Vous avez
-                  <%= @waitval.size %>
-                  validation<% if @waitval.size > 1%>s<%end%>
-                  en attente, vous pouvez le<% if @waitval.size > 1%>s<%end%>
-                  valider
-                  <%= link_to "ici", user_path(current_user) %></h4>
-              </div>
-
-              <%end  %>
-              <%end  %>
-
-
-
-
-            </div>
-          </div>
         </div>
 
-<% else %>
-</div>
-<!-- FOOTER -->
-</div>
-<%end %>
 </div>
 </header>
 
-<% if user_signed_in? && current_user.driver %>
-<% else %>
+
+<!-- Responsive search bloc  -->
+<div class="container-fluid bg-x-light-grey hidden-lg">
+
+  <div class="row">
+<div class=" col-xs-12 col-lg-3 col-lg-offset-4 home-search-bloc ">
+  <div class="row">
+
+    <div class="form-group searchgroup text-center">
+      <h2 class="grey1">Trouver un picker</h2>
+<div class="searchbar-bloc">
+  <%= form_tag trajetpumds_search_path, method: :post, class: "col-xs-12" do %>
+
+      <%= text_field_tag(
+      :custom_address,
+      params[:custom_address],
+      placeholder: "rue, code postal et ville",
+      class: "form-control searchbar"
+        ) %> <label for=""> <i class="fa fa-2x fa-globe searchbar-i grey1" aria-hidden="true"></i></label>
+<br>
+        <%= button_tag(type:'submit', class: "btn btn-lg btn-search") do%>
+        <i class="fa fa-search">
+          Rechercher</i>
+          <% end %>
+          <% end %>
+        </div>
+        <h4 class="col-xs-12 grey1">OU</h4>
+        <div class="col-xs-12 aroundblocbtn">
+          <%= link_to(trajetpumds_search_path(custom_address:""), class: "btn btn-lg btn-search") do %>
+          <i class="fa fa-street-view" aria-hidden="true"></i> Autour de chez moi
+          <% end %>
+        </div>
+        <div class="separator col-xs-12">
+
+
+        </div>
+        <div class="signin col-xs-12 text-center">
+          <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-default btn-lg btn-purple" %>
+          <p class="text-center offert grey1 col-xs-12">
+            Inscription rapide et gratuite
+          </p>
+        </div>
+        </div>
+    </div>
+
+  </div>
+  </div>
+  </div>
+
+
 <!-- bloc logos enseignes -->
 <%= render "static_pages/home_templates/blocs_magasins" %>
 <!-- bloc poster une annonce  -->
 <div class="home-post-bloc container text-center grey1">
-  <h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-purple "%> </h3>
+  <h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins <br> <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-purple "%> </h3>
 </div>
-<% end %>
 
 
-<% if !user_signed_in? %>
+
+
 <!-- bloc bienfaits -->
 <%= render "static_pages/home_templates/bienfaits" %>
-<% end %>
+
 
 
 
@@ -129,15 +127,14 @@ WORKING PROGRESS
 -------------------------------------------------------------------- -->
 
 
-<% if !user_signed_in? %>
 <!-- Bloc pourqui -->
 <%= render "static_pages/home_templates/pourqui" %>
-<% end %>
-
-<% if !user_signed_in? %>
+<!-- Bloc TESTIMONIAL -->
+<%= render "static_pages/home_templates/testimonial" %>
+<!-- Bloc RESAUX SOCIAUX -->
+<%= render "static_pages/home_templates/reseauxs" %>
 <!-- Bloc lieux -->
 <%= render "static_pages/home_templates/lieux" %>
-<% end %>
 
 
 <!-- modal newbid -->
