@@ -8,7 +8,7 @@
 <%= render "users/usermainbloc"  %>
 
 <% if @user=current_user %>
-  <div class=" row text-center userdetails">
+  <div class=" row text-center userdetails hidden-xs hidden-sm">
     <h4 class="grey1">Mes coordonnées</h4>
     <h5 class="text-center grey2 col-xs-11">Vous seul voyez ces détails...</h5>
     <%= link_to(edit_user_path(@user), :class =>"col-xs-1") do%>
@@ -80,40 +80,3 @@
 
   </header>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-function useridblocheight() {
- var avatarH = $('.useravatarbloc').first().innerHeight();
- $('.useridbloc').css({height: avatarH});
-}
-
-useridblocheight();
-
-$(window).on('resize',function(){
-useridblocheight();
-});
-</script>

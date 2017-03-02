@@ -2,32 +2,32 @@
 <%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
     <%= devise_error_messages_for(@user) %>
     <ol class="list-unstyled">
-      <li><p class="col-xs-10 beforeonofftext">
+      <li class="row"><p class="col-xs-8 col-sm-10 beforeonofftext">
       Je suis Pickeur (Livreur)
     </p>
-    <div class="col-xs-2">
+    <div class="col-xs-4 col-sm-2">
       <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
 
     </div>
       </li>
-      <li><p class="col-xs-10 beforeonofftext">
+      <li class="row"><p class="col-xs-8 col-sm-10 beforeonofftext">
       Je peux monter les courses
     </p>
-    <div class="col-xs-2">
+    <div class="col-xs-4 col-sm-2">
       <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
     </div>
       </li>
-      <li><p class="col-xs-10 beforeonofftext">
+      <li class="row"><p class="col-xs-8 col-sm-10 beforeonofftext">
       Je reverse mes gains à une association
     </p>
-    <div class="col-xs-2">
+    <div class="col-xs-4 col-sm-2">
       <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
     </div>
       </li>
-      <li><p class="col-xs-10 beforeonofftext">
+      <li class="row"><p class="col-xs-8 col-sm-10 beforeonofftext">
         Accepter automatiquement les demandes
     </p>
-    <div class="col-xs-2">
+    <div class="col-xs-4 col-sm-2">
       <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
     </div>
       </li>

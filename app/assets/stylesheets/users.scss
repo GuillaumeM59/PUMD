@@ -197,7 +197,8 @@
      -moz-box-direction: normal;
      -ms-flex-direction: column;
      flex-direction: column;
-     justify-content: space-between
+     justify-content: space-between;
+     height: auto;
 }
 .useridbloc>p  {
   -webkit-box-flex: 1;
@@ -316,7 +317,39 @@ margin-top: 20px
 .cagnottevalue{
   font-size: 2.5em
 }
-@media all and (max-width:700px) {
+.beforeonofftext{
+  padding: 7px 0
+}
+@media all and (max-width:991px) {
+  .edit-menu ol li{
+    display: inline-block;
+    width: auto;
+  }
+  .edit-menu ol li a {
+    padding: 5px 10px;
+  }
+  .edit-content{
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: visible;
+    min-height: 100vh;
+    width: 100%
+  }
+  .adresse_form,.avatar_form,.preferences_form,
+  .communications_form,.personal_form, .certifications_form,
+  .money_form,.paiements_form,.donations_form,
+  .password_form,.notifications_form, .delete_form {
+    position: absolute;
+    top:80px;
+    left:-120%;
+    background-color: white;
+    border: 1px solid rgb(214, 214, 214);
+    width: 95%;
+    padding: 10px;
+    z-index: 19
+  }
+}
+@media all and (max-width:768px) {
   .new_user li{
     padding: 0
   }
@@ -326,13 +359,6 @@ margin-top: 20px
   .sign_up .bootstrap-datetimepicker-widget{
     width: 90%;
   }
-  .edit-menu ol li{
-    display: inline-block;
-    width: auto;
-  }
-  .edit-menu ol li a {
-    padding: 5px 10px;
-  }
   .adresse_form.active,.avatar_form.active,.preferences_form.active,
   .communications_form.active,.personal_form.active, .certifications_form.active,
   .money_form.active,.paiements_form.active,.donations_form.active,
@@ -340,7 +366,7 @@ margin-top: 20px
   z-index: 20;
     left:0;
   }
-}
-.beforeonofftext{
-  padding: 7px 0
+  .profilavatar{
+    max-height: 110px
+  }
 }

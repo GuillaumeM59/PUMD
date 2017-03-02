@@ -6,49 +6,65 @@
       <li class="col-xs-12">
         <h4 class="grey1">SMS</h4>
         <ol class="list-unstyled smsnotiflist">
-          <li><p class="col-xs-10 beforeonofftext">
+          <li><p class="col-xs-8 col-sm-10 beforeonofftext">
           Recevoir un sms quand je reçois une nouvelle demande
         </p>
-        <div class="col-xs-2">
+        <div class="col-xs-4 col-sm-2 onoffbtn">
           <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
         </div></li>
-          <li><p class="col-xs-10 beforeonofftext">
-          Accepter une demande en répondant "oui" au sms 
+          <li><p class="col-xs-8 col-sm-10 beforeonofftext">
+          Accepter une demande en répondant "oui" au sms
         </p>
-        <div class="col-xs-2">
+        <div class="col-xs-4 col-sm-2 onoffbtn">
           <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
         </div></li>
       </ol></li>
       <li class="col-xs-12">
         <h4 class="grey1">Email</h4>
         <ol class="list-unstyled smsnotiflist">
-          <li><p class="col-xs-10 beforeonofftext">
+          <li><p class="col-xs-8 col-sm-10 beforeonofftext">
           Recevoir un email quand je reçois une nouvelle demande
         </p>
-        <div class="col-xs-2">
+        <div class="col-xs-4 col-sm-2 onoffbtn">
           <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
-        </div>
-          <li><p class="col-xs-10 beforeonofftext">
+        </div>      </li>
+          <li><p class="col-xs-8 col-sm-10 beforeonofftext">
           Recevoir un rappel par email 2h avant le picking
         </p>
-        <div class="col-xs-2">
+        <div class="col-xs-4 col-sm-2 onoffbtn">
           <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
-        </div>
-          <li><p class="col-xs-10 beforeonofftext">
+        </div>      </li>
+          <li><p class="col-xs-8 col-sm-10 beforeonofftext">
           Recevoir un email quand post une envie
         </p>
-        <div class="col-xs-2">
+        <div class="col-xs-4 col-sm-2 onoffbtn">
           <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
-        </div>
-          <li><p class="col-xs-10 beforeonofftext">
+        </div>      </li>
+          <li><p class="col-xs-8 col-sm-10 beforeonofftext">
           Recevoir un email quand un nouvel utilisateur s'inscrit pres de chez moi
         </p>
-        <div class="col-xs-2">
+        <div class="col-xs-4 col-sm-2 onoffbtn">
           <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
-        </div>
+        </div>      </li>
         </ol>
       </li>
     </ol>
     <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
 <% end %>
 </div>
+
+<script type="text/javascript">
+function centeronoff() {
+  $('.smsnotiflist li').each(function(){
+var beforeH = $(this).find('.beforeonofftext').first().innerHeight()/2;
+var onoffH = $(this).find('.onoffbtn').first().innerHeight()/2;
+$(this).find('.onoffbtn').css({paddingTop: (beforeH-onoffH)});
+});
+};
+
+centeronoff();
+
+$(window).on('resize',function(){
+centeronoff();
+});
+</script>
