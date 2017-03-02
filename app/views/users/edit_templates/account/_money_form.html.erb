@@ -1,27 +1,50 @@
-<div class="money_form moving_form">
+<div class="money_form moving_form ">
+
   <h4 class="grey1">Le porte-monnaie vous permet de cagnotter vos gains et d'automatiser un virement dès que vous avez atteint un palier.</h5>
     <%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
     <%= devise_error_messages_for(@user) %>
-  <p class="col-xs-10 beforeonofftext">Activer mon Porte-monnaie</p>
-  <div class="col-xs-2">
+    <div class="row">
+  <p class="col-xs-8 col-sm-10 beforeonofftext">Activer mon Porte-monnaie</p>
+  <div class="col-xs-4 col-sm-2">
     <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
   </div>
-<div class="cagnotte row">
-  <div class="col-xs-4 col-xs-offset-1">
-    <h5 class="grey1">Vous avez dans votre porte-monnaie:</h5>
-    <p class="cagnottevalue text-center">0.00 €</p>
-
-  </div>
-  <div class="col-xs-4 col-xs-offset-2">
-    <h5 class="grey1">Somme accumulée depuis le début:</h5>
-    <p class="cagnottevalue text-center">0.00 €</p>
-  </div>
-  <p class="col-xs-10 beforeonofftext">Virement automatique</p>
-  <div class="col-xs-2">
-    <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
-  </div>
-
 </div>
+
+<!-- hide on xs -->
+<div class="cagnotte hidden-xs">
+  <div class="col-sm-4 col-sm-offset-1">
+    <h5 class="grey1 col-xs-6 col-sm-12">Vous avez dans votre porte-monnaie:</h5>
+    <p class="cagnottevalue text-center">0.00 €</p>
+
+  </div>
+  <div class="col-sm-4 col-sm-offset-2">
+    <h5 class="grey1 col-xs-6 col-sm-12">Somme accumulée depuis le début:</h5>
+    <p class="cagnottevalue text-center">0.00 €</p>
+  </div>
+</div>
+
+<!-- show on xs -->
+<div class="cagnotte row hidden-sm hidden-md hidden-lg">
+  <div class="col-sm-4 col-sm-offset-1">
+    <h5 class="grey1 col-xs-6 col-sm-12">Vous avez dans votre porte-monnaie:</h5>
+    <p class="cagnottevalue text-center">0.00 €</p>
+
+  </div>
+  </div>
+  <div class="cagnotte row hidden-sm hidden-md hidden-lg">
+  <div class="col-sm-4 col-sm-offset-2">
+    <h5 class="grey1 col-xs-6 col-sm-12">Somme accumulée depuis le début:</h5>
+    <p class="cagnottevalue text-center">0.00 €</p>
+  </div>
+</div>
+<!--  -->
+
+
+  <p class="col-xs-8 col-sm-10 beforeonofftext">Virement automatique</p>
+  <div class="col-xs-4 col-sm-2">
+    <%= f.check_box :driver,  input_html: { checked: @user.driver },  :data => { :toggle => 'toggle' }  %>
+  </div>
+
 
 
     <%= f.label :current_password %>

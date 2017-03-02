@@ -1,7 +1,24 @@
 <div class="home-socialnetwork-bloc text-center">
   <div class="container">
     <div class="row">
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1928768534023104',
+            xfbml      : true,
+            version    : 'v2.8'
+          });
+          FB.AppEvents.logPageView();
+        };
 
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8&appId=1747377402162219";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
 
     <h2 class="home-bloc-title">PUMP SUR LES RESEAUX SOCIAUX</h2>
         <hr class="home-bloc-separator">
@@ -16,7 +33,7 @@
     href="https://twitter.com/mypumpfr">
     Follow @mypumpfr</a>
   </div>
-  <a class="twitter-timeline" href="https://twitter.com/mypumpfr">Tweets by Mypump</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <a class="twitter-timeline" data-lang="fr" href="https://twitter.com/mypumpfr">Tweets by Mypump</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <div class="col-md-6 homefacebook">
   <div class="row">

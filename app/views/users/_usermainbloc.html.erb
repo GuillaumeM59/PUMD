@@ -1,11 +1,47 @@
-<div class="usermainpanel row">
+<div class="usermainpanel row ">
 
-<div class="col-xs-3 useravatarbloc text-center">
+<div class=" col-xs-6 col-sm-3 useravatarbloc text-center">
   <p>
     <%= image_tag(@user.avatar, class:"img-responsive profilavatar img-circle") %>
   </p>
 </div>
-<div class="col-xs-7 useridbloc text-left grey1">
+<!-- Resp. design hidden xs -->
+<div class="col-sm-7 useridbloc text-left grey1 hidden-xs">
+  <p class="pseudo">
+    <%= @user.username %>
+    <span class="age">
+      <%= @age %> ans, membre depuis <%= distance_of_time_in_words_to_now(@user.created_at) %>
+    </span>
+  </p>
+  <p class="ville">
+    <%= @user.city %>
+  </p>
+  <div class="stats row">
+    <p class="col-xs-6 upcomingnbr">
+      <%= image_tag("icons/riding-car.png", size:"30",class: "inline") %>   <%= a=Trajetpumd.isactive.where(:driver_id=>@user.id).size %> picking<%="s" if a>1 %> actif<%="s" if a>1 %> </p>
+    <p class="col-xs-6 totalnbr">
+      <%= image_tag("icons/checked-car.png", size:"30",class: "inline") %>   <%= a=Validation.where(:driver_id=>@user.id).where(:validated=>true).where(:ispumdval=>true).map{|a| a.driver_id}.uniq.size %> picking<%="s" if a>1 %> validé<%="s" if a>1 %> </p>
+    </p>
+    <p class="col-xs-6 totalcash">
+      <%= image_tag("icons/euro-bill-with-wings.png", size:"35",class: "inline") %>  15 € de don </p>
+    </p>
+    <p class="col-xs-6 totalrating">rating</p>
+  </div>
+  </div>
+
+<!--  -->
+
+
+<div class=" col-xs-6 col-sm-2 userbuttons text-center">
+        <%= image_tag("icons/rewards/cup-3.png", class:"img-responsive rankpic") %>
+        <p class="ranktext">
+        Champion
+      </p>
+</div>
+
+
+<!-- Resp. design show xs -->
+<div class="col-xs-12 useridbloc text-left grey1 hidden-sm hidden-md hidden-lg">
   <p class="pseudo">
     <%= @user.username %>
     <span class="age">
@@ -27,14 +63,26 @@
 
 
     <p class="col-xs-6 totalrating">rating</p>
+    <script type="text/javascript">
+    function centerrank() {
+    var useravatarH = $('.useravatarbloc').first().innerHeight()/2;
+    var ranktextW = $('.ranktext').first().innerWidth()/2;
+    var rankH = $('.userbuttons').first().innerHeight()/2;
+    var rankW = $('.userbuttons .rankpic').first().innerWidth()/2;
+    $('.userbuttons').css({paddingTop: (useravatarH-rankH)});
+    $('.userbuttons .rankpic').css({marginLeft: (ranktextW-rankW)});
+    }
+
+    centerrank();
+
+    $(window).on('resize',function(){
+    centerrank();
+    });
+    </script>
   </div>
+<!--  -->
+
+
 </div>
-<div class="col-xs-2 userbuttons">
-  <ol class="list-unstyled text-right">
-    <li class="text-center">
-      <%= image_tag("icons/rewards/cup-3.png", class:"img-responsive rankpic") %>
-      Champion
-    </li>
-  </ol>
-</div>
+
 </div>
