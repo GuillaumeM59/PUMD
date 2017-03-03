@@ -1,8 +1,6 @@
-<div class="row">
-  <h3 class="modaltitle">POSTER UN PICKING</h3>
+
 
     <div class="data_input col-md-12 text-center">
-  <% @trajet=Trajetpumd.new %>
   <%= form_for @trajet, method: "post",:html=>{id:'createtrajetform'}, validation:true do |f| %>
   <% if @trajet.errors.any? %>
     <div id="error_explanation">
@@ -57,7 +55,6 @@
     <div class="col-xs-12 text-right"><em class="grey2">perdu?</em>
       <%= link_to "retourner sur ma page", user_path(current_user) %>
     </div>
-</div>
 </div>
   <script type="text/javascript">
     $(function() {
