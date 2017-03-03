@@ -1,27 +1,126 @@
-<p id="notice"><%= notice %></p>
+<script src="//maps.google.com/maps/api/js?v=3.exp&key=AIzaSyBngIsRw-Abk5UB04-Nl_Qg4vACEfo2jEo"></script>
+<script type="text/javascript">
+  $('body').css({backgroundColor:"#f4f4f4"})
+</script>
+<div class="container-fluide toppage trajetshow">
+    <div class="headermap">
+        <div id="mapcontainer">
+            <div id="map"></div>
+        </div>
+    </div>
 
-<p>
-  <strong>Driver:</strong>
-  <%= @trajetpumd.driver_id %>
-</p>
-
-<p>
-  <strong>Shop:</strong>
-  <%= @trajetpumd.shop_id %>
-</p>
-
-<p>
-  <strong>do_at:</strong>
-  <%= @trajetpumd.do_at %>
-</p>
-
-
-
-<p>
-  <strong>Regulier:</strong>
-  <%= @trajetpumd.regulier %>
-</p>
+</div>
+<script type="text/javascript">
+  var navH=$('nav').innerHeight();
+  $('.toppage.trajetshow').css({marginTop:navH});
+</script>
 
 
-<%= link_to 'Edit', edit_trajetpumd_path(@trajetpumd) %> |
-<%= link_to 'Back', trajetpumds_path %>
+
+<div class="container trajetshow">
+  <div class="row">
+
+<div class="left-panel col-md-8">
+
+  <div class="row text-center trajetdetails">
+    <%= render partial:"trajetpumds/partials/trajetdetails", object: @trajet  %>
+
+  </div>
+
+
+
+  <div class="row text-center pickerbloc">
+    <h4 class="grey1">Picker</h4>
+    <div class="row text-center pickerdetails">
+
+<%= render "users/usermainbloc"  %>
+</div>
+</div>
+  <div class="row text-center usertrophy">
+    <h4 class="grey1">Salle des trophés</h4>
+    <%= render partial:"trajetpumds/partials/listtrophys", object: @nextpickings, as: :amis  %>
+
+  </div>
+
+  <div class="row text-center useratings">
+    <h4 class="grey1">Avis reçus</h4>
+    <%= render partial:"trajetpumds/partials/listfeedbacks", object: @nextpickings, as: :amis  %>
+
+  </div>
+</div>
+
+
+
+  <!-- Right part -->
+
+<div class="col-md-4 text-center ">
+  <h4 class="grey1 bloctitle">Prochains pickings de <%= @user.username %></h4>
+  <div class="usernextpicking">
+    <%= render partial:"trajetpumds/partials/listitem", object: @nextpickings, as: :trajets  %>
+  </div>
+  <h4 class="grey1 bloctitle">Prochains picking dans ce drive</h4>
+  <div class="shopnextpicking">
+    <%= render partial:"trajetpumds/partials/listitem", object: @nextpickers, as: :trajets  %>
+  </div>
+
+</div>
+
+
+
+
+
+
+  </div>
+</div>
+<!-- changer le format date en "demain..." -->
+<script type="text/javascript">
+$('.usernextpicking .delay, .shopnextpicking .delay, .details .doat').each(function() {
+this.textContent = moment(this.textContent,'YYYY-MM-DDTHH:mm').calendar();
+});
+
+
+
+var bounds;
+var acts = <%= @acts %>;
+var actscoord = <%= @actscoord %>;
+var avatars = <%= raw @actsavatars %>;
+function initMap() {
+var map = new google.maps.Map(document.getElementById('map'), {
+zoom: 8,
+center: {lat: actscoord[1][0], lng: actscoord[1][1]}
+});
+bounds  = new google.maps.LatLngBounds();
+setMarkers(map);
+
+
+map.fitBounds(bounds);
+}
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+
+function setMarkers(map) {
+  var loc;
+
+  <%=  @acts.count.times do |i| %>
+      var image<%= i %> = {
+        url: avatars[<%= i %>].replace(/&quot;/g, '\\"'),
+        size: new google.maps.Size(32, 32),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 32)
+      };
+      var marker<%= i %> = new google.maps.Marker({
+        position: {lat: actscoord[<%= i %>][0], lng: actscoord[<%= i %>][1]},
+        map: map,
+        icon: image<%= i %>,
+      });
+      loc = new google.maps.LatLng(marker<%= i %>.position.lat(), marker<%= i %>.position.lng());
+      bounds.extend(loc);
+  <%   end%>
+};
+initMap();
+
+$(window).on('resize',function(){
+initMap();
+});
+
+</script>

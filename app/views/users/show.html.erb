@@ -5,7 +5,11 @@
   <header class="row">
 
 <div class="left-panel col-md-8">
+
+
+  <div class="usermainpanel row ">
 <%= render "users/usermainbloc"  %>
+</div>
 
 <% if @user=current_user %>
   <div class=" row text-center userdetails hidden-xs hidden-sm">
@@ -62,6 +66,12 @@
     <h4 class="grey1">Prochains pickings de <%= @user.username %></h4>
     <%= render partial:"trajetpumds/partials/listitem", object: @nextpickings, as: :trajets  %>
   </div>
+  <!-- changer le format date en "demain..." -->
+  <script type="text/javascript">
+  $('.pickingitem .delay').each(function() {
+  this.textContent = moment(this.textContent,'YYYY-MM-DDTHH:mm').calendar();
+  });
+  </script>
   <div class="usersdrivesfav">
     <h4 class="grey1">Drives favoris de <%= @user.username %></h4>
     <%= render partial:"trajetpumds/partials/listdrivesfav", object: @nextpickings, as: :amis  %>

@@ -167,6 +167,48 @@ height:70vh
   text-decoration: underline;
   font-weight: 700
 }
+
+
+// SHOW
+.headermap{
+  height: 400px;
+  width: 100%;
+  margin-bottom: 10px
+}
+.trajetdetails, .pickerdetails, .usernextpicking, .shopnextpicking{
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 15px 0 !important;
+  margin-bottom: 20px !important
+}
+.trajetdetails .shopmini{
+ position: relative;
+}
+.trajetdetails .shopmini img{
+ position: absolute;
+ top: 0;
+ right: 10px
+}
+.trajetdetails .details{
+ padding: 0;
+ margin: 20px 0;
+ font-size: 0.9em
+}
+.trajetdetails .details li{
+ padding: 5px 0;
+}
+.trajetdetails .details i{
+ padding-top: 3px
+}
+.pickerbloc h4, .trajetshow h4.bloctitle{
+	margin-top: 0;
+	background-color: #ddd;
+	border: 1px solid #ddd;
+	margin-bottom: 0;
+	padding: 5px 0;
+	font-size: 1.2em;
+}
+
 @media all and (max-width:991px) {
   #mapcontainer {
     height:60%;

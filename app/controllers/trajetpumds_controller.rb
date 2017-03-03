@@ -89,6 +89,41 @@ class TrajetpumdsController < ApplicationController
   # GET /trajetpumds/1
   # GET /trajetpumds/1.json
   def show
+    @trajet=  @trajetpumd
+    sommesacs(@trajet.resapumd)
+    placerestante(@trajet.resapumd)
+    @nextpickings=Trajetpumd.isactive.where(:driver_id => @trajet.user.id).order(:do_at).limit(5)
+    @nextpickers=Trajetpumd.isactive.where(:shop_id => @trajet.shop.id).order(:do_at).limit(7)
+    @user=@trajet.user
+    dob = @user.dob
+    now = Time.now.utc.to_date
+    @age =now.year - @user.dob.year - (@user.dob.change(:year => now.year) > now ? 1 : 0)
+    if current_user
+      @lati=current_user.latitude
+      @longi=current_user.longitude
+    else
+      @client=request.location
+      @lati=@client.latitude
+      @longi=@client.longitude
+    end
+    @acts=[]
+    @actscoord=[]
+    @actsavatars=[]
+    @acts << 0
+    @actscoord << [@lati,@longi]
+    if current_user
+      @actsavatars << current_user.avatar.marker.url
+    else
+      @actsavatars << "#{Rails.root}/public/img/avataruser/marker_defaultavatar.png"
+    end
+    @acts << 1
+    @actscoord << [@trajet.shop.latitude,@trajet.shop.longitude]
+    @actsavatars << @trajet.shop.brand.minipic.marker.url
+ if current_user!=@user
+    @acts << 2
+    @actscoord << [@trajet.user.latitude,@trajet.user.longitude]
+    @actsavatars << @trajet.user.avatar.marker.url
+end
 
   end
 
@@ -99,7 +134,7 @@ class TrajetpumdsController < ApplicationController
 
   # GET /trajetpumds/1/edit
   def edit
-
+    @trajet=  @trajetpumd
   end
 
 
@@ -201,7 +236,7 @@ class TrajetpumdsController < ApplicationController
     end
     def redir
       if @resa.save
-       redirect_to root_url, notice: "Merveilleux! vos courses arriverons chez vous très vite... Enjoy PUMD ;)"
+       redirect_to root_url, notice: "Merveilleux! vos courses arriverons chez vous très vite... Enjoy PUMP ;)"
      else
        redirect_to root_url, notice: "OUps! :( il y a eu un problème... veuillez nous contacter "
       end
@@ -347,6 +382,51 @@ class TrajetpumdsController < ApplicationController
 
 
   private
+
+  def sommesacs(resa)
+    sac=0
+    if resa.drive1_size!=nil
+      sac+=resa.drive1_size
+    end
+    if resa.drive2_size!=nil
+      sac+=resa.drive2_size
+    end
+    if resa.drive3_size!=nil
+      sac+=resa.drive3_size
+    end
+    if resa.drive4_size!=nil
+      sac+=resa.drive4_size
+    end
+    if resa.drive5_size!=nil
+      sac+=resa.drive5_size
+    end
+    @sommesacs= sac
+  end
+
+  def placerestante(res)
+    @places=0
+    @max= res.maxsac
+    if res.drive6_size == nil
+      @sac=0
+      if res.drive1_size!=nil
+        @sac+=res.drive1_size
+      end
+      if res.drive2_size!=nil
+        @sac+=res.drive2_size
+      end
+      if res.drive3_size!=nil
+        @sac+=res.drive3_size
+      end
+      if res.drive4_size!=nil
+        @sac+=res.drive4_size
+      end
+      if res.drive5_size!=nil
+        @sac+=res.drive5_size
+      end
+     @places= @max - @sac
+    end
+    @placesrestantes = @places
+  end
 
 
   def sendsms(desti,mess)

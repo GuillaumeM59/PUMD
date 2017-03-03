@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require modernizr.custom
 //= require bootstrap-sprockets
 //= require moment
 //= require moment/fr
@@ -22,13 +21,12 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require rails.validations
 //= require bootstrap-toggle
+//= require jquery.knob.min
 //= require transactions
-//= require connexion
 //= require index
 //= require testnavbar
 //= require static_pages
 //= require underscore
 //= require gmaps/google
 //= require markerclusterer
-//= require_tree .
 //= require cookies_eu
