@@ -11,7 +11,7 @@ class Trajetpumd < ActiveRecord::Base
     where(:do_at => start_date..end_date)
   end
   # scope :trajetsactifs, -> { where(:do_at => start_date..end_date) }
-  attr_accessor :brand_id, :custom_address, :username, :do_around
+  attr_accessor :brand_id, :custom_address, :username, :do_around, :tempsize, :tempstage
 
   ratyrate_rateable "Quality"
 

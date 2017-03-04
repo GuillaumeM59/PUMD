@@ -50,7 +50,31 @@
     </div>
 </div>
 
+<script type="text/javascript">
+function cenH(small,big){
+  var smallH = $(small).first().innerHeight()/2;
+  var bigH = $(big).first().innerHeight()/2;
+  $(small).css({marginTop: (bigH-smallH)});
+};
+function cenW(small,big){
+  var smallW = $(small).first().innerWidth()/2;
+  var bigW = $(big).first().innerWidth()/2;
+  $(small).css({marginLeft: (bigW-smallW)});
+};
 
+function Valign(small,big){
+  cenH(small,big);
+  $(window).on('resize',function(){
+  cenH(small,big);
+  });
+};
+function Halign(small2,big2){
+  cenW(small2,big2);
+  $(window).on('resize',function(){
+  cenW(small2,big2);
+  });
+};
+</script>
 
 <!-- modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -342,6 +366,7 @@
     $(window).on('resize',function(){
     footeronbottom();
     });
+
 
     $(function () {
       $("#dtpickerdobhome").datetimepicker({

@@ -1,0 +1,25 @@
+<% @bagchoices = [] %>
+<% @placesrestantes.times do |i|
+    if i+1 == 1
+      @bagchoices << ["1 sac",1]
+    else
+      @bagchoices << ["#{i+1} sacs",i+1]
+    end
+  end
+%>
+<% @stageschoices = [["Rez-de-chaussée",0],["Avec ascenseur",1],["1er étage",2],["2e étage",3]] %>
+
+<%= form_tag trajetpumds_confirm_path, method: :post, class: "resaform" do |f| %>
+     <%= hidden_field_tag :trajetid, @trajet.id %>
+     <ol class="list-unstyled">
+       <li class="resaformitem">
+         <%= label_tag(:tempsize, "Volume des courses:", class:"grey1") %><br>
+         <%= select_tag(:tempsize, options_for_select(@bagchoices)) %>
+       </li>
+       <li class="resaformitem">
+         <%= label_tag(:tempstage, "Condition de livraison", class:"grey1") %> <br>
+         <%= select_tag(:tempstage, options_for_select(@stageschoices)) %>
+       </li>
+     </ol>
+     <%= submit_tag 'PUMP mes courses!', class: "btn btn-login fwidth"%>
+ <% end %>
