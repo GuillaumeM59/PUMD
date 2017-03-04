@@ -75,6 +75,7 @@ gem 'ratyrate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'awesome_print'
 
 
 group :development, :test do

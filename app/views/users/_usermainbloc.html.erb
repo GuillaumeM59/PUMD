@@ -41,7 +41,7 @@
 
 
 <!-- Resp. design show xs -->
-<div class="col-xs-12 useridbloc text-left grey1 hidden-sm hidden-md hidden-lg">
+<div class="col-xs-12 useridbloc text-center grey1 hidden-sm hidden-md hidden-lg">
   <p class="pseudo">
     <%= @user.username %>
     <span class="age">
@@ -64,23 +64,12 @@
 
     <p class="col-xs-6 totalrating">rating</p>
     <script type="text/javascript">
-    function centerrank() {
-    var useravatarH = $('.useravatarbloc').first().innerHeight()/2;
-    var ranktextW = $('.ranktext').first().innerWidth()/2;
-    var rankH = $('.userbuttons').first().innerHeight()/2;
-    var rankW = $('.userbuttons .rankpic').first().innerWidth()/2;
-    $('.userbuttons').css({paddingTop: (useravatarH-rankH)});
-    $('.userbuttons .rankpic').css({marginLeft: (ranktextW-rankW)});
-    }
 
-    centerrank();
-
-    $(window).on('resize',function(){
-    centerrank();
+    $(document).ready(function () {
+      Valign('.userbuttons', '.useravatarbloc');
+      Halign('.userbuttons .rankpic','.ranktext');
     });
     </script>
   </div>
-<!--  -->
-
-
 </div>
+<!--  -->

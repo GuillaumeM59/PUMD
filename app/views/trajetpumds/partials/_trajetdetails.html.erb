@@ -1,113 +1,140 @@
-
-
-              <h3 class="shopname col-xs-9 grey1 text-left"><%= @trajet.shop.name %></h3>
-            <div class="shopmini col-xs-3 text-right">
-              <%= image_tag(@trajet.shop.brand.minipic, class:"img-responsive shopminipic") %>
-            </div>
-            <ol class="details col-sm-7 list-unstyled text-left">
-              <li class="row">
-                <div class="col-xs-1">
-                  <i class="fa fa-shopping-basket "></i>
-                </div>
-                <div class="col-xs-5">
-                  Enseigne
-                </div>
-                <div class="col-xs-6"><%= @trajet.shop.brand.name %>
-                </div>
-              </li>
-              <li class="row">
-                <div class="col-xs-1">
-                  <i class="fa fa-globe "></i>
-                </div>
-                <div class="col-xs-5">
-                  Ville
-                </div>
-                <div class="col-xs-6">
-                  <%= @trajet.shop.name.remove(@trajet.shop.brand.name)%>, France
-                </div>
-
-              </li>
-              <li class="row">
-                <div class="col-xs-1">
-                  <i class="fa fa-arrows "></i>
-                </div>
-                <div class="col-xs-5">
-                  Espace disponible
-                </div>
-                <div class="col-xs-6">
-<%= @placesrestantes %>
-                </div>
-
-              </li>
-              <li class="row">
-                <div class="col-xs-1">
-                  <i class="fa fa-clock-o "></i>
-                </div>
-                <div class="col-xs-5">
-                  Horaire du picking
-                </div>
-                <div class="col-xs-6 doat">
-                  <%= @trajet.do_at.strftime("%FT%R")%>
-                </div>
-
-              </li>
-              <li class="row">
-                <div class="col-xs-1">
-                  <i class="fa fa-level-up "></i>
-                </div>
-                <div class="col-xs-5">
-                  Monte les courses
-                </div>
-                <div class="col-xs-6">
-                  vas chier
-                </div>
-
-              </li>
-            </ol>
-
-<div class="col-sm-3">
-
-  <input type="text" value="<%= @trajet.resapumd.maxsac %>" data-max="<%= @trajet.resapumd.maxsac %>" id="places">
-  <p class="text-center">
-
-    nombre de sac pouvant encore être livré
-  </p>
+<h3 class="shopname col-xs-9 grey1 text-left"><%= @trajet.shop.name %></h3>
+<div class="shopmini col-xs-3 text-right">
+    <%= image_tag(@trajet.shop.brand.minipic, class:"shopminipic", size:"80") %>
 </div>
+<ol class="details col-sm-7 list-unstyled text-left hidden-xs hidden-sm">
+    <li class="row">
+        <div class="col-xs-1">
+            <i class="fa fa-shopping-basket "></i>
+        </div>
+        <div class="col-xs-5">
+            Enseigne
+        </div>
+        <div class="col-xs-6"><%= @trajet.shop.brand.name %>
+        </div>
+    </li>
+    <li class="row">
+        <div class="col-xs-1">
+            <i class="fa fa-globe "></i>
+        </div>
+        <div class="col-xs-5">
+            Ville
+        </div>
+        <div class="col-xs-6">
+            <%= @trajet.shop.name.remove(@trajet.shop.brand.name)%>, France
+        </div>
 
+    </li>
+    <li class="row">
+        <div class="col-xs-1">
+            <i class="fa fa-arrows "></i>
+        </div>
+        <div class="col-xs-5">
+            Espace disponible
+        </div>
+        <div class="col-xs-6">
+            <%= @placesrestantes %>
+        </div>
+
+    </li>
+    <li class="row">
+        <div class="col-xs-1">
+            <i class="fa fa-clock-o "></i>
+        </div>
+        <div class="col-xs-5">
+            Horaire du picking
+        </div>
+        <div class="col-xs-6 doat">
+            <%= @trajet.do_at.strftime("%FT%R")%>
+        </div>
+
+    </li>
+    <li class="row">
+        <div class="col-xs-1">
+            <i class="fa fa-level-up "></i>
+        </div>
+        <div class="col-xs-5">
+            Monte les courses
+        </div>
+        <div class="col-xs-6">
+            vas chier
+        </div>
+
+    </li>
+</ol>
+<!-- hidden xs sm -->
+<div class="col-md-3 hidden-xs hidden-sm">
+
+    <input type="text" value="<%= @trajet.resapumd.maxsac %>" data-max="<%= @trajet.resapumd.maxsac %>" class="places">
+    <p class="text-center">
+
+        nombre de sac pouvant encore être livré
+    </p>
+</div>
+<!--  -->
+
+<!-- hidden md lg -->
+<div class="col-xs-12 hidden-md hidden-lg detailsxs">
+<div class="row">
+  <div class="col-xs-3 doat">
+      <%= @trajet.do_at.strftime("%FT%R")%>
+  </div>
+
+<div class="col-xs-5 circlerest">
+
+    <input type="text" value="<%= @trajet.resapumd.maxsac %>" data-max="<%= @trajet.resapumd.maxsac %>" class="places">
+    <p class="text-center">
+
+        nombre de sac pouvant encore être livré
+    </p>
+</div>
+<div class="col-xs-3 doat">
+  <%= @trajet.do_at.strftime("%FT%R")%>
+</div>
+</div>
+</div>
 
 <script>
 
     $(document).ready(function () {
-      $('#places').hide();
-        function initdescompte(){
-          $('#places').show();
+        $('.places').css({opacity: 0});
+        function initdescompte() {
+            $('.places').css({opacity: 1});
 
-          $("#places").knob({'readOnly': true,'thickness':0.1,'width':100, 'height':80, 'angleArc': 250, 'angleOffset':235 ,  change : function (value) {}});
+            $(".places").knob({
+                'readOnly': true,
+                'thickness': 0.1,
+                'width': 100,
+                'height': 80,
+                'angleArc': 250,
+                'angleOffset': 235,
+                change: function (value) {}
+            });
 
-          var a = <%= @trajet.resapumd.maxsac %>;
-          var b = <%= @placesrestantes %>;
-          var c = 0;
-          var coef = 255/a;
-          var coef2 = 187/a;
-          function changecercle() {
-              if (a < b ) {
-                  clearInterval(decompte);
-              } else {
+            var a = <%= @trajet.resapumd.maxsac %>;
+            var b = <%= @placesrestantes %>;
+            var c = 0;
+            var coef = 255 / a;
+            var coef2 = 187 / a;
+            function changecercle() {
+                if (a < b) {
+                    clearInterval(decompte);
+                } else {
 
-                var rouge = Math.round(c*coef);
-                var bleu = Math.round(255 -(c*coef));
-                var vert = Math.round(187 -(c*coef2));
-                var newcolor = "rgb("+rouge+","+vert+","+bleu+")";
-                clearTimeout(go);
-                  $("#places").val(a).trigger("change");
-                  $("#places").trigger("configure", {"fgColor" : newcolor});
-                  $("#places").css({color:newcolor});
-                  a = a - 1;
-                  c++;
-              }
-          }
-          var decompte = setInterval(changecercle, 50);
+                    var rouge = Math.round(c * coef);
+                    var bleu = Math.round(255 - (c * coef));
+                    var vert = Math.round(187 - (c * coef2));
+                    var newcolor = "rgb(" + rouge + "," + vert + "," + bleu + ")";
+                    clearTimeout(go);
+                    $(".places").val(a).trigger("change");
+                    $(".places").trigger("configure", {"fgColor": newcolor});
+                    $(".places").css({color: newcolor});
+                    a = a - 1;
+                    c++;
+                }
+            }
+            var decompte = setInterval(changecercle, 50);
         }
-        var go = setTimeout(initdescompte, 10000);
+        var go = setTimeout(initdescompte, 6000);
     });
 </script>

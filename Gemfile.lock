@@ -51,6 +51,7 @@ GEM
     arel (6.0.4)
     autoprefixer-rails (6.7.2)
       execjs
+    awesome_print (1.7.0)
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -317,6 +318,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
+  awesome_print
   better_errors
   bootstrap-sass
   bootstrap-toggle-rails

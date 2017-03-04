@@ -500,8 +500,8 @@ end
     end
 
     def gettrajetinfos (trajet)
-      @driver= User.find(trajet.driver_id)
-      @shop= Shop.find(trajet.shop_id)
+      @driver= trajet.user
+      @shop= trajet.shop
       @do_at= trajet.do_at
     end
 
