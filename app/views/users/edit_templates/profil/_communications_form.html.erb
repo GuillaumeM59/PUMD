@@ -1,6 +1,8 @@
 <div class="communications_form moving_form ">
 <%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
     <%= devise_error_messages_for(@user) %>
+    <%= f.hidden_field :slide, value: 5 %>
+
     <div class="field">
        <%= f.label :email %><br />
        <%= f.email_field :email, autofocus: true, class:"fwidth" %>

@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     dob = @user.dob
     now = Time.now.utc.to_date
     @age =now.year - @user.dob.year - (@user.dob.change(:year => now.year) > now ? 1 : 0)
-
+    @slide = params[:slide]
     def resource
 
     @resource ||= @user
@@ -70,8 +70,12 @@ class UsersController < ApplicationController
     @user.avatar = :default_url
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Vous avez été inscrit, vous avez gagné 3€ et 2 cocoins pour essayer le covoiturage shopping! ' }
-        format.json { render :show, status: :created, location: @user }
+        if params[:user][:avatar].present?
+          render :crop
+        else
+          format.html { redirect_to @user, notice: 'Vous avez été inscrit, vous avez gagné 3€ et 2 cocoins pour essayer le covoiturage shopping! ' }
+          format.json { render :show, status: :created, location: @user }
+        end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -82,19 +86,49 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-    params[:user].delete(:password)
-    params[:user].delete(:password_confirmation)
-    end
-    respond_to do |format|
-      if @user.update_with_password(user_params)
-        format.html { redirect_to @user, notice: 'Votre profil a été modifié.' }
-        format.json { render :show, status: :ok, location: @user }
+    @slide = params[:user][:slide].to_s
+    if params[:user][:current_password].nil?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+      if @user.update_without_password(user_params)
+        respond_to do |format|
+          format.html {
+            if params[:user][:avatar].present?
+              render :crop
+            else
+              redirect_to @user, notice: 'Votre profil a été modifié.'
+            end
+            }
+          format.json { render :show, status: :ok, location: @user }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { redirect_to edit_user_path(@user, :slide => params[:user][:slide]) }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+      if @user.update_with_password(user_params)
+        respond_to do |format|
+          format.html {
+            if params[:user][:avatar].present?
+              render :crop
+            else
+              redirect_to @user, notice: 'Votre profil a été modifié.'
+            end
+          }
+          format.json { render :show, status: :ok, location: @user }
+        end
+      else
+        respond_to do |format|
+          format.html { render :edit}
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
+
   end
 
 
@@ -137,7 +171,13 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :username, :admin, :nom, :prenom,:dob, :comment, :subscribe, :city, :latitude, :longitude, :adress, :zipcode, :gender, :driver, :cbrand_id, :cmodel_id, :carsize, :email, :phone, :xp, :avatar, :password, :password_confirmation, :current_password)
+      params.require(:user).permit(:id, :username,
+        :admin, :nom, :prenom,:dob, :comment, :subscribe,
+         :city, :latitude, :longitude, :adress, :zipcode,
+         :gender, :slide, :driver, :cbrand_id, :cmodel_id,
+         :carsize, :email, :phone, :xp, :avatar, :password,
+         :password_confirmation, :current_password,
+          :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
 

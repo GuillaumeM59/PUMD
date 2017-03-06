@@ -1,0 +1,185 @@
+<%= stylesheet_link_tag 'jquery.Jcrop.min' %>
+<%= javascript_include_tag 'jquery.Jcrop.min' %>
+<style type="text/css">
+
+    /* Apply these styles only when #preview-pane has
+   been placed within the Jcrop widget */
+    .jcrop-holder #preview-pane {
+        display: block;
+        position: absolute;
+        z-index: 2000;
+        bottom: 100px;
+        right: -25px;
+        padding: 6px;
+        border: 1px rgba(0,0,0,.4) solid;
+        background-color: white;
+
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+
+        -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    /* The Javascript code will set the aspect ratio of the crop
+   area based on the size of the thumbnail preview,
+   specified here */
+    #preview-pane .preview-container {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 75px;
+    }
+</style>
+<script type="text/javascript">
+    $('body').css({backgroundColor: "#f4f4f4"})
+</script>
+<div class="container toppage resizeavatarpage">
+    <h3 class="modaltitle">Le plus beau des avatars</h3>
+    <header class="row">
+        <div class="resizebloc grey1 text-center">
+            <h4>Redimensionnez votre avatar pour une plus belle présentation</h4>
+            <%= image_tag @user.avatar_url(:large), id: "avatarcropbox"%>
+
+            <div class="row">
+                <div id="minipreview" >
+                    <div id="preview-pane">
+                        <div class="preview-container">
+                            <%= image_tag @user.avatar_url(:large), class: "jcrop-preview", alt:"preview"%>
+                        </div>
+                    </div>
+<p>Aperçu</p>
+                    <div class="text-center resizesubmit col-xs-6">
+                      <%= form_for @user do |f| %>
+                      <% %w[x y w h].each do |attribute| %>
+                      <%= f.hidden_field "crop_#{attribute}" %>
+                      <% end %>
+
+                      <%= f.submit "Redimensionner", class: "btn-o-purple" %>
+                      <% end %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+</div>
+<script type="text/javascript">
+    var pic_real_width = 0;
+    var pic_real_height = 0;
+    var pic_real_ratio = 0;
+    var bidule = 0;
+
+    var jcrop_api,
+        // Create variables (in this scope) to hold the API and image size
+        boundx,
+        boundy,
+        jBoxW,
+
+        // Grab some information about the preview pane
+        $preview = $('#preview-pane'),
+        $pcnt = $('#preview-pane .preview-container'),
+        $pimg = $('#preview-pane .preview-container img'),
+
+
+        xsize = $pcnt.width(),
+        ysize = $pcnt.height();
+
+    function setwidth() {
+
+        bidule = $(window).width();
+        console.log(bidule);
+        // set box sizes:
+        if ($(window).width() < 400) {
+            jBoxW = 250;
+        } else if ($(window).width() < 991) {
+            jBoxW = 400;
+        } else {
+            jBoxW = 0;
+        }
+    }
+
+    function getMeta(url) {
+        $("<img/>", {
+            load: function () {
+                pic_real_width = this.width; // Note: $(this).width() will not
+                pic_real_height = this.height; // work for in memory images.
+                pic_real_ratio = pic_real_width / pic_real_height;
+                console.log([pic_real_width, pic_real_height]);
+            },
+            src: url
+        });
+    };
+    getMeta("<%= @user.avatar_url(:large) %>");
+
+    function buildthecrop() {
+
+        $('#avatarcropbox').Jcrop({
+            onChange: update_crop,
+            boxWidth: jBoxW,
+            boxHeight: jBoxW / pic_real_ratio,
+            setSelected: [
+                50, 50, 50, 50
+            ],
+            aspectRatio: 1,
+            trueSize: [pic_real_width, pic_real_height]
+        }, function () {
+            var bounds = this.getBounds();
+            boundx = bounds[0];
+            boundy = bounds[1];
+            // Store the API in the jcrop_api variable
+            jcrop_api = this;
+
+            // Move the preview into the jcrop container for css positioning
+            $preview.prependTo($('#minipreview'));
+        });
+
+        function updatePreview(coords) {
+            if (parseInt(coords.w) > 0) {
+                var rx = xsize / coords.w;
+                var ry = ysize / coords.h;
+
+                $pimg.css({
+                    width: Math.round(rx * boundx) + 'px',
+                    height: Math.round(ry * boundy) + 'px',
+                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+                });
+            }
+        };
+        function update_crop(coords) {
+            $('#user_crop_x').val(coords.x);
+            $('#user_crop_y').val(coords.y);
+            $('#user_crop_w').val(coords.w);
+            $('#user_crop_h').val(coords.h);
+            updatePreview(coords)
+        }
+
+    };
+
+    $(function () {
+
+        setTimeout(function () {
+            setwidth();
+            buildthecrop();
+            jcrop_api.destroy();
+            setwidth();
+            buildthecrop();
+            Halign('div.jcrop-holder', '.resizebloc');
+        }, 3000);
+        setTimeout(function () {
+            Halign('div.jcrop-holder', '.resizebloc');
+        }, 3500);
+
+        // auto rebuild on resize
+        $(window).on('resize', function () {
+            jcrop_api.destroy();
+            setwidth();
+            buildthecrop();
+            Halign('div.jcrop-holder', '.resizebloc');
+        });
+    });
+</script>

@@ -3,6 +3,8 @@
   <h4 class="grey1">Le porte-monnaie vous permet de cagnotter vos gains et d'automatiser un virement dès que vous avez atteint un palier.</h5>
     <%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
     <%= devise_error_messages_for(@user) %>
+    <%= f.hidden_field :email, value: @user.email %>
+    <%= f.hidden_field :slide, value: 6 %>
     <div class="row">
   <p class="col-xs-8 col-sm-10 beforeonofftext">Activer mon Porte-monnaie</p>
   <div class="col-xs-4 col-sm-2">

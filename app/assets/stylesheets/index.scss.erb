@@ -200,6 +200,11 @@ body.modal-open #wrap {
 	border-radius: 10px;
 	margin-right: 15px;
 }
+nav {
+    transition: 1.5s;
+    transition-timing-function: cubic-bezier(.86,.02,.14,1);
+    -webkit-transition: 1.5s;
+  }
 .textholderempty {
   font-size: 1.3em;
   color: rgb(186, 186, 186);
@@ -473,4 +478,30 @@ margin: 0
   .home-testimonial-bloc ul li{
   padding: 30px 10px
   }
+  .navbar-right{
+    padding-left: 0;
+    float: right;
+  }
+}
+
+@media all and (max-width:767px) {
+  .navbar-right .droppeddown .dropdown-menu {
+    position: relative;
+    width: 0;
+    height: 0;
+    float: right;
+
+  }
+  .navbar-right .droppeddown .dropdown-menu, .navicouser,   .navbar-right .droppeddown{
+      transition: 3s;
+      transition-timing-function: cubic-bezier(.86,.02,.14,1);
+      -webkit-transition: 3s;
+    }
+    .navbar-right .droppeddown.open .dropdown-menu {
+      display: inline-block;
+      width: 100%;
+      height: auto;
+
+    }
+
 }

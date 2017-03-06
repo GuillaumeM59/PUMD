@@ -1,17 +1,10 @@
 <script type="text/javascript">
-  $('body').css({backgroundColor:"rgb(240, 240, 240)"})
+  $('body').css({backgroundColor:"rgb(240, 240, 240)"});
 </script>
 
 
 <div class="container toppage edituserpage">
   <div class="row">
-
-<div class="visible-xs">xs</div>
-<div class="visible-sm">sm</div>
-<div class="visible-md">md</div>
-<div class="visible-lg">lg</div>
-
-
 
     <div class=" col-xs-12 col-md-8 col-md-offset-2">
 
@@ -138,23 +131,10 @@ $('.delete-link').click(function(){
   show('.delete-link','.delete_form',"Supprimer mon compte")
 });
 
-var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
 
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
+function initSlide(n){
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-};
-function initSlide(){
-  var slide = getUrlParameter('slide');
-  switch (slide){
+  switch (n){
    case "1":
       show('.avatar-link','.avatar_form',"Photo de profil")
       break;
@@ -192,8 +172,30 @@ function initSlide(){
    default:
         show('.personal-link','.personal_form',"Informations personnelles")
 }
-}
+};
+$(function(){
+<% if @slide != nil %>
+var slide = <%= @slide %>;
+var fromslide = slide.toString();
+initSlide(fromslide);
 
+<% else %>
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
-initSlide();
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+var slide = getUrlParameter('slide');
+initSlide(slide);
+<% end %>
+});
 </script>
