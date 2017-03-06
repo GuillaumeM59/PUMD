@@ -237,7 +237,7 @@ function Halign(small2,big2){
 
                 <li>
                     <%= link_to("", { :class => 'navicouser', 'data-toggle' => 'dropdown', :alt => 'menu' }) do %>
-                    <%= image_tag(current_user.avatar, size:"50", class:"img-circle dropdown-toggle") %>
+                    <%= image_tag(current_user.avatar_url(:thumb), size:"50", class:"img-circle dropdown-toggle") %>
                     <span><%=current_user.username%></span>
                       <%end%>
                     <ul class="dropdown-menu">
@@ -247,14 +247,18 @@ function Halign(small2,big2){
                           <%end%>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-cogs"></i> Paramètres</a>
+                          <%=  link_to(edit_user_path(current_user), { :alt => 'paramètres utilisateur' }) do %>
+                          <i class="fa fa-cogs"></i> Paramètres
+                          <%end%>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope-o"></i> Nous contacter</a>
+                          <%=  link_to(static_pages_contact_path(), { :alt => 'contact' }) do %>
+                          <i class="fa fa-envelope-o"></i> Nous contacter
+                          <%end%>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                          <%= link_to destroy_user_session_path, :class => "navicoout", alt:"déconnexion", :method => :delete do%>
+                          <%= link_to destroy_user_session_path, alt:"déconnexion", :method => :delete do%>
                           <i class="fa fa-sign-out"></i> Déconnexion
                           <%end %>
                         </li>

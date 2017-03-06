@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 validates :password, length: { minimum: 8 }, on: :create
 validates :dob, length: {is: 10}
 validate :dob_for_majority
+attr_accessor :slide, :crop_x, :crop_y, :crop_w, :crop_h
+after_update :crop_avatar
 
 
 ratyrate_rater
@@ -28,8 +30,11 @@ def dob_for_majority
 end
 
 
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
 
 #bdd links
   has_many :bids
@@ -40,6 +45,9 @@ end
 #uploader carrierwave
   mount_uploader :avatar, AvatarUploader
 
+  def crop_avatar
+    avatar.recreate_versions! if crop_x.present?
+  end
 
 #locate by geocoder
 def full_address

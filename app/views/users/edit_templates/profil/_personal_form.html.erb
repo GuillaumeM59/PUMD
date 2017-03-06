@@ -1,6 +1,8 @@
 <div class="personal_form moving_form">
 <%=form_for resource, as: @user, url: user_path(@user),:html => {:method =>:patch},class:" user",id:"form-sign-up", validate: true do |f| %>
     <%= devise_error_messages_for(@user) %>
+    <%= f.hidden_field :email, value: @user.email %>
+    <%= f.hidden_field :slide, value: 0 %>
   <div class="field">
     <%= f.label :nom %><br>
     <%= f.text_field :nom %>
@@ -21,11 +23,7 @@
     <%= f.label "Date de naissance" %><br>
     <%= f.date_select :dob, :start_year => 1900, :end_year => Time.now.year  %>
   </div>
-  </br>
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password, autocomplete: "off" %></br>
-    <i class="grey2">(Nécessaire pour confirmer vos changements)</i><br/>
-  </br>
+
     <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
 <% end %>
 </div>

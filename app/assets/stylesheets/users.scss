@@ -296,7 +296,27 @@ color: #00bbf0
 z-index: 20;
   left:25px;
 }
-
+.resizebloc{
+  background-color: white;
+  border: 1px solid rgb(214, 214, 214);
+  margin-bottom: 20px
+}
+.resizebloc .resizesubmit{
+  padding: 20px 0
+}
+.previewbox{
+  // overflow: hidden;
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+.previewbox img{
+  // overflow: hidden;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0
+}
 
 .adresse_form ol li p {
   padding: 20px 0;

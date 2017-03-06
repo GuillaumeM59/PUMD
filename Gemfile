@@ -31,6 +31,8 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'bootstrap-toggle-rails'
 # Hook locally mail
 
+
+
 # allow rails datas on js
 gem 'gon'
 gem 'administrate'
@@ -50,6 +52,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc'
+gem 'rails-i18n'
 
 # Get localisation or address with geocoder
 gem 'geocoder'
