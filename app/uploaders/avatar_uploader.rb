@@ -23,12 +23,12 @@ end
   process resize_to_fit: [200,200]
 end
  version :thumb do
-   process resize_to_fit: [200,200]
+   process resize_to_fit: [600,600]
   process :crop
   process resize_to_fit: [150,150]
 end
  version :marker do
-   process resize_to_fit: [200,200]
+   process resize_to_fit: [600,600]
    process :crop
   process resize_to_fit: [32,32]
 end
