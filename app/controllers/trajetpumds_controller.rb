@@ -22,6 +22,7 @@ class TrajetpumdsController < ApplicationController
     @searchlistdrive = Shop.where(isdrive: true)
     @shopidlist = @searchlistdrive.map{ |x| x.id }
     @aroundpickers=[]
+    @shopstosort=[]
     @par=params[:custom_address]
     if @par == nil || @par == ""
       if current_user
@@ -33,10 +34,21 @@ class TrajetpumdsController < ApplicationController
         @longi=@client.longitude
       end
     else
-      @client=Geocoder.coordinates(@par)
+      @client=Geocoder.coordinates(@par + "france")
       @lati=@client[0]
       @longi=@client[1]
     end
+
+    @searchlistdrive.each do |shop|
+        disttoshop= Geocoder::Calculations.distance_between([@lati,@longi], [shop.latitude,shop.longitude], :units => :km).round(2)
+        if disttoshop <10
+        @shopstosort << [shop,disttoshop]
+      end
+      @aroundshops= @shopstosort.sort do |a,b|
+        a[1] <=> b[1]
+      end
+    end
+
 
     User.where(driver:true).each do |driver|
         disttodriver= Geocoder::Calculations.distance_between([@lati,@longi], [driver.latitude,driver.longitude], :units => :km).round(2)
@@ -46,9 +58,12 @@ class TrajetpumdsController < ApplicationController
     end
     @aroundpickers.sort_by{|t| t[1]}
     if @aroundpickers.size > 25
-    @aroundpickers = @aroundpickers[0,25]
+      @aroundpickers = @aroundpickers[0,25]
     end
 
+    @shops=[]
+    @shopscoord=[]
+    @shopsavatars=[]
     @trajetsactifs=[]
     @pickers=[]
     @pickerscoord=[]
@@ -59,10 +74,15 @@ class TrajetpumdsController < ApplicationController
     @pickers << 0
     @trajetsdata << "C'est vous ;)"
     @pickerscoord << [@lati,@longi]
-    if current_user
-      @pickersavatars << "../.."+current_user.avatar.marker.url
-    else
-      @pickersavatars << "#{Rails.root}/public/img/avataruser/marker_defaultavatar.png"
+    @pickersavatars << "../.." + view_context.image_path('/img/gmap-flag-pump-55px.png')
+
+
+    # showshops around user
+    @aroundshops.each do |shoparray|
+            shop= shoparray[0]
+            @shops << shop.id
+            @shopscoord << [shop.latitude,shop.longitude]
+            @shopsavatars << "../.."+ shop.brand.minipic.marker.url
     end
 
     # search each shop by driver
@@ -79,7 +99,7 @@ class TrajetpumdsController < ApplicationController
             @trajetsdata << @listtrajetpicker
             @pickers << picker[0].id
             @pickerscoord << [picker[0].latitude,picker[0].longitude]
-            @pickersavatars << "../.."+ Brand.find(Shop.find(shop).brand_id).minipic.marker.url
+            @pickersavatars << "../.."+ i.user.avatar.marker.url
       end
     end
   end
@@ -119,12 +139,11 @@ class TrajetpumdsController < ApplicationController
     @acts << 1
     @actscoord << [@trajet.shop.latitude,@trajet.shop.longitude]
     @actsavatars << @trajet.shop.brand.minipic.marker.url
- if current_user!=@user
-    @acts << 2
-    @actscoord << [@trajet.user.latitude,@trajet.user.longitude]
-    @actsavatars << @trajet.user.avatar.marker.url
-end
-
+     if current_user!=@user
+        @acts << 2
+        @actscoord << [@trajet.user.latitude,@trajet.user.longitude]
+        @actsavatars << @trajet.user.avatar.marker.url
+      end
   end
 
   # GET /trajetpumds/new
