@@ -202,33 +202,38 @@ function chgbtn() {
 
 
 
-          var pickers = <%= @pickers %>;
-          var pickerscoord = <%= @pickerscoord %>;
-          var avatars = <%= raw @pickersavatars %>;
-          var infotrajets = <%=raw @trajetsdata %>;
+
+
+
+
+      var bounds;
+      var loc;
+
           var ul = document.getElementById("markerslist");
           function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
+        zoom: 8,
         center: {lat: <%= @lati %>, lng: <%= @longi %>}
       });
+      bounds  = new google.maps.LatLngBounds();
+      setMarkersShops(map);
+      map.fitBounds(bounds);
 
-      setMarkers(map);
     }
 
     // Data for the markers consisting of a name, a LatLng and a zIndex for the
     // order in which these markers should display on top of each other.
 
 
-
-    function setMarkers(map) {
-
-      <%=  @pickers.count.times do |i| %>
-          var i = <%= i %>;
-          var pcoord = pickerscoord[i];
-          var contentString = infotrajets[i];
-          var image = {
-            url: avatars[i].replace(/&quot;/g, '\\"'),
+    function setMarkersShops(map) {
+      var shops = <%= @shops %>;
+      var shopscoord = <%= @shopscoord %>;
+      var shopsavatars = <%= raw @shopsavatars %>;
+      <%  @shops.count.times do |s| %>
+          var s = <%= s %>;
+          var scoord = shopscoord[s];
+          var simage = {
+            url: shopsavatars[s].replace(/&quot;/g, '\\"'),
             // This marker is 20 pixels wide by 32 pixels high.
             size: new google.maps.Size(32, 32),
             // The origin for this image is (0, 0).
@@ -236,14 +241,52 @@ function chgbtn() {
             // The anchor for this image is the base of the flagpole at (0, 32).
             anchor: new google.maps.Point(0, 32)
           };
+          var markershop<%= s %> = new google.maps.Marker({
+            position: {lat: scoord[0], lng: scoord[1]},
+            map: map,
+            icon: simage,
+          });
+          <% if s<5 %>
+            loc = new google.maps.LatLng(markershop<%= s %>.position.lat(), markershop<%= s %>.position.lng());
+            bounds.extend(loc);
+          <% end %>
+          <% end %>
+
+      var pickers = <%= @pickers %>;
+      var pickerscoord = <%= @pickerscoord %>;
+      var avatars = <%= raw @pickersavatars %>;
+      var infotrajets = <%=raw @trajetsdata %>;
+      <%  @pickers.count.times do |i| %>
+          var i = <%= i %>;
+          var pcoord = pickerscoord[<%= i %>];
+          var contentString = infotrajets[<%= i %>];
+          var image = {
+            url: avatars[<%= i %>].replace(/&quot;/g, '\\"'),
+            <% if i<1 %>
+              size: new google.maps.Size(55, 55),
+              scaledSize:new google.maps.Size(55,55),
+              // The origin for this image is (0, 0).
+              origin: new google.maps.Point(0, 0),
+            <% else %>
+              // This marker is 20 pixels wide by 32 pixels high.
+              size: new google.maps.Size(32, 32),
+              // The origin for this image is (0, 0).
+              origin: new google.maps.Point(0, 0),
+              // The anchor for this image is the base of the flagpole at (0, 32).
+              anchor: new google.maps.Point(0, 32)
+            <% end %>
+          };
           var marker<%= i %> = new google.maps.Marker({
             position: {lat: pcoord[0], lng: pcoord[1]},
             map: map,
             icon: image,
           });
+          <% if i<5 %>
+          loc = new google.maps.LatLng(marker<%= i %>.position.lat(), marker<%= i %>.position.lng());
+          bounds.extend(loc);
+          <% end %>
           var infowindow<%= i %> = new google.maps.InfoWindow({
             content: contentString
-
           });
 
           function createMarkerButton(marker) {

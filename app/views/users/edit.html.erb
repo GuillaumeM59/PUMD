@@ -30,6 +30,12 @@
     <li><a  class="password-link" alt="mot de passe">Mot de passe</a></li>
     <li><a  class="delete-link" alt="supprimer compte">Supprimer mon compte</a></li>
   </ol>
+  <ol class="community-list list-unstyled">
+    <h4>Communauté</h4>
+    <li><a  class="feedback-link" alt="donations">Avis</a></li>
+    <li><a  class="friends-link" alt="Porte monnaie">Mes amis</a></li>
+    <li><a  class="blacklist-link" alt="moyens de paiement">Liste noire</a></li>
+  </ol>
 </div>
 
 <div class="edit-content col-xs-12 col-md-9">
@@ -52,6 +58,10 @@
 <%= render "users/edit_templates/account/notifications_form" %>
 <%= render "users/edit_templates/account/password_form" %>
 <%= render "users/edit_templates/account/delete_form" %>
+<!-- community partials -->
+<%= render "users/edit_templates/community/avis" %>
+<%= render "users/edit_templates/community/friends" %>
+<%= render "users/edit_templates/community/blacklist" %>
 
 
 
@@ -130,6 +140,17 @@ $('.password-link').click(function(){
 $('.delete-link').click(function(){
   show('.delete-link','.delete_form',"Supprimer mon compte")
 });
+// community ACTIONS
+$('.feedback-link').click(function(){
+  show('.feedback-link','.avis_bloc',"Mes avis")
+});
+$('.friends-link').click(function(){
+  show('.friends-link','.friends_bloc',"Mes Amis")
+});
+$('.blacklist-link').click(function(){
+  show('.blacklist-link','.blacklist_bloc',"Liste noire")
+});
+
 
 
 function initSlide(n){
@@ -167,6 +188,15 @@ function initSlide(n){
       break;
    case "11":
       show('.delete-link','.delete_form',"Supprimer mon compte")
+      break;
+   case "12":
+      show('.feedback-link','.avis_bloc',"Mes avis")
+      break;
+   case "13":
+      show('.friends-link','.friends_bloc',"Mes Amis")
+      break;
+   case "14":
+      show('.blacklist-link','.blacklist_bloc',"Liste noire")
       break;
 
    default:

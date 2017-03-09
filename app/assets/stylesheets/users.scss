@@ -268,7 +268,8 @@ color: #00bbf0
 .adresse_form,.avatar_form,.preferences_form,
 .communications_form,.personal_form, .certifications_form,
 .money_form,.paiements_form,.donations_form,
-.password_form,.notifications_form, .delete_form {
+.password_form,.notifications_form, .delete_form,
+.avis_bloc, .friends_bloc, .blacklist_bloc {
   position: absolute;
   top:80px;
   left:-100%;
@@ -283,7 +284,8 @@ color: #00bbf0
 .adresse_form,.avatar_form,.preferences_form,
 .communications_form,.personal_form, .certifications_form,
 .money_form,.paiements_form,.donations_form,
-.password_form,.notifications_form, .delete_form {
+.password_form,.notifications_form, .delete_form,
+.avis_bloc, .friends_bloc, .blacklist_bloc  {
   transition: 1.5s;
   transition-timing-function: cubic-bezier(.86,.02,.14,1);
   -webkit-transition: 1.5s;
@@ -292,7 +294,8 @@ color: #00bbf0
 .adresse_form.active,.avatar_form.active,.preferences_form.active,
 .communications_form.active,.personal_form.active, .certifications_form.active,
 .money_form.active,.paiements_form.active,.donations_form.active,
-.password_form.active,.notifications_form.active, .delete_form.active {
+.password_form.active,.notifications_form.active, .delete_form.active,
+.avis_bloc.active, .friends_bloc.active, .blacklist_bloc.active  {
 z-index: 20;
   left:25px;
 }
@@ -362,7 +365,8 @@ margin-top: 20px
   .adresse_form,.avatar_form,.preferences_form,
   .communications_form,.personal_form, .certifications_form,
   .money_form,.paiements_form,.donations_form,
-  .password_form,.notifications_form, .delete_form {
+  .password_form,.notifications_form, .delete_form,
+  .avis_bloc, .friends_bloc, .blacklist_bloc  {
     position: absolute;
     top:80px;
     left:-120%;
@@ -386,7 +390,8 @@ margin-top: 20px
   .adresse_form.active,.avatar_form.active,.preferences_form.active,
   .communications_form.active,.personal_form.active, .certifications_form.active,
   .money_form.active,.paiements_form.active,.donations_form.active,
-  .password_form.active,.notifications_form.active, .delete_form.active {
+  .password_form.active,.notifications_form.active, .delete_form.active,
+  .avis_bloc.active, .friends_bloc.active, .blacklist_bloc.active  {
   z-index: 20;
     left:0;
   }

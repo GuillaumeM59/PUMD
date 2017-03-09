@@ -36,12 +36,13 @@
   </div>
   <!--  -->
 
+  <%= link_to(user_path(@trajet.user)) do %>
   <div class="row text-center pickerbloc">
     <h4 class="grey1">Picker</h4>
     <div class="row text-center pickerdetails">
-
 <%= render "users/usermainbloc"  %>
 </div>
+<% end %>
 </div>
   <div class="row text-center usertrophy">
     <h4 class="grey1">Salle des trophés</h4>
@@ -73,7 +74,7 @@
 
   <h4 class="grey1 bloctitle">Prochains picking dans ce drive</h4>
   <div class="shopnextpicking">
-    <%= render partial:"trajetpumds/partials/listitem", object: @nextpickers, as: :trajets  %>
+    <%= render partial:"trajetpumds/partials/listitemforshop", object: @nextpickers, as: :trajets  %>
   </div>
   <h4 class="grey1 bloctitle">Prochains pickings de <%= @user.username %></h4>
   <div class="usernextpicking">

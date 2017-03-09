@@ -11,7 +11,7 @@
     <% else %>
         <% trajets.each do |trajet| %>
         <%= link_to (trajetpumd_path(trajet)) do %>
-    <li class="pickingitem row">
+    <li class="pickingitemforshop row">
       <hr class="col-xs-8 col-xs-offset-2 listseparator">
 
       <div class="col-xs-9 text-left">
@@ -21,7 +21,7 @@
 
       </div>
       <div class="col-xs-3">
-          <%= image_tag(trajet.shop.brand.minipic, class:"img-responsive profilavatar") %>
+          <%= image_tag(trajet.user.avatar_url(:thumb), class:"img-responsive img-circle profilavatar") %>
       </div>
 
 
@@ -32,5 +32,5 @@
 </ol>
 
 <script type="text/javascript">
-  $('.pickingitem .listseparator').first().hide();
+  $('.pickingitemforshop .listseparator').first().hide();
 </script>
