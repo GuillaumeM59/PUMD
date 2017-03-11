@@ -53,6 +53,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def dailyrenew
+    Autorenew.daily
+  end
+
   def tdb
       @user=current_user
       dob = @user.dob

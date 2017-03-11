@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-lg-3 col-lg-offset-1 intro-message">
           <h1>
-            Bienvenue sur la plateforme de livraison entre particuliers d'achats drives.
+            Plateforme de livraison collaborative d'achats drives dès 3€.
           </h1>
       </div>
       <div class="col-lg-3 col-lg-offset-4 home-search-bloc visible-lg">
@@ -44,7 +44,7 @@
 
               </div>
               <div class="signin col-xs-12 text-left">
-            <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-default btn-lg btn-purple" %> <br>
+          <p class="text-center"> <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-o-purple" %></p>
             <p class="text-center offert grey1 col-xs-12">
               Inscription rapide et gratuite
             </p>
@@ -93,7 +93,7 @@
 
         </div>
         <div class="signin col-xs-12 text-center">
-          <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-default btn-lg btn-purple" %>
+        <p class="text-center">  <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-o-purple" %></p>
           <p class="text-center offert grey1 col-xs-12">
             Inscription rapide et gratuite
           </p>
@@ -110,7 +110,8 @@
 <%= render "static_pages/home_templates/blocs_magasins" %>
 <!-- bloc poster une annonce  -->
 <div class="home-post-bloc container text-center grey1">
-  <h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins <br> <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn btn-purple "%> </h3>
+  <h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins </h3>
+    <p class="text-center"> <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn-o-purple "%></p>
 </div>
 
 

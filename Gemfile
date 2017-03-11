@@ -31,6 +31,8 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'bootstrap-toggle-rails'
 # Hook locally mail
 
+# task auto
+gem 'whenever'
 
 
 # allow rails datas on js
