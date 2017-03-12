@@ -31,13 +31,22 @@ class StaticPagesController < ApplicationController
     end
     @bid = Bid.new
   end
+  def ccm
+  end
+
+  def qui
+  end
+
   def help
   end
 
-  def about
+  def mentionslegales
   end
 
   def cgv
+  end
+
+  def prix
   end
 
   def contact
