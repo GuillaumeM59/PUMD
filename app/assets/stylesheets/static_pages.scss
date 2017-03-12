@@ -2,36 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.b1{
-  background-color: rgb(48, 70, 184);
-}
-.b1 a, .b2 a, .b3 a, .b4 a{
-  color: white
-}
-.b2{
-  background-color: rgb(19, 53, 228);
-}
-.b3{
-  background-color: rgb(49, 78, 228);
-}
-.b4{
-  background-color: rgb(90, 113, 231);
-}
-.tdbpage .active{
-  min-height: 100px;
-}
-.bb1{
-  border: 5px solid rgb(48, 70, 184)
-}
-.bb2{
-  border: 5px solid rgb(19, 53, 228);
-}
-.bb3{
-  border: 5px solid rgb(49, 78, 228)
-}
-.bb4{
-  border: 5px solid rgb(90, 113, 231)
-}
 
 .tdbpage .profil {
   min-height: 70vh;
@@ -78,6 +48,61 @@
   background-color: #8e3dfb;
   padding: 30px 0
 }
+
+
+.edit-menu ol h4{
+  margin: 20px 0;
+  border-bottom: 2px solid #8e3dfb
+}
+.edit-menu ol li{
+  display: inline-block;
+  width: 100%
+}
+.edit-menu ol li a {
+  display: block;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom:  10px;
+  width: 100%
+}
+.edit-menu ol li a.active {
+background-color: white;
+border: 1px solid rgb(179, 179, 179);
+border-left: 5px solid #00bbf0;
+color: #00bbf0
+}
+
+.pickings_form, .routines-bloc, .favdrives-bloc, .wdemandes-bloc,
+.accdemandes-bloc, .rejdemandes-bloc, .validation-bloc, .wvalidation-bloc,
+.wpaiement-bloc, .recpaiement-bloc {
+  position: absolute;
+  top:80px;
+  left:-100%;
+  background-color: white;
+  border: 1px solid rgb(214, 214, 214);
+  width: 95%;
+  padding: 50px;
+  z-index: 19
+}
+
+.edit-menu ol li a,
+.pickings_form, .routines-bloc, .favdrives-bloc ,
+.wdemandes-bloc,
+.accdemandes-bloc, .rejdemandes-bloc, .validation-bloc, .wvalidation-bloc,
+.wpaiement-bloc, .recpaiement-bloc
+ {
+  transition: 1.5s;
+  transition-timing-function: cubic-bezier(.86,.02,.14,1);
+  -webkit-transition: 1.5s;
+}
+
+.pickings_form.active, .routines-bloc.active, .favdrives-bloc.active ,.wdemandes-bloc.active,
+.accdemandes-bloc.active, .rejdemandes-bloc.active, .validation-bloc.active,
+.wvalidation-bloc.active, .wpaiement-bloc.active, .recpaiement-bloc.active  {
+z-index: 20;
+  left:25px;
+}
+
 @media all and (max-width:991px) {
   .navbar-right{
     padding-top: 8px
@@ -102,13 +127,6 @@
     padding-top: 5px
   }
 
-  .tdbpage .active{
-    min-height: 70px;
-    color: rgb(115, 115, 115);
-  }
-  .tdbpage .active a{
-    color: rgb(172, 170, 170)
-  }
   .lastdemandesbloc hr,#driverbloc hr {
     display: block;
   }

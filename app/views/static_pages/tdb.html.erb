@@ -9,23 +9,22 @@
   <div class="edit-menu col-md-3">
     <ol class="picking-list list-unstyled">
       <h4>Pickings</h4>
-      <li><a  class="personal-link active" alt="informations personnelles">Mes annonces</a></li>
-      <li><a  class="preferences-link" alt="préférences">Renouvellements auto.</a></li>
-      <li><a  class="avatar-link" alt="avatar">Drives favoris</a></li>
+      <li><a  class="pickings-link " alt="informations personnelles">Mes annonces</a></li>
+      <li><a  class="renews-link" alt="préférences">Renouvellements auto.</a></li>
+      <li><a  class="drivefavoris-link" alt="avatar">Drives favoris</a></li>
     </ol>
     <ol class="demandes-list list-unstyled">
       <h4>Demandes</h4>
-      <li><a  class="personal-link active" alt="informations personnelles">Mes demandes</a></li>
-      <li><a  class="avatar-link" alt="avatar">Demandes en attente</a></li>
-      <li><a  class="preferences-link" alt="préférences">Demandes acceptées</a></li>
-      <li><a  class="certifications-link" alt="certifications">Demandes refusées</a></li>
+      <li><a  class="wdemandes-link" alt="avatar">Demandes en attente</a></li>
+      <li><a  class="accdemandes-link" alt="préférences">Demandes acceptées</a></li>
+      <li><a  class="rejdemandes-link" alt="certifications">Demandes rejetées</a></li>
     </ol>
     <ol class="validations-list list-unstyled">
       <h4>Paiements et validations</h4>
-      <li><a  class="money-link" alt="Porte monnaie">Validations</a></li>
-      <li><a  class="paiements-link" alt="moyens de paiement">validations en attente</a></li>
-      <li><a  class="donations-link" alt="donations">Paiements en attente</a></li>
-      <li><a  class="notifications-link" alt="notifications">Paiements reçus</a></li>
+      <li><a  class="wvalidations-link" alt="moyens de paiement">validations en attente</a></li>
+      <li><a  class="validations-link" alt="Porte monnaie">Validations</a></li>
+      <li><a  class="wpaiements-link" alt="donations">Paiements en attente</a></li>
+      <li><a  class="recpaiements-link" alt="notifications">Paiements reçus</a></li>
     </ol>
 
   </div>
@@ -36,20 +35,19 @@
       Mes Pickings
     </h1>
 
-  <!-- Profil partials -->
+  <!-- Pickings partials -->
   <%= render "static_pages/tdb_templates/pickings/pickings_form" %>
-  <%= render "users/edit_templates/profil/avatar_form" %>
-  <%= render "users/edit_templates/profil/preferences_form" %>
-  <%= render "users/edit_templates/profil/certifications_form" %>
-  <%= render "users/edit_templates/profil/adresse_form" %>
-  <%= render "users/edit_templates/profil/communications_form" %>
-  <!-- Account partials -->
-  <%= render "users/edit_templates/account/money_form" %>
-  <%= render "users/edit_templates/account/paiements_form" %>
-  <%= render "users/edit_templates/account/donations_form" %>
-  <%= render "users/edit_templates/account/notifications_form" %>
-  <%= render "users/edit_templates/account/password_form" %>
-  <%= render "users/edit_templates/account/delete_form" %>
+  <%= render "static_pages/tdb_templates/pickings/routines" %>
+  <%= render "static_pages/tdb_templates/pickings/favdrives" %>
+  <!-- Demandes partials -->
+  <%= render "static_pages/tdb_templates/demandes/wdemandes" %>
+  <%= render "static_pages/tdb_templates/demandes/accdemandes" %>
+  <%= render "static_pages/tdb_templates/demandes/refdemandes" %>
+  <!-- paiement partials -->
+  <%= render "static_pages/tdb_templates/paietval/wvalidation" %>
+  <%= render "static_pages/tdb_templates/paietval/validation" %>
+  <%= render "static_pages/tdb_templates/paietval/wpaiement" %>
+  <%= render "static_pages/tdb_templates/paietval/recpaiement" %>
 
 
 
@@ -77,14 +75,113 @@
     $(selector).addClass('active')
   }
 
+  function show(link, form, title){
+    {
+        removeactiveclasses();
+        $('.editformtitle').html(title);
+        addactive(link);
+        addactive(form)
+    }
+  }
   // PROFIL ACTIONS
   $('.pickings-link').click(function(){
-      removeactiveclasses();
-      $('.editformtitle').html("Mes annonces en ligne");
-      addactive('.pickings-link');
-      addactive('.pickings_form')
-  })
+    show('.pickings-link','.pickings_form',"Mes annonces de livraison")
+  });
+  $('.renews-link').click(function(){
+    show('.renews-link','.routines-bloc',"Annonces renouvellées automatiquement")
+  });
+  $('.drivefavoris-link').click(function(){
+    show('.drivefavoris-link','.favdrives-bloc',"Mes drives favoris")
+  });
 
+
+  // demandes ACTIONS
+  $('.wdemandes-link').click(function(){
+    show('.wdemandes-link','.wdemandes-bloc',"Demandes en attente")
+  });
+  $('.accdemandes-link').click(function(){
+    show('.accdemandes-link','.accdemandes-bloc',"Demandes acceptées")
+  });
+  $('.rejdemandes-link').click(function(){
+    show('.rejdemandes-link','.rejdemandes-bloc',"Demandes refusées")
+  });
+
+
+
+  // paiements ACTIONS
+  $('.wvalidations-link').click(function(){
+    show('.wvalidations-link','.wvalidation-bloc',"Mes validations en attente")
+  });
+  $('.validations-link').click(function(){
+    show('.validations-link','.validation-bloc',"Mes validations")
+  });
+  $('.wpaiements-link').click(function(){
+    show('.wpaiements-link','.wpaiement-bloc',"Mes paiements en attente")
+  });
+  $('.recpaiements-link').click(function(){
+    show('.recpaiements-link','.recpaiement-bloc',"Mes paiements reçus")
+  });
+
+  function initSlide(n){
+
+    switch (n){
+     case "1":
+     show('.renews-link','.routines-bloc',"Annonces renouvellées automatiquement")
+        break;
+     case "2":
+     show('.drivefavoris-link','.favdrives-bloc',"Mes drives favoris")
+        break;
+     case "3":
+     show('.wdemandes-link','.wdemandes-bloc',"Demandes en attente")
+        break;
+     case "4":
+     show('.accdemandes-link','.accdemandes-bloc',"Demandes acceptées")
+        break;
+     case "5":
+     show('.rejdemandes-link','.rejdemandes-bloc',"Demandes refusées")
+        break;
+     case "6":
+     show('.validations-link','.validations-bloc',"Mes avis")
+        break;
+     case "7":
+     show('.wvalidations-link','.wvalidations-bloc',"Mes Amis")
+        break;
+     case "8":
+     show('.wpaiements-link','.wpaiements-bloc',"Liste noire")
+        break;
+     case "9":
+     show('.recpaiements-link','.recpaiements-bloc',"Liste noire")
+        break;
+
+     default:
+     show('.pickings-link','.pickings_form',"Mes annonces de livraison")
+  }
+  };
+  $(function(){
+  <% if @slide != nil %>
+  var slide = <%= @slide %>;
+  var fromslide = slide.toString();
+  initSlide(fromslide);
+
+  <% else %>
+  var getUrlParameter = function getUrlParameter(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return sParameterName[1] === undefined ? true : sParameterName[1];
+          }
+      }
+  };
+  var slide = getUrlParameter('slide');
+  initSlide(slide);
+  <% end %>
+  });
   </script>
 
 
