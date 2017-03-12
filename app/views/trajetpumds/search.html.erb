@@ -4,29 +4,31 @@
 
         <div class=" col-xs-12 col-md-6 left-search-part">
 
-            <div class="row filterbloc">
-                <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-12 col-md-8 col-md-offset-4 searchform" do %>
+            <div class="row filterbloc ">
+                <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-11 col-xs-offset-1 col-lg-10 col-lg-offset-2 searchform" do %>
                 <div class="form-group searchgroup">
-                    <ol class="list-unstyled">
+                    <ol class="list-unstyled row">
 
-                        <%= hidden_field_tag(
+                      <li class="search-item col-xs-12 col-md-6">
+                        <%= text_field_tag(
       :custom_address,
-      params[:custom_address]
+      params[:custom_address],
+      placeholder: "Où?",
+      class: " col-xs-12",
         ) %>
-                        <li class="search-item row">
+      </li>
+                        <li class="search-item col-xs-12 col-md-6">
 
-                            <%= label_tag 'do_times', 'enseigne', class:'label col-xs-3 ' %>
                             <%= select_tag(
               :shop_id,
               params[:shop_id],
-              placeholder: "date et heure",
-              class: " col-xs-8",
+              class: " col-xs-12",
 
                 ) %>
-                        </li><hr>
-                        <li class="search-item row">
+                        </li>
+                        <li class="search-item col-xs-12 col-md-6">
 
-                            <%= label_tag 'do_times', 'autour du', class:'label col-xs-3 ' %>
+                            <%= label_tag 'do_times', 'quand?', class:'label col-xs-4 ' %>
                             <%= text_field_tag(
       :do_around,
       params[:do_around],
@@ -34,44 +36,18 @@
       class: " col-xs-8",
         id:"dtpickerdoaround"
         ) %>
-                        </li><hr>
+                        </li>
 
-                        <li class="search-item row">
-                            <%= label_tag 'username', 'pseudo', class:'label col-xs-3 ' %>
+                        <li class="search-item col-xs-12 col-md-6">
                             <%= text_field_tag(
       :username,
       params[:username],
-      placeholder: "pseudonyme du picker",
-      class: " col-xs-8"
+      placeholder: "Picker?",
+      class: " col-xs-12"
         ) %>
                         </li>
-                        <li class="search-item row hidden-lg">
-                            <%= button_tag(type:'submit', class: "btn btn-lg btn-search") do%>
-                            <i class="fa fa-search">
-                                Rechercher</i>
-                            <% end %>
-                        </li>
-                    </ol>
-                </div>
-                <% end %>
-            </div>
-
-            <div class="row searchbloc">
-                <%= form_tag trajetpumds_search_path, method: :post, class: "form-inline col-xs-12 col-md-8 col-md-offset-4 searchform" do %>
-                <div class="form-group searchgroup">
-                    <ol class="list-unstyled">
-                        <li class="search-item row">
-
-                            <%= label_tag 'custom_address', 'adresse', class:'label col-xs-3 ' %>
-                            <%= text_field_tag(
-          :custom_address,
-          params[:custom_address],
-          placeholder: "rue, code postal et ville",
-          class: " col-xs-8"
-            ) %>
-                        </li>
-                        <li class="search-item row hidden-lg">
-                            <%= button_tag(type:'submit', class: "btn btn-lg btn-search") do%>
+                        <li class="col-xs-12">
+                            <%= button_tag(type:'submit', class: "btn-o-purple") do%>
                             <i class="fa fa-search">
                                 Rechercher</i>
                             <% end %>
@@ -81,31 +57,25 @@
                 <% end %>
             </div>
             <ol class="params-btn list-unstyled">
-                <li>
-                    <button class="new-search-btn">
-                        <i class="fa fa-map-o" aria-hidden="true"></i>
-                        <span>Ailleur</span>
-                    </button>
-                </li>
+
                 <li>
                     <button class="filters-btn">
-                        <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
-                        <span>Filtrer</span>
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
                     </button>
                 </li>
             </ol>
 
             <div class="row rememberbloc">
                 <aside class="hidden-xs hidden-sm col-xs-12 col-md-8 col-md-offset-4">
-                    <h3>Trouver un Picker autour de:</h3>
+                    <h3>Trouver un Picking autour de:</h3>
                     <h4><%= params[:custom_address] %></h4>
-                    <ul class="list-unstyled"></ul>
+                    <ul class="list-unstyled list-inline"></ul>
                 </aside>
             </div>
 
             <div class="row pickersbloc">
-                <aside class="markersbloc hidden-xs hidden-sm col-xs-12 col-md-8 col-md-offset-4">
-                    <ul id="markerslist1" class="list-unstyled"></ul>
+                <aside class="markersbloc hidden-xs hidden-sm col-xs-12">
+                    <ul id="markerslist1" class="list-unstyled list-inline row"></ul>
                 </aside>
             </div>
 
@@ -126,50 +96,45 @@
 
           <script type="text/javascript">
 
-function opensearchmenu(){
-  $('.searchbloc').addClass('open-menu');
-  $('button.new-search-btn i').removeClass('fa-map-o').addClass('fa-close');
-}
-function closesearchmenu(){
-  $('.searchbloc').removeClass('open-menu');
-  $('button.new-search-btn i').removeClass('fa-close').addClass('fa-map-o');
-}
+
 function openfiltermenu(){
   $('.filterbloc').addClass('open-menu');
-  $('button.filters-btn i').removeClass('fa-sort-amount-desc').addClass('fa-close');
+  $('button.filters-btn i').removeClass('fa-cogs').addClass('fa-close');
   var filterH = $('.filterbloc').first().innerHeight();
-  $('.pickersbloc').addClass('open-menu').css({marginTop: '10%'})
+  var rememberH = $('.rememberbloc').first().innerHeight();
+  $('.pickersbloc').addClass('open-menu').css({marginTop: filterH-rememberH})
 }
 function closefiltermenu(){
   $('.filterbloc').removeClass('open-menu');
-  $('button.filters-btn i').removeClass('fa-close').addClass('fa-sort-amount-desc');
+  $('button.filters-btn i').removeClass('fa-close').addClass('fa-cogs');
   $('.pickersbloc').removeClass('open-menu').css({marginTop: 0})
 }
 
 $(document).ready(function(){
-    $('button.new-search-btn').click(function(){
-      if ($('.searchbloc').hasClass('open-menu')) {
-        closesearchmenu()
-      }
-      else {
+    $('button.filters-btn').click(function(){
         if ($('.filterbloc').hasClass('open-menu')) {
           closefiltermenu();
         }
-        opensearchmenu()
-      }
-    });
-    $('button.filters-btn').click(function(){
-      if ($('.filterbloc').hasClass('open-menu')) {
-        closefiltermenu()
-      }
-      else {
-        if ($('.searchbloc').hasClass('open-menu')) {
-          closesearchmenu();
-        }
+        else {
         openfiltermenu()
       }
     });
 
+});
+
+
+
+$(function () {
+  $('.trajetinfos').hover(function(){
+    $(this).find('.trajetbtn').first().addClass('active')
+  }
+  );
+});
+$(function () {
+  $('.trajetinfos').mouseleave(function(){
+    $(this).find('.trajetbtn').first().removeClass('active')
+  }
+  );
 });
 
 
@@ -254,8 +219,8 @@ function chgbtn() {
 
       var pickers = <%= @pickers %>;
       var pickerscoord = <%= @pickerscoord %>;
-      var avatars = <%= raw @pickersavatars %>;
-      var infotrajets = <%=raw @trajetsdata %>;
+      var avatars = <%== raw @pickersavatars %>;
+      var infotrajets = <%== raw @trajetsdata %>;
       <%  @pickers.count.times do |i| %>
           var i = <%= i %>;
           var pcoord = pickerscoord[<%= i %>];
@@ -296,8 +261,10 @@ function chgbtn() {
             var liste1 = document.getElementById("markerslist1");
             var liste2 = document.getElementById("markerslist2");
             li<%= i %>.setAttribute("id", "itemlist<%= i %>");
+            li<%= i %>.setAttribute("class", "col-xs-12 searchitem");
             li<%= i %>.innerHTML = "<div class='container-fluide'><div class='row'>" + contentString + "</div></div>";
             l2i<%= i %>.setAttribute("id", "itemlist<%= i %>");
+            l2i<%= i %>.setAttribute("class", "col-xs-12 searchitem");
             l2i<%= i %>.innerHTML = "<div class='container-fluide'><div class='row'>" + contentString + "</div></div>";
             liste1.appendChild(li<%= i %>);
             liste2.appendChild(l2i<%= i %>);
@@ -326,3 +293,16 @@ $('.gm-style-iw div').addClass("row");
 $(document).ready(chgbtn());
 
 </script>
+<script type="text/javascript">
+$('.trajetinfos .doat').each(function() {
+this.textContent = moment(this.textContent,'YYYY-MM-DDTHH:mm').calendar();
+});
+</script>
+
+<% if @trajetids.count !=0
+   @trajetids.each do |t|%>
+
+<%=     render partial:"trajetpumds/partials/knobscr", locals: {trajet: t[0], placesrestantes: t[1]} %>
+  <%end
+  end
+  %>

@@ -100,9 +100,9 @@ this.textContent = moment(this.textContent,'YYYY-MM-DDTHH:mm').calendar();
 
 <script type="text/javascript">
 $(document).ready(function () {
-  Valign('.trajetshow .shopname', '.trajetshow .shopmini');
   Valign('.detailsxs .doat', '.detailsxs .circlerest');
   if ($(window).width()<769){
+    Valign('.trajetshow .shopname', '.trajetshow .shopmini');
     cenW('.trajetshow .pickerdetails .useravatarbloc img','.trajetshow .pickerdetails .useravatarbloc');
   };
   $(window).on('resize',function(){

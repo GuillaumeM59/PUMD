@@ -2,97 +2,26 @@
 <div class="shopmini col-xs-3 text-right">
     <%= image_tag(@trajet.shop.brand.minipic, class:"shopminipic", size:"80") %>
 </div>
-<ol class="details col-sm-7 list-unstyled text-left hidden-xs hidden-sm">
+<ol class="details col-sm-9 list-unstyled text-center ">
     <li class="row">
-        <div class="col-xs-1">
-            <i class="fa fa-shopping-basket "></i>
-        </div>
-        <div class="col-xs-5">
-            Enseigne
-        </div>
-        <div class="col-xs-6"><%= @trajet.shop.brand.name %>
-        </div>
-    </li>
-    <li class="row">
-        <div class="col-xs-1">
-            <i class="fa fa-globe "></i>
-        </div>
-        <div class="col-xs-5">
-            Ville
-        </div>
-        <div class="col-xs-6">
-            <%= @trajet.shop.name.remove(@trajet.shop.brand.name)%>, France
-        </div>
+      <div class="col-xs-4 doat">
+        <%= @trajet.do_at.strftime("%FT%R")%>
+      </div>
+      <div class="col-xs-5 circlerest">
 
-    </li>
-    <li class="row">
-        <div class="col-xs-1">
-            <i class="fa fa-arrows "></i>
-        </div>
-        <div class="col-xs-5">
-            Espace disponible
-        </div>
-        <div class="col-xs-6">
-            <%= @placesrestantes %>
-        </div>
+        <input type="text" value="<%= @trajet.resapumd.maxsac %>" data-max="<%= @trajet.resapumd.maxsac %>" class="places">
+        <p class="text-center">
 
+          nombre de sac pouvant encore être livré
+        </p>
+      </div>
+      <div class="col-xs-3">
+        vas chier
+      </div>
     </li>
-    <li class="row">
-        <div class="col-xs-1">
-            <i class="fa fa-clock-o "></i>
-        </div>
-        <div class="col-xs-5">
-            Horaire du picking
-        </div>
-        <div class="col-xs-6 doat">
-            <%= @trajet.do_at.strftime("%FT%R")%>
-        </div>
 
-    </li>
-    <li class="row">
-        <div class="col-xs-1">
-            <i class="fa fa-level-up "></i>
-        </div>
-        <div class="col-xs-5">
-            Monte les courses
-        </div>
-        <div class="col-xs-6">
-            vas chier
-        </div>
 
-    </li>
 </ol>
-<!-- hidden xs sm -->
-<div class="col-md-3 hidden-xs hidden-sm">
-
-    <input type="text" value="<%= @trajet.resapumd.maxsac %>" data-max="<%= @trajet.resapumd.maxsac %>" class="places">
-    <p class="text-center">
-
-        nombre de sac pouvant encore être livré
-    </p>
-</div>
-<!--  -->
-
-<!-- hidden md lg -->
-<div class="col-xs-12 hidden-md hidden-lg detailsxs">
-<div class="row">
-  <div class="col-xs-3 doat">
-      <%= @trajet.do_at.strftime("%FT%R")%>
-  </div>
-
-<div class="col-xs-5 circlerest">
-
-    <input type="text" value="<%= @trajet.resapumd.maxsac %>" data-max="<%= @trajet.resapumd.maxsac %>" class="places">
-    <p class="text-center">
-
-        nombre de sac pouvant encore être livré
-    </p>
-</div>
-<div class="col-xs-3 doat">
-  <%= @trajet.do_at.strftime("%FT%R")%>
-</div>
-</div>
-</div>
 
 <script>
 

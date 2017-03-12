@@ -70,6 +70,7 @@ class TrajetpumdsController < ApplicationController
     @pickersavatars=[]
     @pickersdates=[]
     @trajetsdata=[]
+    @trajetids=[]
     # first item is current user
     @pickers << 0
     @trajetsdata << "C'est vous ;)"
@@ -100,6 +101,11 @@ class TrajetpumdsController < ApplicationController
             @pickers << picker[0].id
             @pickerscoord << [picker[0].latitude,picker[0].longitude]
             @pickersavatars << "../.."+ i.user.avatar.marker.url
+      end
+      Trajetpumd.isactive.where(driver_id:picker[0].id).order(:do_at).reverse.each do |t|
+        sommesacs(t.resapumd)
+        placerestante(t.resapumd)
+        @trajetids << [t, @placesrestantes]
       end
     end
   end

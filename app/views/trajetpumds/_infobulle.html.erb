@@ -1,59 +1,59 @@
-<% driver=User.find(@trajet.driver_id) %>
-<% shop=Shop.find(@trajet.shop_id) %>
+<% driver=@trajet.user %>
+<% shop=@trajet.shop %>
 <% dist= Geocoder::Calculations.distance_between([@lati,@longi], [driver.latitude,driver.longitude], :units => :km).round(2) %>
 
- <p class="text-center">à <%= dist %>km de vous</p>
- <div class="col-md-2 pickeravatarbulle hidden-xs hidden-sm">
-   <%= image_tag(driver.avatar, alt:"avatar picker", class: "img-responsive") %>
- </div>
- <div class="col-xs-12 col-md-10">
-   <div class="row">
-
- <div class="col-xs-5 pickerdriverbulle text-center">
-<p><strong><%= driver.username %></strong><br>
-<%= driver.city %><br><%= Carbrand.find(driver.cbrand_id).name %> <%= Carmodel.find(driver.cmodel_id).name %></p>
- </div>
- <div class="col-xs-7 text-center trajetinfobulle"> <p class="text-center">Passe par <br>
-   <%= image_tag(Brand.find(shop.brand_id).brandpic, alt:"#{shop.name}", class: "img-responsive shopbullepic") %>
-   <%= shop.name %>, le  </p>
- </div>
- <div class="col-xs-12 text-center">
-   <% @dates=[] %>
-   <% Trajetpumd.isactive.where(driver_id:driver.id).where(shop_id:shop.id).each do |trajet| %>
-      <% @resas=Resapumd.where(trajet_id: trajet.id)%>
-      <% if @resas.count !=0 %>
-      <% @resa=@resas.first%>
-      <% c=0 %>
-        <% if @resa.drive1_size!=nil %>
-            <% c+=@resa.drive1_size %>
-        <% end %>
-        <% if @resa.drive2_size!=nil && c < @resa.maxsac %>
-         <% c+=@resa.drive2_size %>
-        <% end %>
-        <% if @resa.drive3_size!=nil && c < @resa.maxsac %>
-           <% c+=@resa.drive3_size %>
-        <% end %>
-        <% if @resa.drive4_size!=nil && c < @resa.maxsac %>
-           <% c+=@resa.drive4_size %>
-        <% end %>
-        <% if @resa.drive5_size!=nil && c < @resa.maxsac %>
-          <% c+=@resa.drive5_size %>
-        <% end %>
-        <% @placedispo = @resa.maxsac - c %>
-        <% if @placedispo > 0 && @resa.drive6_size==nil %>
-        <% @dates << [l(trajet.do_at, format:"%a %d %b vers %H:%M"), trajet.id] %>
-        <% else %>
-        <% @dates << [l(trajet.do_at, format:"%a %d %b vers %H:%M"), 0 ] %>
-        <% end %>
-      <% end %>
-    <% end %>
-   <%= form_tag trajetpumds_confirm_path, method: :post, class: "form-inline" do |f| %>
-     <div class="form-group searchgroup">
-        <%= select_tag 'trajetid', options_for_select(@dates), class:"dateselect" %>
-        <%= submit_tag 'Pick up my drive', class: "btn btn-lg btn-search"%>
-      </div>
-    <% end %>
-    </div>
-
+<p class="text-center text-dist">à
+    <%= dist %>km </p>
+<div class="col-xs-12 trajetinfos">
+    <div class="row">
+        <div class="col-xs-3 pickerdriverbulle text-center">
+            <%= image_tag(driver.avatar, alt:"avatar picker", class: "img-responsive", size:"50") %>
+            <p>
+                <strong><%= driver.username %></strong><br>
+                <%= driver.city %></p>
+        </div>
+        <div class="col-xs-6 text-center tparamsbulle">
+<div class="row">
+  <div class="col-xs-12 doat">
+        <%= @trajet.do_at.strftime("%FT%R")%>
+  </div>
+  <% @placedispo%>
+  <div class="col-xs-12">
+    <% Trajetpumd.isactive.where(driver_id:driver.id).where(shop_id:shop.id).each do |trajet| %>
+   <% @resas=Resapumd.where(trajet_id: trajet.id)%>
+   <% if @resas.count !=0 %>
+   <% @resa=@resas.first%>
+   <% c=0 %>
+     <% if @resa.drive1_size!=nil %>
+         <% c+=@resa.drive1_size %>
+     <% end %>
+     <% if @resa.drive2_size!=nil && c < @resa.maxsac %>
+      <% c+=@resa.drive2_size %>
+     <% end %>
+     <% if @resa.drive3_size!=nil && c < @resa.maxsac %>
+        <% c+=@resa.drive3_size %>
+     <% end %>
+     <% if @resa.drive4_size!=nil && c < @resa.maxsac %>
+        <% c+=@resa.drive4_size %>
+     <% end %>
+     <% if @resa.drive5_size!=nil && c < @resa.maxsac %>
+       <% c+=@resa.drive5_size %>
+     <% end %>
+     <% @placedispo = @resa.maxsac - c %>
+     <% end %>
+     <% end %>
+    <input type="text" value="<%= @placedispo%>" data-max="<%=@trajet.resapumd.maxsac%>" class="trajetknob<%= @trajet.id%>">
+  </div>
 </div>
+        </div>
+        <div class="col-xs-3 text-center trajetinfobulle">
+            <p class="text-center">
+                <%= image_tag(shop.brand.brandpic, alt:"#{shop.name}", class: "img-responsive shopbullepic", size:"50") %>
+                <%= shop.city %></p>
+        </div>
+      </div>
+        <div class="row text-center trajetbtn">
+            <%= link_to "ça m'interrese", @trajet, class:"btn-o-purple"%>
+        </div>
+
 </div>
