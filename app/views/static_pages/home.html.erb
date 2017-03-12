@@ -1,22 +1,58 @@
 
-
+<%= javascript_include_tag "aos.js" %>
+<%= stylesheet_link_tag "aos.css" %>
+<script type="text/javascript">
+AOS.init();
+</script>
 <!-- PAGE CONTENT  -->
 
 <header class="intro-header">
-  <div class="container-fluid">
+  <div class="container">
 
-    <div class="row">
-      <div class="col-lg-3 col-lg-offset-1 intro-message">
-          <h1>
-            Plateforme de livraison collaborative d'achats drives dès 3€.
-          </h1>
-      </div>
-      <div class="col-lg-3 col-lg-offset-4 home-search-bloc visible-lg">
+    <div class=" intro-message trapezium-left">
+
+      <div class="home-search-bloc visible-lg visible-md">
+        <div class="row">
+          <h2 class="text-center grey1">Livrez des courses</h2>
+
+          <ul class="list-unstyled list-inline  home-logo-brand row grey1">
+            <li class="home-brand-pic col-xs-6"  ><%= image_tag("auchan-drive-logo2.png", class: "image-responsive" ) %></li>
+            <li class="home-brand-pic col-xs-6" ><%= image_tag("carrefour drive .png", class: "image-responsive " ) %></li>
+            <li class="home-brand-pic col-xs-6"><%= image_tag("chronodrive.png", class: "image-responsive " ) %></li>
+            <li class="home-brand-pic col-xs-6" ><%= image_tag("eleclercdrive.png", class: "image-responsive " ) %></li>
+            <li class="home-brand-pic col-xs-5" ><%= image_tag("interdrive.png", class: "image-responsive " ) %></li>
+            <li class="home-brand-pic col-xs-5"><%= image_tag("udrive.png", class: "image-responsive " ) %></li>
+            <li class="etc col-xs-2" >...</li>
+            <h4 class="col-xs-12">Vous passez près de ses enseignes?</h4>
+          </ul>
+              <div class="col-xs-12 aroundblocbtn">
+                <%= link_to(trajetpumds_search_path(custom_address:""), class: "btn btn-lg btn-search") do %>
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i> Poster une annonce
+                <% end %>
+              </div>
+              <div class="separator col-xs-8 col-xs-offset-2">
+              </div>
+              <div class="signin col-xs-12 text-left">
+                <p class="text-center"> <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-o-purple" %></p>
+                <p class="text-center offert grey1 col-xs-12">
+                  Inscription rapide et gratuite
+                </p>
+              </div>
+            </div>
+
+          </div>
+    </div>
+    <h1 class="sitetitle">
+      Livraison collaborative d'achats drives dès 3€.
+    </h1>
+    <div class=" intro-message trapezium-right">
+
+      <div class="home-search-bloc visible-lg visible-md">
         <div class="row">
 
           <%= form_tag trajetpumds_search_path, method: :post, class: "col-xs-12" do %>
           <div class="form-group searchgroup">
-            <h2 class="text-center grey1">Trouver un picker</h2>
+            <h2 class="text-center grey1">Faites-vous livrer</h2>
 <div class="searchbar-bloc">
 
             <%= text_field_tag(
@@ -25,7 +61,6 @@
             placeholder: "rue, code postal et ville",
             class: "form-control searchbar"
               ) %> <label for=""> <i class="fa fa-2x fa-globe searchbar-i grey1" aria-hidden="true"></i></label>
-<br>
               <%= button_tag(type:'submit', class: "btn btn-lg btn-search") do%>
               <i class="fa fa-search">
                 Rechercher</i>
@@ -39,7 +74,7 @@
                 <i class="fa fa-street-view" aria-hidden="true"></i> Autour de chez moi
                 <% end %>
               </div>
-              <div class="separator col-xs-12">
+              <div class="separator col-xs-8 col-xs-offset-2">
 
 
               </div>
@@ -52,19 +87,46 @@
           </div>
 
         </div>
+      </div>
+      </div>
 
-</div>
 </header>
+<script type="text/javascript">
+
+
+
+   var smallH = $('.sitetitle').first().height()/2;
+   var bigH = $('.intro-header').first().innerHeight()/2;
+   $('.sitetitle').css({marginTop: ((bigH-smallH)-81)});
+   var smallH = $('.intro-message.trapezium-left>div').first().height()/2;
+   var bigH = $('header').first().innerHeight()/2;
+   $('.intro-message.trapezium-left .home-search-bloc').css({marginTop: ((bigH-smallH)-81)});
+   var smallH = $('.intro-message.trapezium-right .home-search-bloc').first().height()/2;
+   var bigH = $('header').first().innerHeight()/2;
+   $('.intro-message.trapezium-right .home-search-bloc').css({marginTop: ((bigH-smallH)-81)});
+   $(window).on('resize',function(){
+     var smallH = $('.sitetitle').first().height()/2;
+     var bigH = $('.intro-header').first().innerHeight()/2;
+     $('.sitetitle').css({marginTop: ((bigH-smallH)-81)});
+     var smallH = $('.intro-message.trapezium-left .home-search-bloc').first().innerHeight()/2;
+     var bigH = $('header').first().innerHeight()/2;
+     $('.intro-message.trapezium-left .home-search-bloc').css({marginTop: (bigH-smallH-81)});
+     var smallH = $('.intro-message.trapezium-right .home-search-bloc').first().innerHeight()/2;
+     var bigH = $('header').first().innerHeight()/2;
+     $('.intro-message.trapezium-right .home-search-bloc').css({marginTop: ((bigH-smallH)-81)});
+   });
+
+</script>
 
 
 <!-- Responsive search bloc  -->
-<div class="container-fluid bg-x-light-grey hidden-lg">
+<div class="container-fluid bg-x-light-grey hidden-lg hidden-md">
 
   <div class="row">
-<div class=" col-xs-12 col-lg-3 col-lg-offset-4 home-search-bloc ">
+<div class=" col-xs-12 home-search-bloc-resp ">
   <div class="row">
 
-    <div class="form-group searchgroup text-center">
+    <div class="form-group searchgroup-resp text-center">
       <h2 class="grey1">Trouver un picker</h2>
 <div class="searchbar-bloc">
   <%= form_tag trajetpumds_search_path, method: :post, class: "col-xs-12" do %>
@@ -88,9 +150,7 @@
           <i class="fa fa-street-view" aria-hidden="true"></i> Autour de chez moi
           <% end %>
         </div>
-        <div class="separator col-xs-12">
-
-
+        <div class="separator col-xs-8 col-xs-offset-2">
         </div>
         <div class="signin col-xs-12 text-center">
         <p class="text-center">  <%= link_to "Inscrivez-vous!", new_user_registration_path , :class => "btn-o-purple" %></p>
@@ -109,7 +169,7 @@
 <!-- bloc logos enseignes -->
 <%= render "static_pages/home_templates/blocs_magasins" %>
 <!-- bloc poster une annonce  -->
-<div class="home-post-bloc container text-center grey1">
+<div class="home-post-bloc container text-center grey1 hidden-md hidden-lg">
   <h3>Vous passez près de l'une de ces enseignes? Ramenez les courses de vos voisins </h3>
     <p class="text-center"> <%= link_to "Proposer un picking", new_trajetpumd_path(current_user), :class => "btn-o-purple "%></p>
 </div>
@@ -156,3 +216,17 @@ WORKING PROGRESS
 </div>
 
 <% end %>
+<script type="text/javascript">
+ $(function(){
+   var headertimer = setTimeout(function(){
+     $('.trapezium-left').first().addClass('active');
+     $('.trapezium-right').first().addClass('active');
+     var bgclear = setTimeout(function(){
+     $('.trapezium-left').first().addClass('clearbg');
+     $('.trapezium-right').first().addClass('clearbg');
+     clearTimeout(bgclear);
+   },1500);
+     clearTimeout(headertimer);
+   },6000);
+ });
+</script>

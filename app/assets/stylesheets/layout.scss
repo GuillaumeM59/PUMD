@@ -83,10 +83,86 @@ input, select{
   border-radius: 15px
 }
 .navbar-toggle {
-  color: rgb(91,91,91)!important
+  color: rgb(91,91,91)!important;
+  border: 1px solid rgb(91,91,91)!important
+}
+
+// -----------------------------------------NAVBAR
+#navbarimg {
+  height: 58px;
+
+}
+.navbar-container {
+  padding: 10px 0;
+}
+
+.navbar.navbar-fixed-top.fixed-theme {
+  background-color: #FFF;
+}
+#navbarimg.fixed-theme {
+  height: 50px;
+  padding-top: 5px
+}
+.navbar-container.fixed-theme {
+  padding: 0;
+}
+.navbar-brand img,
+.navbar-brand.fixed-theme img,
+.navbar-container,
+.navbar-container.fixed-theme,
+.navbar.navbar-fixed-top.fixed-theme {
+  transition: 0.8s;
+  -webkit-transition: 0.8s;
+}
+.logo_hot {
+  height: 60px;
+  width: auto;
+}
+.link_navbar {
+  padding-top: 20px;
+}
+
+.searchtitle {
+  padding-top: 70px;
+}
+// -------------- reservationmodal
+body.modal-open #wrap {
+  -webkit-filter: blur(7px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
+  border: solid 1px;
+}
+.modal-backdrop {
+  background: #f7f7f7;
+}
+.close {
+  font-size: 50px;
+  display: block;
 }
 
 
+.btn-search {
+  padding: 8px 10px;
+  width: 100%;
+  text-align: center;
+}
+.btn-search > i {
+  float: none;
+  line-height: 1.2em
+}
+.navbar-right {
+	padding: 5px;
+	padding-left: 160px;
+	border-radius: 10px;
+	margin-right: 15px;
+}
+nav {
+    transition: 1.5s;
+    transition-timing-function: cubic-bezier(.86,.02,.14,1);
+    -webkit-transition: 1.5s;
+  }
 
 
 /* connexion modal style */
