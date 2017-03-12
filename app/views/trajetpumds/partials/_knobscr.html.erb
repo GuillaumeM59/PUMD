@@ -1,0 +1,46 @@
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.trajetknob<%=trajet.id%>').css({opacity: 0});
+    function initdescompte() {
+        $('.trajetknob<%=trajet.id%>').css({opacity: 1});
+
+        $(".trajetknob<%=trajet.id%>").knob({
+            'readOnly': true,
+            'thickness': 0.1,
+            'width': 70,
+            'height': 50,
+            'angleArc': 250,
+            'angleOffset': 235,
+            change: function (value) {}
+        });
+
+        var a = <%= trajet.resapumd.maxsac %>;
+        var b = <%= placesrestantes %>;
+        var c = 0;
+        var coef = 255 / a;
+        var coef2 = 187 / a;
+        function changecercle() {
+            if (a < b) {
+                clearInterval(decompte);
+            } else {
+
+                var rouge = Math.round(c * coef);
+                var bleu = Math.round(255 - (c * coef));
+                var vert = Math.round(187 - (c * coef2));
+                var newcolor = "rgb(" + rouge + "," + vert + "," + bleu + ")";
+                clearTimeout(go);
+                $(".trajetknob<%=trajet.id%>").val(a).trigger("change");
+                $(".trajetknob<%=trajet.id%>").trigger("configure", {"fgColor": newcolor});
+                $(".trajetknob<%=trajet.id%>").css({color: newcolor});
+                a = a - 1;
+                c++;
+            }
+        }
+        var decompte = setInterval(changecercle, 50);
+    }
+    var go = setTimeout(initdescompte, 6000);
+});
+
+
+</script>

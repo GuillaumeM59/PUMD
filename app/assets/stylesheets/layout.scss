@@ -319,7 +319,7 @@ a.btn-purple:focus, {
 }
 
 .btn-o-purple, input.btn-o-purple, a.btn-o-purple {
-	background-color: transparent;
+	background-color: white;
 	outline: none;
 	color: #8e3dfb;
 	font-size: 14px;
@@ -420,6 +420,10 @@ footer ul.footerlist{
 }
 
 @media(max-width:991px) {
+  #navtdbicon{
+    height: 40px;
+    margin-top: 10px
+  }
   footer .linksfooter p{
     display: inline !important;
   }

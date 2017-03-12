@@ -47,9 +47,11 @@ select {
     padding: 0;
 }
 
-.filterbloc ol,
-.searchbloc ol {
-    padding-top: 20px;
+.filterbloc ol {
+    margin: 10px 0;
+}
+.filterbloc ol .search-item{
+    padding: 5px 10px
 }
 
 .filterbloc .search-item input,
@@ -74,16 +76,14 @@ select {
 }
 
 .params-btn {
-    position: fixed;
-    top: 90px;
+    position: absolute;
     left: 10px;
     padding: 0;
     margin: 0;
     z-index: 99;
 }
 
-button.filters-btn,
-button.new-search-btn {
+button.filters-btn {
     color: #8e3dfb;
     background-color: white;
     display: inline-block;
@@ -96,20 +96,16 @@ button.new-search-btn {
     margin-bottom: 40px;
 }
 
-button.filters-btn i,
-button.new-search-btn i {
+button.filters-btn i, {
     float: none;
 }
 // animations filters-btn
-.filterbloc.open-menu,
-.searchbloc.open-menu {
+.filterbloc.open-menu{
     left: 0;
 }
 
 .filterbloc,
-.filterbloc.open-menu,
-.searchbloc,
-.searchbloc.open-menu {
+.filterbloc.open-menu, .trajetbtn{
     transition: 1s;
     transition-timing-function: cubic-bezier(.86,.02,.14,1);
     -webkit-transition: 1s;
@@ -118,13 +114,16 @@ button.new-search-btn i {
 .rememberbloc {
     color: white;
     background-color: #8e3dfb;
-    padding: 40px 0 !important;
+    padding: 10px 0 !important;
+    min-height: 50px;
+}
+.rememberbloc h3{
+  font-size: 1em;
+  margin-top: 0
 }
 
 .markersbloc {
     height: auto;
-    border: 2px solid black;
-    overflow-y: scroll;
 }
 
 #markerslist1 {
@@ -152,19 +151,37 @@ button.new-search-btn i {
 }
 
 .pickeravatarbulle {
-    display: inline-block;
+    display: inline;
+    text-align: center;
 }
-
+.trajetinfos .pickerdriverbulle p, .trajetinfos .trajetinfobulle p{
+  font-size: 0.8em
+}
+.text-dist{
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.8)
+}
 .trajetinfobulle {
     float: right;
     display: inline-block;
 }
 
 .shopbullepic {
-    width: 80%;
-    padding-left: 22%;
+    width: auto;
+    max-height: 70px
 }
-
+.trajetbtn {
+  height: 0;
+  opacity: 0
+}
+.trajetbtn.active {
+  height: inherit;;
+  opacity: 1;
+  margin-bottom: 20px
+}
+.markersbloc .searchitem{
+  border-bottom: 1px solid rgb(238, 238, 238)
+}
 .confirmationpage .trajetinfobulle {
     float: left;
 }
@@ -198,6 +215,9 @@ button.new-search-btn i {
     text-decoration: underline;
     font-weight: 700;
 }
+
+
+
 // SHOW
 .headermap {
     height: 400px;
@@ -226,6 +246,9 @@ button.new-search-btn i {
     right: 10px;
 }
 
+.trajetdetails .shopname {
+  margin-top: 0
+}
 .trajetdetails .details {
     padding: 0;
     margin: 20px 0;
@@ -238,6 +261,9 @@ button.new-search-btn i {
 
 .trajetdetails .details i {
     padding-top: 3px;
+}
+.trajetdetails .details .doat {
+    font-size: 2em
 }
 
 .pickerbloc h4,
@@ -319,9 +345,8 @@ button.new-search-btn i {
 }
 @media all and (max-width:991px) {
     #mapcontainer {
-        height: 60%;
-        width: 90%;
-        margin-left: 5%;
+        height: inherit;
+        width: 100%;
         display: inline-block;
         float: none;
     }
@@ -333,10 +358,15 @@ button.new-search-btn i {
     }
 
     .shopbullepic {
-        width: 110%;
         padding-left: 0;
     }
-
+  .filterbloc{
+    width: 100%;
+    left:-100%
+  }
+  .map-search-part{
+    height:40vh
+  }
     .trajetshow .profilavatar img {
         margin-left: 0 !important;
     }
