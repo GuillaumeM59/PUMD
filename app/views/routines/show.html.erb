@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @routine.driver_id %>
+</p>
+
+<p>
+  <strong>Shop:</strong>
+  <%= @routine.shop_id %>
+</p>
+
+<p>
+  <strong>Day num:</strong>
+  <%= @routine.day_num %>
+</p>
+
+<p>
+  <strong>Do time:</strong>
+  <%= @routine.do_time %>
+</p>
+
+<p>
+  <strong>Nsacs:</strong>
+  <%= @routine.nsacs %>
+</p>
+
+<p>
+  <strong>Activated:</strong>
+  <%= @routine.activated %>
+</p>
+
+<%= link_to 'Edit', edit_routine_path(@routine) %> |
+<%= link_to 'Back', routines_path %>

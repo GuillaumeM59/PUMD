@@ -180,6 +180,30 @@ class TrajetpumdsController < ApplicationController
     @trajet.driver_lon=@driver.longitude
     @trajet.driver_lat=@driver.latitude
     @trajet.shop_name=@shop.name
+    if @trajet.regulier
+      did= @trajet.driver_id
+      sid= @trajet.shop_id
+      nsacs= @trajet.maxsac
+      dayn= @trajet.do_at.wday
+      ttime= @trajet.do_at.strftime("%H:%M")
+      check= Routine.where(driver_id:did,shop_id:sid,day_num:dayn,at_time:ttime )
+      if check.size == 0
+        @r=Routine.new()
+        @r.driver_id = did
+        @r.shop_id = sid
+        @r.nsacs = nsacs
+        @r.day_num = dayn
+        @r.at_time = ttime
+        @r.activated = true
+        @r.save!
+      else
+        @r=check.first
+        @r.nsacs = nsacs
+        @r.activated = true
+        @r.save!
+      end
+    end
+
     if @trajet.save
       @resa = Resapumd.new()
       @resa.trajet_id=@trajet.id

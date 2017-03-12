@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Routines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Driver</th>
+      <th>Shop</th>
+      <th>Day num</th>
+      <th>Do time</th>
+      <th>Nsacs</th>
+      <th>Activated</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @routines.each do |routine| %>
+      <tr>
+        <td><%= routine.driver_id %></td>
+        <td><%= routine.shop_id %></td>
+        <td><%= routine.day_num %></td>
+        <td><%= routine.do_time %></td>
+        <td><%= routine.nsacs %></td>
+        <td><%= routine.activated %></td>
+        <td><%= link_to 'Show', routine %></td>
+        <td><%= link_to 'Edit', edit_routine_path(routine) %></td>
+        <td><%= link_to 'Destroy', routine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Routine', new_routine_path %>
