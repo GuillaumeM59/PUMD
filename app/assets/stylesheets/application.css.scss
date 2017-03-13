@@ -543,7 +543,15 @@ body::-webkit-scrollbar-thumb {
 	height: 30px;
   width: auto;
 	opacity: 0.7;
+  padding-bottom: 0
 }
+#navshopicon {
+	height: 30px;
+  width: auto;
+	opacity: 0.7;
+  margin-top: 0
+}
+
 .logoutbtn {
   margin-top: 3px
 }

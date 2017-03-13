@@ -1,0 +1,177 @@
+<script type="text/javascript">
+  $('body').css({backgroundColor:"#f4f4f4"})
+</script>
+<div class="container-fluide toppage adminshoppage">
+    <div class="headermap">
+        <div id="mapcontainer">
+            <div id="map"></div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+  var navH=$('nav').innerHeight();
+  $('.toppage.trajetshow').css({marginTop:navH});
+</script>
+
+
+
+<div class="container shopstats text-center">
+  <div class="row text-center pickerbloc">
+
+  </div>
+
+  <div class="row">
+    <div class="left-panel col-md-4">
+      <div class="row">
+        <div class="col-xs-6 statbloc">
+          <h4>Pickings ce mois</h4>
+          <p class="value">15</p>
+        </div>
+        <div class="col-xs-6 statbloc">
+          <h4>Commandes en plus ce mois</h4>
+          <p class="value">32</p>
+        </div>
+        <div class="col-xs-6 statbloc">
+          <h4>Pickings depuis le partenariat</h4>
+          <p class="value">182</p>
+        </div>
+        <div class="col-xs-6 statbloc">
+          <h4>Evaluation moyenne</h4>
+          <p><span class="value">4,5</span>/5</p>
+        </div>
+        <div class="col-xs-6 statbloc">
+          <h4>Tarif par picking</h4>
+          <p class="value">1,45€</p>
+        </div>
+        <div class="col-xs-6 statbloc">
+          <h4>Total mensuel actuel</h4>
+          <p class="value">46,40€</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="right-panel col-md-8">
+      <canvas id="myChart" width="100%" height="40%"></canvas>
+
+    </div>
+  </div>
+  <div class="row text-center useratings">
+    <h4 class="grey1">Avis reçus ce mois</h4>
+    <ul class="listfeedb">
+      <li class="feedb">
+        pas d'avis reçu actuellement
+      </li>
+      <li class="feedb">
+
+      </li>
+    </ul>
+
+  </div>
+
+
+</div>
+
+<!-- changer le format date en "demain..." -->
+<script type="text/javascript">
+$('.usernextpicking .delay, .shopnextpicking .delay, .details .doat, .detailsxs .doat').each(function() {
+this.textContent = moment(this.textContent,'YYYY-MM-DDTHH:mm').calendar();
+});
+</script>
+
+<%= javascript_include_tag "Chart" %>
+<script src="//maps.google.com/maps/api/js?v=3.exp&key=AIzaSyBngIsRw-Abk5UB04-Nl_Qg4vACEfo2jEo"></script>
+
+<script type="text/javascript">
+var hei= $('.shopstats .left-panel ').first().innerHeight();
+var heis= hei.toString();
+$('#myChart').attr("height")==heis;
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Oct-16", "Nov-16", "Dec-16", "Jan-17", "Fev-17", "Mars-17*"],
+        datasets: [{
+            label: 'Evolution des Commandes livrées par mois',
+            data: [25, 40, 70, 120, 100, 32],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 4
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+$(document).ready(function () {
+  Valign('.detailsxs .doat', '.detailsxs .circlerest');
+  if ($(window).width()<769){
+    Valign('.trajetshow .shopname', '.trajetshow .shopmini');
+    cenW('.trajetshow .pickerdetails .useravatarbloc img','.trajetshow .pickerdetails .useravatarbloc');
+  };
+  $(window).on('resize',function(){
+    if ($(window).width()<769){
+      cenW('.trajetshow .pickerdetails .useravatarbloc img','.trajetshow .pickerdetails .useravatarbloc');
+    }else{
+      $('.trajetshow .pickerdetails .useravatarbloc img').css({marginLeft:0});
+    };
+  });
+});
+
+
+
+function initMap() {
+var map = new google.maps.Map(document.getElementById('map'), {
+zoom: 15,
+center: {lat: <%= @shop.latitude %>, lng:  <%= @shop.longitude %>}
+});
+bounds  = new google.maps.LatLngBounds();
+setMarkers(map);
+
+
+}
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+
+function setMarkers(map) {
+      var image = {
+        url: "<%=@shop.brand.minipic_url(:marker)%>",
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 32),
+        size: new google.maps.Size(32, 32),
+      };
+      var marker = new google.maps.Marker({
+        position: {lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>},
+        map: map,
+        icon: image,
+      });
+};
+initMap();
+
+$(window).on('resize',function(){
+initMap();
+});
+
+</script>

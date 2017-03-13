@@ -73,7 +73,7 @@ class UsersController < ApplicationController
         if params[:user][:avatar].present?
           render :crop
         else
-          format.html { redirect_to @user, notice: 'Vous avez été inscrit, vous avez gagné 3€ et 2 cocoins pour essayer le covoiturage shopping! ' }
+          format.html { redirect_to @user, notice: 'Vous avez été inscrit, Bienvenue' }
           format.json { render :show, status: :created, location: @user }
         end
       else

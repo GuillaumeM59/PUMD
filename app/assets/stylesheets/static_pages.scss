@@ -118,6 +118,38 @@ z-index: 20;
 }
 
 
+// adminshop
+
+.adminshoppage.toppage{
+  margin-top:81px
+}
+.adminshoppage .headermap{
+  height: 200px
+}
+.shopstats .left-panel .statbloc, .shopstats .right-panel{
+  background-color: white;
+  border: 1px solid rgb(205, 205, 205);
+  margin: 10px 0
+}
+.shopstats .left-panel .statbloc{
+  background-color: white;
+  border: 1px solid rgb(205, 205, 205)
+}
+.shopstats .left-panel .statbloc h4{
+  color: rgb(129, 129, 129);
+}
+.shopstats .left-panel .statbloc p.value, .shopstats .left-panel .statbloc span.value{
+  font-size: 2em;
+}
+.shopstats .useratings{
+  background-color: white;
+  border: 1px solid rgb(205, 205, 205)
+
+}
+.shopstats .useratings ul{
+  padding: 30px 0
+}
+
 
 @media all and (max-width:991px) {
   .navbar-right{
