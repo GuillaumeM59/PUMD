@@ -34,6 +34,9 @@ gem 'bootstrap-toggle-rails'
 # task auto
 gem 'whenever'
 
+# graphics
+gem 'chart-js-rails'
+
 
 # allow rails datas on js
 gem 'gon'

@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_filter :authenticate_user!, only: [:tdb]
+  before_filter :authenticate_user!, only: [:tdb, :adminshop]
 
 
 
@@ -68,6 +68,12 @@ class StaticPagesController < ApplicationController
   def dailyrenew
     Autorenew.daily
   end
+
+
+  def adminshop
+    @shop=Shop.where(brand_id:7).where(city:"Marquette-lez-Lille").first
+  end
+
 
   def tdb
       @user=current_user
