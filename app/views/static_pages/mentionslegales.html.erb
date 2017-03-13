@@ -1,2 +1,43 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<script type="text/javascript">
+  $('body').css({backgroundColor:"#f4f4f4"})
+</script>
+<div class="toppage container mentionlpage text-center">
+  <h3 class="modaltitle">MENTIONS LEGALES</h3>
+  <div class="row mentionstext">
+
+  <div class="row hebergebloc">
+    <h4>Hébergement:</h4>
+<p>
+
+    La plateforme PUMP est hébergée par la société<br>
+     OVH <br> 2 rue Kellermann <br>
+59100 Roubaix <br>
+France
+</p>
+</div>
+  <div class="row devbloc">
+    <h4>Développement:</h4>
+<p>
+
+    La plateforme a été réalisée par<br>
+     PUMP <br>
+     MANIER Guillaume, BENRAHMANE Othman <br>
+     9 rue de lorraine Porte 4 <br>
+59100 Roubaix <br>
+France
+</p>
+<p>PUMP est accompagnée par <br>
+<%=   image_tag('logo-blanchemaille.png', class:"img-responsive logoblanchem") %>
+Rue du Fontenoy <br>
+59100 Roubaix <br>
+FRANCE
+</p>
+</div>
+
+</div>
+  <div class="modallinks row grey1">
+      <div class="col-md-12 text-right"><em class="grey2">retourner </em>
+        <%= link_to("à la page d'accueil", root_path, alt:"retourner page d'accueil") %>
+      </div>
+</div>
+</div>

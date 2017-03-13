@@ -1073,6 +1073,7 @@ body {
     right: 0;
 width: 0;
 height: 100%;
+overflow: hidden;
     background-color:#fff; /* change if the mask should have another color then white */
     z-index:1000; /* makes sure it stays on top */
 }
@@ -1085,6 +1086,7 @@ height: 100%;
 
 
 #preloader.active{
+  overflow: visible;
   opacity: 1;
   width: 100%;
 }

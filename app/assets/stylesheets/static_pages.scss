@@ -103,6 +103,22 @@ z-index: 20;
   left:25px;
 }
 
+
+
+// MENTIONS LEGALES
+.mentionstext{
+  background-color: white
+}
+.mentionstext h4{
+  color: rgb(148, 148, 148)
+}
+.mentionstext img{
+  width: 20%;
+  margin-left: 40%
+}
+
+
+
 @media all and (max-width:991px) {
   .navbar-right{
     padding-top: 8px
