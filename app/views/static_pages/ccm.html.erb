@@ -1,2 +1,119 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<script type="text/javascript">
+  $('body').css({backgroundColor:"#f4f4f4"})
+</script>
+<div class="topage container ccmpage text-center">
+  <h3 class="modaltitle">Conment ça marche?</h3>
+  <div class="row confirmbloc">
+    <h4>Hey!
+      <%= current_user.username %>,</h4>
+    <h5>
+      voici le résumé du picking:</h5>
+    <div class="col-xs-12 resumepick ">
+      <h4 class="text-center">le
+        <%= l(@trajet.do_at, format:"%A %d %B vers %H:%M") %></h4>
+      <div class="col-md-2 col-md-offset-3 hidden-xs hidden-sm pickeravatarbulle">
+        <%= image_tag(@driver.avatar, alt:"avatar picker", class: "img-responsive confimgdrive") %>
+      </div>
+      <div class="col-xs-5 col-md-2 pickerdriverbulle text-center">
+        <div class="row">
+        <div class=" col-xs-8 col-xs-offset-2 hidden-md hidden-lg pickeravatarbulle">
+          <%= image_tag(@driver.avatar, alt:"avatar picker", class: "img-responsive confimgdrive") %>
+        </div>
+      </div>
+        <h6><%= @driver.username %></h6>
+        <p><%= @driver.city %></p>
+      </div>
+      <div class="col-xs-7 col-md-3 text-center trajetinfobulle">
+        <p class="text-center">Passe par
+          <br>
+          <%= image_tag(@shop.brand.brandpic, alt:"#{@shop.name}", class: "img-responsive shopbullepic") %>
+          <%= @shop.name.remove(@shop.brand.name) %>
+        </p>
+      </div>
+
+    </div>
+    <div class="col-xs-12 explains">
+      <hr>
+
+      <strong>
+        En cliquant sur "confirmer", tu donnes procuration à
+        <%= @driver.username %>
+        pour qu'il te ramène tes courses!
+      </strong>
+
+      <p><%= @driver.username.capitalize %>
+        et toi recevrez un email et un sms contenant vos coordonnées respectives. Vous pourrez ainsi vous contacter au cas où.<br>
+        <%= @driver.username.capitalize %>
+        t'enverra un message avant de prendre tes courses afin que tu te prépares à son arrivée.<br>
+        <span class="warningcode">Vérifies que tu as bien reçu tous les articles de ta commande avant de donner le code de validation au picker.</span><br><br>
+      </p>
+      <hr>
+    </div>
+    <div class="col-xs-12 formconfirm">
+      <h4>Merci de nous transmettre les informations concernant ta commande drive:</h4>
+      <%= form_tag(new_transaction_path(), method: :get) do %>
+
+      <div class="field">
+        <%= label_tag :refdrive, "N° de commande #{@shop.name}" %><br>
+        <%= text_field_tag :refdrive  %>
+      </div>
+      <div class="field">
+        <% @resa=Resapumd.where(trajet_id:@trajet.id).first %>
+        <% c=0 %>
+        <% if @resa.drive6_size!=nil && @resa.drive6_size != 0 %>
+        <% c= @resa.maxsac %>
+      <% else %>
+        <% if @resa.drive1_size!=nil && c < @resa.maxsac %>
+        <% c+=@resa.drive1_size %>
+        <% elsif @resa.drive1_size? %>
+        <% c= @resa.maxsac %>
+        <% end %>
+        <% if @resa.drive2_size!=nil && c < @resa.maxsac %>
+        <% c+=@resa.drive2_size %>
+        <% elsif @resa.drive2_size!=nil %>
+        <% c= @resa.maxsac %>
+        <% end %>
+        <% if @resa.drive3_size!=nil && c < @resa.maxsac %>
+        <% c+=@resa.drive3_size %>
+        <% elsif @resa.drive3_size!=nil %>
+        <% c= @resa.maxsac %>
+        <% end %>
+        <% if @resa.drive4_size!=nil && c < @resa.maxsac %>
+        <% c+=@resa.drive4_size %>
+        <% elsif @resa.drive4_size!=nil %>
+        <% c= @resa.maxsac %>
+        <% end %>
+        <% if @resa.drive5_size!=nil && c < @resa.maxsac %>
+        <% c+=@resa.drive5_size %>
+        <% elsif @resa.drive5_size!=nil %>
+        <% c= @resa.maxsac %>
+        <% end %>
+        <% end %>
+        <% maxbags = @resa.maxsac - c %>
+        <%= label_tag :nbrsac, "Nombre de sac de courses estimé (taille: 1 sac = 1 pack d'eau) place restante: #{maxbags}" %><br>
+        <%= number_field_tag :nbrsac,nil, min: 1, max: maxbags %>
+      </div>
+      <div class="field">
+        <%= label_tag :substitution, "J'accepte la substitution d'articles par des articles de valeurs et qualités équivalentes" %><br>
+        <%= check_box_tag :substitution, nil, true %>
+      </div>
+      <div class="field">
+        <strong>J'ai lu et j'accepte les
+          <%= link_to("conditions générales d'utilisations", cgv_path, alt:"CGU") %></strong><br>
+        <%= check_box_tag :CGV, nil, false %>
+      </div>
+
+      <%= hidden_field_tag :trajet_id, :value => "#{@trajet.id}"%>
+
+      <%= submit_tag "Je confirme", id:"confirmbtn"%>
+      <% end %>
+
+    </div>
+
+  </div>
+  <div class="modallinks row grey1">
+      <div class="col-md-12 text-right"><em class="grey2">retourner au</em>
+        <a href="#" class="active" id="login-form-link" alt="retourner au picking">picking</a>
+      </div>
+</div>
+</div>

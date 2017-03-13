@@ -320,13 +320,13 @@ function Halign(small2,big2){
             <ul class="footerlist col-md-3 list-unstyled">
               <h3 class="footertitle">Liens Rapides</h3>
               <li>
-                <a href="">Accueil</a>
+                <%= link_to "Accueil", root_path, alt:"Accueil" %>
               </li>
               <li>
-                <a href="">Trouver un picking</a>
+                <%= link_to "Trouver un picking", trajetpumds_search_path, alt:"Trouver un picking" %>
               </li>
               <li>
-                <a href="">Déposer une annonce</a>
+                <%= link_to "Déposer une annonce",  new_trajetpumd_path, alt:"Déposer une annonce" %>
               </li>
               <li>
                 <%= link_to "Nous contacter", static_pages_contact_path, alt:"nous contacter" %>
@@ -338,39 +338,39 @@ function Halign(small2,big2){
             <ul class="footerlist col-md-3 list-unstyled">
               <h3  class="footertitle">à propos</h3>
               <li>
-                <a href="">Comment ça marche</a>
+                <%= link_to "Comment ça marche?", ccm_path, alt:"Comment ça marche?" %>
               </li>
               <li>
-                <a href="">Qui sommes-nous?</a>
+                <%= link_to "Qui sommes-nous?", qui_path, alt:"Qui sommes-nous?" %>
               </li>
               <li>
-                <a href="">Aide</a>
+                <%= link_to "Aide", help_path, alt:"Aide" %>
               </li>
               <li>
-                <a href="">Presse</a>
+                <%= link_to "Presse", presse_path, alt:"Presse" %>
               </li>
             </ul>
             <ul class="footerlist col-md-3 list-unstyled">
               <h3 class="footertitle">Mentions légales</h3>
               <li>
-                <a href="">Mentions Légales</a>
+                <%= link_to "Mentions légales", mentionslegales_path, alt:"Mentions légales" %>
               </li>
               <li>
-                <a href="">Conditions générales d'utilisation</a>
+                <%= link_to "Conditions générales d'utilisation", cgv_path, alt:"Conditions générales d'utilisation" %>
               </li>
               <li>
-                <a href="">Prix</a>
+                <%= link_to "Prix", prix_path, alt:"Prix" %>
               </li>
             </ul>
 
             <ul class="footerlist col-md-3 list-unstyled list-inline">
               <h3 class="footertitle">Réseaux sociaux</h3>
               <li class="sociallink">
-                <a href=""><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
+                <a href="https://www.facebook.com/pump.fr/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
 </a>
               </li>
               <li class="sociallink">
-                <a href=""><i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+                <a href="https://twitter.com/mypumpfr"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
 </a>
               </li>
 
