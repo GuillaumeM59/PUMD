@@ -49,6 +49,9 @@ class StaticPagesController < ApplicationController
   def prix
   end
 
+  def presse
+  end
+
   def contact
     @message = Message.new
   end
