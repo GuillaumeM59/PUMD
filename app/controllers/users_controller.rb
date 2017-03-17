@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [:index, :new, :create, :destroy, :show]
+  before_filter :authenticate_user!, only: [:index, :new, :create, :edit, :destroy, :show]
   before_filter :is_admin, only: [:index]
+
+
 
 
   # GET /users
@@ -52,13 +54,16 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if @user != current_user
+      @user=current_user
+    end
     dob = @user.dob
     now = Time.now.utc.to_date
     @age =now.year - @user.dob.year - (@user.dob.change(:year => now.year) > now ? 1 : 0)
     @slide = params[:slide]
     def resource
 
-    @resource ||= @user
+    @resource == @user
 
     end
   end
@@ -67,22 +72,23 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.avatar = :default_url
-    respond_to do |format|
       if @user.save
-        if params[:user][:avatar].present?
-          render :crop
-        else
-          format.html { redirect_to @user, notice: 'Vous avez été inscrit, Bienvenue' }
+        if params[:user][:avatar].blank?
+          respond_to do |format|
+          format.html { redirect_to edit_user_registration_path(@user), notice: 'Vous avez été inscrit, Bienvenue' }
           format.json { render :show, status: :created, location: @user }
+          end
+        else
+          render :crop
         end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
   end
 
+  def crop
+  end
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -91,17 +97,23 @@ class UsersController < ApplicationController
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
       if @user.update_without_password(user_params)
-        respond_to do |format|
+          if params[:user][:avatar].blank?
+            respond_to do |format|
           format.html {
-            if params[:user][:avatar].present?
-              render :crop
-            else
               redirect_to @user, notice: 'Votre profil a été modifié.'
-            end
             }
-          format.json { render :show, status: :ok, location: @user }
-        end
+            format.json { render :show, status: :ok, location: @user }
+            end
+          else
+            puts "cropping"
+            respond_to do |format|
+              format.html {
+                render :crop
+              }
+            end
+          end
       else
+      puts  @user.errors.full_messages
         respond_to do |format|
           format.html { redirect_to edit_user_path(@user, :slide => params[:user][:slide]) }
           format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -111,17 +123,23 @@ class UsersController < ApplicationController
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
       if @user.update_with_password(user_params)
-        respond_to do |format|
-          format.html {
-            if params[:user][:avatar].present?
-              render :crop
-            else
+          if params[:user][:avatar].blank?
+            respond_to do |format|
+          format.html{
               redirect_to @user, notice: 'Votre profil a été modifié.'
+            }
+            format.json { render :show, status: :ok, location: @user }
             end
-          }
-          format.json { render :show, status: :ok, location: @user }
-        end
+          else
+            puts "cropping"
+            respond_to do |format|
+          format.html {
+            render :crop
+            }
+          end
+          end
       else
+       puts  @user.errors.full_messages
         respond_to do |format|
           format.html { render :edit}
           format.json { render json: @user.errors, status: :unprocessable_entity }
