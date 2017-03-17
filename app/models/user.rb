@@ -2,13 +2,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates_presence_of :username, :email, :password, :password_confirmation, on: :create
-  validates_presence_of :username, :email, :nom, :prenom, :phone, on: :update
+  validates_presence_of :email, on: :update
   validates_uniqueness_of :username
  validates :username, length: { in: 4..15 }
- validates :prenom, length: { minimum: 2 }, on: :update
- validates :nom, length: { minimum: 2 }, on: :update
- validates :phone, length: { minimum: 10 }, on: :update
- validates :zipcode, numericality: { only_integer: true },length: { minimum: 5 }, on: :update
+    validates :prenom, length: { minimum: 2 }, allow_nil: true, on: :update
+    validates :nom, length: { minimum: 2 },allow_nil: true, on: :update
+    validates :phone, length: { minimum: 10 }, on: :update
+   validates :zipcode, numericality: { only_integer: true },allow_nil: true, length: { minimum: 5 }, on: :update
 validates :password, length: { minimum: 8 }, on: :create
 validates :dob, length: {is: 10}
 validate :dob_for_majority
@@ -26,7 +26,7 @@ scope :is_driver, -> { where(:driver => true) }
 def dob_for_majority
   if dob.present? && dob > (Date.today-18.years)
        errors.add(:dob, "Vous devez avoir au moins 18 ans")
-     end
+  end
 end
 
 
