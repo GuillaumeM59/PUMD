@@ -1,13 +1,17 @@
 <div class="container toppage edituserpage">
   <div class="row">
+      <div class="col-md-12">
+
+          <div class="row">
+              <h3 class="modaltitle">COMPLETER MON PROFIL
+              </h3>
+
+                  <div class="data_input col-md-12 text-center">
 
     <%= form_for @user, validate: true do |f| %>
 
       <%= devise_error_messages_for(@user) %>
 
-    <h1 class="headercontant col-md-12 text-center grey1">
-      Modifier mon profil
-    </h1>
 
   <div class="col-md-6 col-lg-4 edituseravatarbloc">
       <%= image_tag(@user.avatar, class:"img-responsive profilavatar img-circle col-xs-6 col-xs-offset-3") %>
@@ -22,12 +26,10 @@
 
   <div class="col-md-6 col-lg-4 edituseridentbloc">
     <div class="field">
-      <%= f.label :nom %><br>
-      <%= f.text_field :nom %>
+      <%= f.text_field :nom , placeholder:"NOM"%>
     </div>
     <div class="field">
-      <%= f.label "Prénom" %><br>
-      <%= f.text_field :prenom %>
+      <%= f.text_field :prenom, placeholder:"Prénom"%>
     </div>
     <div class="field">
       <p>Sexe:</p>
@@ -37,7 +39,7 @@
       <%=   f.label :gender_true, "Femme" %>
 
     </div>
-    <div class="field">
+    <div class="field hidden">
       <%= f.label "Date de naissance" %><br>
       <%= f.date_select :dob, :start_year => 1900, :end_year => Time.now.year  %>
     </div>
@@ -46,15 +48,15 @@
   </div>
   <div class="col-md-6 col-lg-4 edituseridbloc">
 
-    <div class="field">
+    <div class="field hidden">
       <%= f.label :email %><br/>
       <%= f.email_field :email, autofocus: true, class:'fwidth' %>
     </div>
-    <div class="field">
+    <div class="field hidden">
       <%= f.label "Newsletter" %>
       <%= f.check_box :subscribe %>
     </div>
-    <div class="field">
+    <div class="field hidden">
       <%= f.label "Telephone" %><br/>
       <%= f.text_field :phone, autofocus: true %>
     </div>
@@ -66,16 +68,13 @@
 
 
     <div class="field">
-      <%= f.label "Adresse" %><br>
-      <%= f.text_field :adress, class:'fwidth' %>
+      <%= f.text_field :adress, class:'fwidth', placeholder:"Adresse" %>
     </div>
     <div class="field col-xs-4 nopaddinghor">
-      <%= f.label "Code postal" %><br>
-      <%= f.text_field :zipcode %>
+      <%= f.text_field :zipcode, placeholder:"Code postal" %>
     </div>
     <div class="field col-xs-8 nopaddinghor">
-      <%= f.label "Ville" %><br>
-      <%= f.text_field :city, class:'fwidth' %>
+      <%= f.text_field :city, class:'fwidth', placeholder:"Ville" %>
     </div>
 
   </div>
@@ -83,15 +82,20 @@
   </div>
 
   <div class="actions col-md-12 text-center">
-  </br>
     <%= f.label :current_password %>
     <%= f.password_field :current_password, autocomplete: "off" %></br>
     <i class="grey2">(Nécessaire pour confirmer vos changements)</i><br/>
     <%= f.submit "Enregistrer", class: "btn btn-o-purple editsubmit" %>
 
-    <% end %></br>
-    <%= link_to 'Supprimer mon compte', current_user, method: :delete, data: { confirm: 'Voulez-vous vraiment supprimer ? action irréversible ' } %>
+    <% end %>
   </div>
 </div>
 
+<div class="modallinks row grey1">
+    <div class="col-md-12 text-right">
+      <%= link_to 'remplir ulterieurement', current_user, data: { confirm: 'Pensez à remplir votre profil avant de poster ou répondre à une annonce' } %>
+    </div>
+</div>
+</div>
+</div>
 </div>

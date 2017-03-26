@@ -402,6 +402,14 @@ button.filters-btn i, {
     }
 }
 @media all and (max-width:700px) {
+  .markersbloc {
+      width: 100%;
+      margin-left: 0;
+  }
+  .markersbloc li{
+      padding-left: 5px;
+      padding-right: 5px;
+  }
     .newtrajet {
         padding-left: 2px;
         padding-right: 2px;

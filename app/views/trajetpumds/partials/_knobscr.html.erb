@@ -1,11 +1,11 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-    $('.trajetknob<%=trajet.id%>').css({opacity: 0});
+    $('.markersbloc .trajetknob<%=trajet.id%>').css({opacity: 0});
     function initdescompte() {
-        $('.trajetknob<%=trajet.id%>').css({opacity: 1});
+        $('.markersbloc .trajetknob<%=trajet.id%>').css({opacity: 1});
 
-        $(".trajetknob<%=trajet.id%>").knob({
+        $(".markersbloc .trajetknob<%=trajet.id%>").knob({
             'readOnly': true,
             'thickness': 0.1,
             'width': 70,
@@ -30,16 +30,26 @@ $(document).ready(function () {
                 var vert = Math.round(187 - (c * coef2));
                 var newcolor = "rgb(" + rouge + "," + vert + "," + bleu + ")";
                 clearTimeout(go);
-                $(".trajetknob<%=trajet.id%>").val(a).trigger("change");
-                $(".trajetknob<%=trajet.id%>").trigger("configure", {"fgColor": newcolor});
-                $(".trajetknob<%=trajet.id%>").css({color: newcolor});
+                $(".markersbloc .trajetknob<%=trajet.id%>").val(a).trigger("change");
+                $(".markersbloc .trajetknob<%=trajet.id%>").trigger("configure", {"fgColor": newcolor});
+                $(".markersbloc .trajetknob<%=trajet.id%>").css({color: newcolor});
                 a = a - 1;
                 c++;
             }
         }
         var decompte = setInterval(changecercle, 50);
+        $("#mapcontainer #map .tparamsbulle .trajetknob<%=trajet.id%>").knob({
+            'readOnly': true,
+            'thickness': 0.1,
+            'width': 70,
+            'height': 50,
+            'angleArc': 250,
+            'angleOffset': 235,
+        });
     }
     var go = setTimeout(initdescompte, 6000);
+
+
 });
 
 

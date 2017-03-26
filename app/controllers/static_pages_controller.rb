@@ -71,7 +71,7 @@ class StaticPagesController < ApplicationController
 
 
   def adminshop
-    @shop=Shop.where(brand_id:7).where(city:"Marquette-lez-Lille").first
+    @shop=Shop.find(1866)
   end
 
 

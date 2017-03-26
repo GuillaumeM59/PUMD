@@ -38,10 +38,9 @@ class TrajetpumdsController < ApplicationController
       @lati=@client[0]
       @longi=@client[1]
     end
-
     @searchlistdrive.each do |shop|
         disttoshop= Geocoder::Calculations.distance_between([@lati,@longi], [shop.latitude,shop.longitude], :units => :km).round(2)
-        if disttoshop <10
+        if disttoshop <30
         @shopstosort << [shop,disttoshop]
       end
       @aroundshops= @shopstosort.sort do |a,b|
@@ -52,7 +51,7 @@ class TrajetpumdsController < ApplicationController
 
     User.where(driver:true).each do |driver|
         disttodriver= Geocoder::Calculations.distance_between([@lati,@longi], [driver.latitude,driver.longitude], :units => :km).round(2)
-      if disttodriver < 5
+      if disttodriver < 20
         @aroundpickers << [driver,disttodriver]
       end
     end
