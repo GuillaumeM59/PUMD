@@ -131,7 +131,7 @@ function Halign(small2,big2){
                                     <% end -%>
                                 </div>
                                 <div class="col-xs-6 text-right"><em class="grey2">Pas encore membre?</em>
-                                    <a href="#" class="active" id="register-form-link" alt="onglet s'inscrire">S'inscrire</a>
+                                  <%= link_to "S'inscrire", new_user_registration_path ,class:"active", id:"login-form-link", alt:"s'inscrire" %>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +196,7 @@ function Halign(small2,big2){
                                     <% end -%>
                                 </div>
                                 <div class="col-xs-6 text-right"><em class="grey2">Déjà inscrit?</em>
-                                  <a href="#" class="active" id="login-form-link" alt="onglet se connecter">Se connecter</a>
+                                  <%= link_to "Se connecter", new_user_session_path ,class:"active", id:"login-form-link", alt:"se connecter" %>
                                 </div>
                             </div>
                         </div>

@@ -280,6 +280,21 @@ function chgbtn() {
           google.maps.event.addListener(marker<%= i %>, "click", function(){
             infowindow<%= i %>.open(map, marker<%= i %>);
             chgbtn();
+            $("#map .tparamsbulle input").first().knob({
+                'readOnly': true,
+                'thickness': 0.1,
+                'width': 70,
+                'height': 50,
+                'angleArc': 250,
+                'angleOffset': 235,
+            });
+            $('#map .trajetinfos .doat').each(function() {
+            this.textContent = moment(this.textContent,'YYYY-MM-DDTHH:mm').calendar();
+            });
+            var smallW = $('.gm-style-iw .pickerdriverbulle img').first().innerWidth()/2;
+            var bigW = $('.gm-style-iw .pickerdriverbulle p').first().innerWidth()/2;
+            $('.gm-style-iw .pickerdriverbulle img').css({marginLeft: (bigW-smallW)});
+            $('.gm-style-iw .trajetbtn').addClass('active');
           });
           if (i>0){
             createMarkerButton(marker<%= i %>);
@@ -294,9 +309,15 @@ $(document).ready(chgbtn());
 
 </script>
 <script type="text/javascript">
-$('.trajetinfos .doat').each(function() {
+$('.markersbloc .trajetinfos .doat').each(function() {
 this.textContent = moment(this.textContent,'YYYY-MM-DDTHH:mm').calendar();
 });
+$('.markersbloc li').each( function() {
+  var smallW = $(this).find('.pickerdriverbulle img').first().innerWidth()/2;
+  var bigW = $(this).find('.pickerdriverbulle p').first().innerWidth()/2;
+  $(this).find('.pickerdriverbulle img').first().css({marginLeft: (bigW-smallW)});
+})
+
 </script>
 
 <% if @trajetids.count !=0

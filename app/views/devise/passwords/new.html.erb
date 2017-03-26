@@ -1,4 +1,4 @@
-<div class="container toppage oublimdp">
+<div class="container toppage changemdp">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
 
@@ -22,7 +22,7 @@
   </div>
   <div class=" row grey1 modallinks">
       <div class="col-xs-12 text-right"><em class="grey2">Pas encore membre?</em>
-          <a href="#" class="active" id="register-form-link" alt="onglet s'inscrire">S'inscrire</a>
+        <%= link_to "S'inscrire", new_user_registration_path ,class:"active", id:"login-form-link", alt:"s'inscrire" %>
       </div>
   </div>
 </div>

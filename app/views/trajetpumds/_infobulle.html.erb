@@ -7,12 +7,12 @@
 <div class="col-xs-12 trajetinfos">
     <div class="row">
         <div class="col-xs-3 pickerdriverbulle text-center">
-            <%= image_tag(driver.avatar, alt:"avatar picker", class: "img-responsive", size:"50") %>
+            <%= image_tag(driver.avatar, alt:"avatar picker", class: "img-responsive img-circle", size:"50") %>
             <p>
                 <strong><%= driver.username %></strong><br>
                 <%= driver.city %></p>
         </div>
-        <div class="col-xs-6 text-center tparamsbulle">
+        <div class="col-xs-7 text-center tparamsbulle">
 <div class="row">
   <div class="col-xs-12 doat">
         <%= @trajet.do_at.strftime("%FT%R")%>
@@ -46,9 +46,9 @@
   </div>
 </div>
         </div>
-        <div class="col-xs-3 text-center trajetinfobulle">
+        <div class="col-xs-2 text-center trajetinfobulle">
             <p class="text-center">
-                <%= image_tag(shop.brand.brandpic, alt:"#{shop.name}", class: "img-responsive shopbullepic", size:"50") %>
+                <%= image_tag(shop.brand.minipic, alt:"#{shop.name}", class: "img-responsive shopbullepic", size:"50") %>
                 <%= shop.city %></p>
         </div>
       </div>
